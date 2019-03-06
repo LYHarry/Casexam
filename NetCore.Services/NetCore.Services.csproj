@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NetCore.Infrastructures.Util\NetCore.Infrastructures.Util.csproj" />
+    <ProjectReference Include="..\NetCore.Repository.Interface\NetCore.Repository.Interface.csproj" />
+    <ProjectReference Include="..\NetCore.Services.Interface\NetCore.Services.Interface.csproj" />
+  </ItemGroup>
+
+</Project>

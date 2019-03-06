@@ -1,3 +1,2 @@
-# Casexam
-
-学习案例，代码测试 仓库
+# NetCoreDemo
+.NET Core 学习例子
