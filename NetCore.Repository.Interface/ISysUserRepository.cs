@@ -9,7 +9,7 @@ namespace NetCore.Repository.Interface
     /// <summary>
     /// 系统管理员用户数据仓储接口类
     /// </summary>
-    public interface ISysUserRepository : IRepository<SysUserEntity, int>
+    public interface ISysUserRepository : IRepository<SysUserEntity, int>, IDbService
     {
 
     }

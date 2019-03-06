@@ -11,7 +11,7 @@ namespace NetCore.Services.Interface
     /// <summary>
     /// 系统管理员用户业务处理接口类
     /// </summary>
-    public interface ISysUserService
+    public interface ISysUserService : IService
     {
         Task<bool> Add(AddRequest request);
 

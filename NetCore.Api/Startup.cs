@@ -72,6 +72,10 @@ namespace NetCore.Api
             //==================== 同时注入多个实例 =========================
             // 注入 数据库上下文
             services.AddDbService(Configuration);
+            // 注入 Service 服务
+            services.AddServices(typeof(Service).Assembly, typeof(IService), "Service");
+            // 注入 Repository 仓储
+            services.AddServices(typeof(Service).Assembly, typeof(IService), "Service");
 
             #endregion
 

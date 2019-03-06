@@ -26,7 +26,7 @@ namespace NetCore.Infrastructures.Service
         }
 
 
-        public static IServiceCollection AddServices(this IServiceCollection serviceBuilder, Assembly implAssembly, Assembly interfaceAssembly, Type interfaceType, string containsName)
+        public static IServiceCollection AddServices(this IServiceCollection serviceBuilder,  Assembly interfaceAssembly, Type interfaceType, string containsName)
         {
             var serviceTypes = interfaceAssembly.GetTypes()
                 .Where(x => x.IsInterface && !x.GetTypeInfo().IsGenericType && x != interfaceType).ToList();

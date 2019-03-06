@@ -11,7 +11,7 @@ namespace NetCore.Services.Interface
     /// <summary>
     /// 系统角色业务处理类
     /// </summary>
-    public interface ISysRoleService
+    public interface ISysRoleService : IService
     {
         Task<bool> Add(AddRequest request);
 
