@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dapper;
+using NetCore.Infrastructures.Repository.Models;
+using NetCore.ViewModels;
 
 namespace NetCore.Infrastructures.Repository
 {
@@ -12,33 +15,45 @@ namespace NetCore.Infrastructures.Repository
     /// </summary>
     public class DbContext : IDbContext
     {
-        private readonly IDbConnection _dbConnection;
-        private readonly IDbTransaction _dbTransaction;
+        private readonly IDbConnection _connection;
+        private readonly IDbTransaction _transaction;
 
         public DbContext(IUnitOfWork unitOfWork)
         {
-            _dbConnection = unitOfWork.GetDbConnection();
-            _dbTransaction = unitOfWork.GeTransaction();
+            _connection = unitOfWork.GetDbConnection();
+            _transaction = unitOfWork.GeTransaction();
         }
 
         public Task<int> ExecuteAsync(string sql, object param = null, int? commandTimeout = null, CommandType? commandType = null)
         {
-            throw new NotImplementedException();
+            return _connection.ExecuteAsync(sql, param, _transaction, commandTimeout, commandType);
         }
 
-        public Task<T> GetAsync<T>(string sql, object param = null, int? commandTimeout = null, CommandType? commandType = null)
+        public async Task<PagedResult<T>> GetPagedAsync<T>(QueryPageParameter queryParameter, int? commandTimeout = null, CommandType? commandType = null)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrWhiteSpace(queryParameter.Field))
+                throw new ArgumentException("Field is not null");
+
+            if (string.IsNullOrWhiteSpace(queryParameter.FromSql))
+                throw new ArgumentException("FromSql is not null");
+
+            var countSql = $"SELECT COUNT(1) FROM {queryParameter.FromSql};";
+            if (!string.IsNullOrWhiteSpace(queryParameter.GroupBy))
+                countSql =
+                    $"SELECT COUNT(1) FROM (SELECT {queryParameter.Field} FROM {queryParameter.FromSql} {queryParameter.GroupBy})t1;";
+
+            var sql =
+                $"{countSql} SELECT {queryParameter.Field} FROM {queryParameter.FromSql} {queryParameter.GroupBy} {queryParameter.OrderBy} OFFSET {(queryParameter.PageNumber - 1) * queryParameter.PageSize} ROWS FETCH NEXT {queryParameter.PageSize} ROWS ONLY;";
+            var result = await _connection.QueryMultipleAsync(sql, queryParameter.Param, _transaction, commandTimeout,
+                commandType);
+            return new PagedResult<T>
+            {
+                PageIndex = queryParameter.PageNumber,
+                PageSize = queryParameter.PageSize,
+                TotalItemCount = result.ReadFirst<int>(),
+                Items = result.Read<T>().ToList()
+            };
         }
 
-        public Task<IEnumerable<T>> GetListAsync<T>(string sql, object param = null, int? commandTimeout = null, CommandType? commandType = null)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<SqlMapper.GridReader> QueryMultipleAsync(string sql, object param = null, int? commandTimeout = null, CommandType? commandType = null)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

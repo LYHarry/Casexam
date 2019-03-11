@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using NetCore.Api.Filter;
 using NetCore.Infrastructures.Repository;
 using NetCore.Infrastructures.Service;
 using NetCore.Repository;
@@ -26,10 +27,6 @@ namespace NetCore.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            // =================== 注册 MVC 中间件=========================
-            services.AddMvc()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
             // ==================  Swagger ===================
             services.AddSwaggerGen(c =>
             {
@@ -47,6 +44,7 @@ namespace NetCore.Api
                 // 则会报 See config settings - "CustomSchemaIds" for a workaround
                 c.CustomSchemaIds(p => p.FullName);
                 c.DescribeAllEnumsAsStrings();
+                c.DocInclusionPredicate((docName, description) => true);
             });
 
             #region ====================  注入实例 =========================
@@ -71,14 +69,8 @@ namespace NetCore.Api
 
             //==================== 同时注入多个实例 =========================
 
-
-            IConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
-            configurationBuilder.SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", false);
-            var configuration = configurationBuilder.Build();
-
             // 注入 数据库上下文
-            services.AddDbService(configuration);
+            services.AddDbService(Configuration);
             // 注入 Service 服务
             services.AddServices(typeof(Service).Assembly, typeof(IService).Assembly, typeof(IService), "Service");
             // 注入 Repository 仓储
@@ -86,20 +78,18 @@ namespace NetCore.Api
 
             #endregion
 
-
-
-
-
+            // =================== 注册 MVC 中间件=========================
+            services.AddMvc(option =>
+            {
+                option.Filters.Add<GlobalException>();
+            })
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
-
-
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
 
+            app.UseStaticFiles();
             app.UseMvc();
 
             // ==================  Swagger ===================
@@ -107,8 +97,10 @@ namespace NetCore.Api
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "NetCore.Api");
-                c.RoutePrefix = string.Empty;
+                //c.RoutePrefix = string.Empty;
             });
+
+
         }
     }
 }

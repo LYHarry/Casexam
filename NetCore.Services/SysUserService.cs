@@ -1,5 +1,7 @@
 ﻿using NetCore.Entity;
 using NetCore.Infrastructures.Extensions;
+using NetCore.Infrastructures.Repository;
+using NetCore.Infrastructures.Repository.Models;
 using NetCore.Models.SysUser;
 using NetCore.Repository.Interface;
 using NetCore.Services.Interface;
@@ -19,11 +21,13 @@ namespace NetCore.Services
     {
         private readonly ISysUserRepository _sysUserRepository;
         private readonly ISysRoleRepository _sysRoleRepository;
+        private readonly IDbContext _dbContext;
 
-        public SysUserService(ISysUserRepository sysUser, ISysRoleRepository sysRole)
+        public SysUserService(ISysUserRepository sysUser, ISysRoleRepository sysRole, IDbContext dbContext)
         {
             _sysUserRepository = sysUser;
             _sysRoleRepository = sysRole;
+            _dbContext = dbContext;
         }
 
         public async Task<bool> Add(AddRequest request)
@@ -48,9 +52,21 @@ namespace NetCore.Services
             return row > 0;
         }
 
-        public Task<PagedResult<GetListResult>> List(GetListRequest request)
+        public async Task<PagedResult<GetListResult>> List(GetListRequest request)
         {
-            throw new NotImplementedException();
+            StringBuilder sbstr = new StringBuilder();
+            sbstr.Append("FROM sysuser u LEFT JOIN sysrole r on u.roleid=r.ID");
+            sbstr.Append("WHERE u.\"Status\"=1 AND r.\"Status\"=1");
+            var query = new QueryPageParameter
+            {
+                Field = " u.*,r.\"Name\"  AS RoleName ",
+                FromSql = sbstr.ToString(),
+                OrderBy = "u.\"CreateDate\" DESC",
+                PageNumber = request.PageIndex,
+                PageSize = request.PageSize,
+            };
+            var result = await _dbContext.GetPagedAsync<GetListResult>(query);
+            return result;
         }
 
         public async Task<bool> Login(LoginRequest request)

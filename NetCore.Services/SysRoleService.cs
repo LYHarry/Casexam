@@ -1,5 +1,7 @@
 ﻿using NetCore.Entity;
 using NetCore.Infrastructures.Extensions;
+using NetCore.Infrastructures.Repository;
+using NetCore.Infrastructures.Repository.Models;
 using NetCore.Models.SysRole;
 using NetCore.Repository.Interface;
 using NetCore.Services.Interface;
@@ -18,10 +20,12 @@ namespace NetCore.Services
     public class SysRoleService : ISysRoleService
     {
         private readonly ISysRoleRepository _sysRoleRepository;
+        private readonly IDbContext _dbContext;
 
-        public SysRoleService(ISysRoleRepository sysRole)
+        public SysRoleService(ISysRoleRepository sysRole, IDbContext dbContext)
         {
             _sysRoleRepository = sysRole;
+            _dbContext = dbContext;
         }
 
         public async Task<bool> Add(AddRequest request)
@@ -43,9 +47,18 @@ namespace NetCore.Services
             return row > 0;
         }
 
-        public Task<PagedResult<GetListResult>> List(GetListRequest request)
+        public async Task<PagedResult<GetListResult>> List(GetListRequest request)
         {
-            throw new NotImplementedException();
+            var query = new QueryPageParameter
+            {
+                Field = " * ",
+                FromSql = " FROM sysrole WHERE \"Status\"=1 ",
+                OrderBy = "\"CreateDate\" DESC",
+                PageNumber = request.PageIndex,
+                PageSize = request.PageSize,
+            };
+            var result = await _dbContext.GetPagedAsync<GetListResult>(query);
+            return result;
         }
 
         public async Task<bool> Update(UpdateRequest request)
