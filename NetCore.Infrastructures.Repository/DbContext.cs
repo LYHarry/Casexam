@@ -43,7 +43,7 @@ namespace NetCore.Infrastructures.Repository
                     $"SELECT COUNT(1) FROM (SELECT {queryParameter.Field} FROM {queryParameter.FromSql} {queryParameter.GroupBy})t1;";
 
             var sql =
-                $"{countSql} SELECT {queryParameter.Field} FROM {queryParameter.FromSql} {queryParameter.GroupBy} {queryParameter.OrderBy} OFFSET {(queryParameter.PageNumber - 1) * queryParameter.PageSize} ROWS FETCH NEXT {queryParameter.PageSize} ROWS ONLY;";
+                $"{countSql} SELECT {queryParameter.Field} FROM {queryParameter.FromSql} {queryParameter.GroupBy} ORDER BY {queryParameter.OrderBy} OFFSET {(queryParameter.PageNumber - 1) * queryParameter.PageSize} ROWS FETCH NEXT {queryParameter.PageSize} ROWS ONLY;";
             var result = await _connection.QueryMultipleAsync(sql, queryParameter.Param, _transaction, commandTimeout,
                 commandType);
             return new PagedResult<T>

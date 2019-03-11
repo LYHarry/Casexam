@@ -55,7 +55,7 @@ namespace NetCore.Services
         public async Task<PagedResult<GetListResult>> List(GetListRequest request)
         {
             StringBuilder sbstr = new StringBuilder();
-            sbstr.Append("FROM sysuser u LEFT JOIN sysrole r on u.roleid=r.ID");
+            sbstr.Append("sysuser u LEFT JOIN sysrole r on u.roleid=r.ID");
             sbstr.Append("WHERE u.\"Status\"=1 AND r.\"Status\"=1");
             var query = new QueryPageParameter
             {
