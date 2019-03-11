@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -50,10 +51,10 @@ namespace NetCore.Api
 
             #region ====================  注入实例 =========================
 
-            // ================= 默认只能注入单个实例 =========================
-            //// 注入 数据库连接项
-            //services.Configure<DbConnectionOptions>(Configuration.GetSection("DbConnectionOptions"));
+            // 注入 数据库连接项
+            services.Configure<DbConnectionOptions>(Configuration.GetSection("DbConnectionOptions"));
 
+            // ================= 默认只能注入单个实例 =========================
             //// 注入 UnitOfWork 工作单元
             //services.AddScoped<IUnitOfWork, UnitOfWork>();
 
@@ -68,14 +69,20 @@ namespace NetCore.Api
             //services.AddScoped<ISysRoleService, SysRoleService>();
             //services.AddScoped<ISysUserService, SysUserService>();
 
-
             //==================== 同时注入多个实例 =========================
+
+
+            IConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
+            configurationBuilder.SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", false);
+            var configuration = configurationBuilder.Build();
+
             // 注入 数据库上下文
-            services.AddDbService(Configuration);
+            services.AddDbService(configuration);
             // 注入 Service 服务
-            services.AddServices(typeof(Service).Assembly, typeof(IService), "Service");
+            services.AddServices(typeof(Service).Assembly, typeof(IService).Assembly, typeof(IService), "Service");
             // 注入 Repository 仓储
-            services.AddServices(typeof(Service).Assembly, typeof(IService), "Service");
+            services.AddServices(typeof(DbService).Assembly, typeof(IDbService).Assembly, typeof(IDbService), "Repository");
 
             #endregion
 

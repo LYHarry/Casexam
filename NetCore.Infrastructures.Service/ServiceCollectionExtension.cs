@@ -15,9 +15,9 @@ namespace NetCore.Infrastructures.Service
         public static IServiceCollection AddDbService(this IServiceCollection services, IConfiguration configuration)
         {
             // 注入 数据库连接项
-            services.AddSingleton(
-                JsonConvert.DeserializeObject<DbConnectionOptions>(configuration.GetSection("ConnectionOptions").Value)
-                );
+            //var conStr = configuration.GetSection("DbConnectionOptions").Value;
+            //services.AddSingleton(JsonConvert.DeserializeObject<DbConnectionOptions>(conStr));
+
             // 注入 UnitOfWork 工作单元
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             // 注入 DbContext 数据库上下文
@@ -26,7 +26,7 @@ namespace NetCore.Infrastructures.Service
         }
 
 
-        public static IServiceCollection AddServices(this IServiceCollection serviceBuilder,  Assembly interfaceAssembly, Type interfaceType, string containsName)
+        public static IServiceCollection AddServices(this IServiceCollection services, Assembly implAssembly, Assembly interfaceAssembly, Type interfaceType, string containsName)
         {
             var serviceTypes = interfaceAssembly.GetTypes()
                 .Where(x => x.IsInterface && !x.GetTypeInfo().IsGenericType && x != interfaceType).ToList();
@@ -47,10 +47,10 @@ namespace NetCore.Infrastructures.Service
                     return false;
                 });
                 if (serviceImplType != null)
-                    serviceBuilder.AddScoped(serviceType, serviceImplType);
+                    services.AddScoped(serviceType, serviceImplType);
             }
 
-            return serviceBuilder;
+            return services;
         }
     }
 }
