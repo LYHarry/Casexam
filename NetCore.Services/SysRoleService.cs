@@ -70,7 +70,7 @@ namespace NetCore.Services
             var requestEntity = request.MapTo<SysRoleEntity>();
             requestEntity.Status = roleEntity.Status;
             requestEntity.CreateDate = roleEntity.CreateDate;
-            var row = await _sysRoleRepository.UpdateAsync(roleEntity);
+            var row = await _sysRoleRepository.UpdateAsync(requestEntity);
             return row > 0;
         }
     }
