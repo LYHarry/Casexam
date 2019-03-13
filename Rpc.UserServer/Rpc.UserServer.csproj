@@ -12,12 +12,14 @@
   <ItemGroup>
     <Content Include="appsettings.json">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Rpc.Infrastructures.Util\Rpc.Infrastructures.Util.csproj" />
     <ProjectReference Include="..\Rpc.Repository.Interface\Rpc.Repository.Interface.csproj" />
+    <ProjectReference Include="..\Rpc.Repository\Rpc.Repository.csproj" />
     <ProjectReference Include="..\Rpc.UserServer.Interface\Rpc.UserServer.Interface.csproj" />
   </ItemGroup>
 

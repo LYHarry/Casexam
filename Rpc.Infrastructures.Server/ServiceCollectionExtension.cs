@@ -14,6 +14,8 @@ namespace Rpc.Infrastructures.Server
         {
             // 注入 数据库连接项
             var conStr = configuration.GetSection("DbConnectionOptions").Value;
+            if (string.IsNullOrWhiteSpace(conStr))
+                throw new Exception("数据库连接配置获取失败");
             services.AddSingleton(JsonConvert.DeserializeObject<DbConnectionOptions>(conStr));
             // 注入 UnitOfWork 工作单元
             services.AddScoped<IUnitOfWork, UnitOfWork>();
