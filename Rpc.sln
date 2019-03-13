@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2046
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rpc.Api", "Rpc.Api\Rpc.Api.csproj", "{0DB58ABA-FCD1-463E-A051-829E278A98EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rpc.Api", "Rpc.Api\Rpc.Api.csproj", "{0DB58ABA-FCD1-463E-A051-829E278A98EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rpc.Server", "Rpc.Server\Rpc.Server.csproj", "{FB0CE6DF-5A36-44C1-863F-22EA519FEC22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rpc.Server", "Rpc.Server\Rpc.Server.csproj", "{FB0CE6DF-5A36-44C1-863F-22EA519FEC22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rpc.Model", "Rpc.Model\Rpc.Model.csproj", "{DC239601-5F05-4981-A960-7687844B4F53}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rpc.Model", "Rpc.Model\Rpc.Model.csproj", "{DC239601-5F05-4981-A960-7687844B4F53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rpc.Repository", "Rpc.Repository\Rpc.Repository.csproj", "{63A1F0BC-8F2E-4078-9A1D-861D813BDABE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rpc.Repository", "Rpc.Repository\Rpc.Repository.csproj", "{63A1F0BC-8F2E-4078-9A1D-861D813BDABE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rpc.Repository.Interface", "Rpc.Repository.Interface\Rpc.Repository.Interface.csproj", "{B0EE6F39-4927-4382-914C-1CE33304BACF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rpc.Repository.Interface", "Rpc.Repository.Interface\Rpc.Repository.Interface.csproj", "{B0EE6F39-4927-4382-914C-1CE33304BACF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rpc.Server.Interface", "Rpc.Server.Interface\Rpc.Server.Interface.csproj", "{6F57D1AC-D997-43DB-AE5F-7CCB2E29874E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rpc.Server.Interface", "Rpc.Server.Interface\Rpc.Server.Interface.csproj", "{6F57D1AC-D997-43DB-AE5F-7CCB2E29874E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{AB9BAC1D-4107-4EBF-B3DC-E8E43CBA8676}"
 EndProject
@@ -21,9 +21,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repository", "Repository", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructures", "Infrastructures", "{CAC32DAE-0BAF-4D33-AC7A-4944DC359E5F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rpc.Infrastructures.Server", "Rpc.Infrastructures.Server\Rpc.Infrastructures.Server.csproj", "{0F0E02BE-4F6B-4691-A3C9-A5D99F1BC6B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rpc.Infrastructures.Server", "Rpc.Infrastructures.Server\Rpc.Infrastructures.Server.csproj", "{0F0E02BE-4F6B-4691-A3C9-A5D99F1BC6B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rpc.Infrastructures.Util", "Rpc.Infrastructures.Util\Rpc.Infrastructures.Util.csproj", "{CEA6DBE6-4209-4D3A-9743-F7CB999707EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rpc.Infrastructures.Util", "Rpc.Infrastructures.Util\Rpc.Infrastructures.Util.csproj", "{CEA6DBE6-4209-4D3A-9743-F7CB999707EC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Entity", "Entity", "{B8F8E008-79CD-4622-B3EC-F363285E3534}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rpc.Entity", "Rpc.Entity\Rpc.Entity.csproj", "{8B3EA95A-D542-4E70-9F73-451DD4C4E388}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rpc.ViewModel", "Rpc.ViewModel\Rpc.ViewModel.csproj", "{9B70162B-2C47-46DE-8462-9AA21CB112D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rpc.Infrastructures.Repository", "Rpc.Infrastructures.Repository\Rpc.Infrastructures.Repository.csproj", "{2B36E5AA-2394-4A50-BD8B-EC9ABFD7354D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,17 +71,33 @@ Global
 		{CEA6DBE6-4209-4D3A-9743-F7CB999707EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CEA6DBE6-4209-4D3A-9743-F7CB999707EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CEA6DBE6-4209-4D3A-9743-F7CB999707EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B3EA95A-D542-4E70-9F73-451DD4C4E388}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B3EA95A-D542-4E70-9F73-451DD4C4E388}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B3EA95A-D542-4E70-9F73-451DD4C4E388}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B3EA95A-D542-4E70-9F73-451DD4C4E388}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B70162B-2C47-46DE-8462-9AA21CB112D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B70162B-2C47-46DE-8462-9AA21CB112D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B70162B-2C47-46DE-8462-9AA21CB112D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B70162B-2C47-46DE-8462-9AA21CB112D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B36E5AA-2394-4A50-BD8B-EC9ABFD7354D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B36E5AA-2394-4A50-BD8B-EC9ABFD7354D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B36E5AA-2394-4A50-BD8B-EC9ABFD7354D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B36E5AA-2394-4A50-BD8B-EC9ABFD7354D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{FB0CE6DF-5A36-44C1-863F-22EA519FEC22} = {AB9BAC1D-4107-4EBF-B3DC-E8E43CBA8676}
+		{DC239601-5F05-4981-A960-7687844B4F53} = {B8F8E008-79CD-4622-B3EC-F363285E3534}
 		{63A1F0BC-8F2E-4078-9A1D-861D813BDABE} = {F929024B-E5E4-4F42-B2B5-1F21B77B5B86}
 		{B0EE6F39-4927-4382-914C-1CE33304BACF} = {F929024B-E5E4-4F42-B2B5-1F21B77B5B86}
 		{6F57D1AC-D997-43DB-AE5F-7CCB2E29874E} = {AB9BAC1D-4107-4EBF-B3DC-E8E43CBA8676}
 		{0F0E02BE-4F6B-4691-A3C9-A5D99F1BC6B8} = {CAC32DAE-0BAF-4D33-AC7A-4944DC359E5F}
 		{CEA6DBE6-4209-4D3A-9743-F7CB999707EC} = {CAC32DAE-0BAF-4D33-AC7A-4944DC359E5F}
+		{8B3EA95A-D542-4E70-9F73-451DD4C4E388} = {B8F8E008-79CD-4622-B3EC-F363285E3534}
+		{9B70162B-2C47-46DE-8462-9AA21CB112D2} = {B8F8E008-79CD-4622-B3EC-F363285E3534}
+		{2B36E5AA-2394-4A50-BD8B-EC9ABFD7354D} = {CAC32DAE-0BAF-4D33-AC7A-4944DC359E5F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {58D327C7-9B6A-4D71-9D12-28C00035DD56}

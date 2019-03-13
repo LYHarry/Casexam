@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Rpc.Api.Filter;
 
 namespace Rpc.Api
 {
@@ -21,14 +22,15 @@ namespace Rpc.Api
 
         public IConfiguration Configuration { get; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc(opt =>
+            {
+                opt.Filters.Add<GlobalException>();
+            })
+            .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+            // ==================  Swagger ===================
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info()
@@ -36,23 +38,26 @@ namespace Rpc.Api
                     Title = "Rpc.Api",
                     Description = "Rpc.Demo"
                 });
+                c.IncludeXmlComments($"{AppContext.BaseDirectory}/NetCore.Api.xml", true);
+                // 接口请求参数注释文档
+                c.IncludeXmlComments($"{AppContext.BaseDirectory}/Rpc.Model.xml");
+                // 接口返回参数注释文档
+                c.IncludeXmlComments($"{AppContext.BaseDirectory}/Rpc.ViewModel.xml");
+                c.CustomSchemaIds(p => p.FullName);
+                c.DescribeAllEnumsAsStrings();
             });
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="app"></param>
-        /// <param name="env"></param>
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseStaticFiles();
             app.UseMvc();
 
+            // ==================  Swagger ===================
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {

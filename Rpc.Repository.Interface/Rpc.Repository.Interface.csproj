@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Rpc.Entity\Rpc.Entity.csproj" />
+    <ProjectReference Include="..\Rpc.Infrastructures.Repository\Rpc.Infrastructures.Repository.csproj" />
+  </ItemGroup>
+
 </Project>
