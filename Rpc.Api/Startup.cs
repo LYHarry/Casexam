@@ -38,7 +38,7 @@ namespace Rpc.Api
                     Title = "Rpc.Api",
                     Description = "Rpc.Demo"
                 });
-                c.IncludeXmlComments($"{AppContext.BaseDirectory}/NetCore.Api.xml", true);
+                c.IncludeXmlComments($"{AppContext.BaseDirectory}/Rpc.Api.xml", true);
                 // 接口请求参数注释文档
                 c.IncludeXmlComments($"{AppContext.BaseDirectory}/Rpc.Model.xml");
                 // 接口返回参数注释文档

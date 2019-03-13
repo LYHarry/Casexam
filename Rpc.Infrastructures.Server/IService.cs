@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Rpc.Infrastructures.Server
 {
-    public interface IServices
+    public interface IService
     {
 
     }

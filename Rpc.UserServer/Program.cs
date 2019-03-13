@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace Rpc.Server
+namespace Rpc.UserServer
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.Title = "Server";
+            Console.Title = "UserServer";
             Console.WriteLine("Hello World!");
         }
     }
