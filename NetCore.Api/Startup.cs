@@ -97,7 +97,7 @@ namespace NetCore.Api
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "NetCore.Api");
-                //c.RoutePrefix = string.Empty;
+                //c.RoutePrefix = string.Empty; // 加上此句后好像页面显示不出来，swagger相关的js报404
             });
 
 
