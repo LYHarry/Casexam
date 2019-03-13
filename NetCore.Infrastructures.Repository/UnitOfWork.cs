@@ -15,6 +15,7 @@ namespace NetCore.Infrastructures.Repository
     {
         private readonly IDbConnection _dbConnection;
         private readonly IDbTransaction _dbTransaction;
+        private bool _isCommit=false;
 
         /// <summary>
         /// 构造函数
@@ -43,6 +44,7 @@ namespace NetCore.Infrastructures.Repository
                     }
             }
             _dbConnection.Open();
+            _isCommit = false;
             _dbTransaction = _dbConnection.BeginTransaction();
         }
 
@@ -54,6 +56,7 @@ namespace NetCore.Infrastructures.Repository
             try
             {
                 _dbTransaction?.Commit();
+                _isCommit = true;
             }
             catch
             {
@@ -74,6 +77,7 @@ namespace NetCore.Infrastructures.Repository
             try
             {
                 _dbTransaction?.Rollback();
+                _isCommit = true;
             }
             catch { throw; }
             finally
@@ -105,6 +109,7 @@ namespace NetCore.Infrastructures.Repository
         /// </summary>
         public void Dispose()
         {
+            if (!_isCommit) Commit();
             _dbConnection?.Close();
             _dbConnection?.Dispose();
             _dbTransaction?.Dispose();
