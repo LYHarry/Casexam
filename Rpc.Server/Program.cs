@@ -14,8 +14,9 @@ namespace Rpc.Server
     {
         static void Main(string[] args)
         {
+            Console.Title = "BaseServer";
             // 注册服务
-            StartupServiceHelper.StartupAsync(null, (services, configuration) =>
+            StartupServiceHelper.StartupAsync(typeof(Program).Assembly, (services, configuration) =>
             {
                 // 注入 Service 服务
                 services.AddServices(typeof(Program).Assembly, typeof(IBaseService).Assembly, typeof(IService), "Service");
@@ -24,7 +25,6 @@ namespace Rpc.Server
 
             }).GetAwaiter().GetResult();
 
-            Console.Title = "BaseServer";
             Console.ReadKey();
         }
     }

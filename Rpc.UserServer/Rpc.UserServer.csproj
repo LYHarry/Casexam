@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Rpc.Infrastructures.Util\Rpc.Infrastructures.Util.csproj" />
-    <ProjectReference Include="..\Rpc.Repository.Interface\Rpc.Repository.Interface.csproj" />
     <ProjectReference Include="..\Rpc.Repository\Rpc.Repository.csproj" />
     <ProjectReference Include="..\Rpc.UserServer.Interface\Rpc.UserServer.Interface.csproj" />
   </ItemGroup>

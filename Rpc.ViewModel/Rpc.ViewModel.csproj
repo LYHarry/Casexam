@@ -6,7 +6,7 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-    <DocumentationFile>/bin/Debug/netcoreapp2.1/Rpc.ViewModel.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\netcoreapp2.1\Rpc.ViewModel.xml</DocumentationFile>
   </PropertyGroup>
 
 </Project>

@@ -10,13 +10,11 @@ namespace Rpc.Infrastructures.Server
 {
     public static class ServiceCollectionExtension
     {
-        public static IServiceCollection AddDbService(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddDbService(this IServiceCollection services, IConfigurationRoot configuration)
         {
             // 注入 数据库连接项
-            var conStr = configuration.GetSection("DbConnectionOptions").Value;
-            if (string.IsNullOrWhiteSpace(conStr))
-                throw new Exception("数据库连接配置获取失败");
-            services.AddSingleton(JsonConvert.DeserializeObject<DbConnectionOptions>(conStr));
+            var dbConnOptions = configuration.GetSection("DbConnectionOptions").Get<DbConnectionOptions>();
+            services.AddSingleton(dbConnOptions);
             // 注入 UnitOfWork 工作单元
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             // 注入 DbContext 数据库上下文
@@ -42,13 +40,11 @@ namespace Rpc.Infrastructures.Server
                         var typeInfo = x.GetTypeInfo();
                         return typeInfo.IsClass && !typeInfo.IsAbstract && !typeInfo.IsGenericType;
                     }
-
                     return false;
                 });
                 if (serviceImplType != null)
                     services.AddScoped(serviceType, serviceImplType);
             }
-
             return services;
         }
     }

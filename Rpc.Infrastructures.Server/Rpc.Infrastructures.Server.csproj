@@ -5,13 +5,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AspectCore.Extensions.DependencyInjection" Version="1.2.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.1.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="2.1.1" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Rpc.Infrastructures.Repository\Rpc.Infrastructures.Repository.csproj" />
+    <ProjectReference Include="..\Rpc.Protocols\Rpc.Protocols.csproj" />
   </ItemGroup>
 
 </Project>
