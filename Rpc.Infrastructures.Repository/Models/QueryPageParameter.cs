@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Rpc.Infrastructures.Repository.Models
 {
+    /// <summary>
+    /// 分页列表查询请求参数
+    /// </summary>
     public class QueryPageParameter
     {
         public string Field { get; set; }

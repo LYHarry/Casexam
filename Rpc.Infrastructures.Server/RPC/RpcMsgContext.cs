@@ -19,11 +19,19 @@ namespace Rpc.Infrastructures.Server.RPC
         /// </summary>
         public string Namespace { get; set; }
 
-
+        /// <summary>
+        /// 方法请求类型名称
+        /// </summary>
         public string ReqTypeName { get; set; }
 
+        /// <summary>
+        /// 方法响应类型名称
+        /// </summary>
         public string RespTypeName { get; set; }
 
+        /// <summary>
+        /// 方法请求参数
+        /// </summary>
         public string ReqData { get; set; }
     }
 }

@@ -44,7 +44,7 @@ namespace Rpc.Infrastructures.Server
             Console.WriteLine("-----------------------Servie Starting-----------------------");
             // 得到此服务的地址和端口
             var serviceSiteOpt = configuration.GetSection("ServiceSiteOption").Get<ServiceSiteOption>();
-            Console.WriteLine($"{Console.Title} 服务地址为: {serviceSiteOpt.IP}:{serviceSiteOpt.Port}");
+            Console.WriteLine($"\t\t{Console.Title} 服务地址为: {serviceSiteOpt.IP}:{serviceSiteOpt.Port}");
             var list = GetServiceALLMethod(assembly); //得到此服务下的所有可执行方法
             var server = new Grpc.Core.Server
             {
@@ -84,7 +84,7 @@ namespace Rpc.Infrastructures.Server
                     var reponseProp = retParamType.GetMember("Result").FirstOrDefault() as PropertyInfo;
                     var reponseType = reponseProp?.PropertyType;
                     if (reponseType == null)
-                        throw new Exception($"{item.Namespace}.{method.Name}返回参数不能为空.");
+                        throw new Exception($"{item.Namespace}.{method.Name}方法返回参数不能为空.");
 
                     allServiceMethod.Add(new ServiceMethodOption
                     {

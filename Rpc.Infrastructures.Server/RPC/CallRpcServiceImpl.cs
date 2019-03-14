@@ -48,8 +48,7 @@ namespace Rpc.Infrastructures.Server.RPC
                     var proxyMethod = service.GetType().GetMethod(rpcCallMethod.MethodName);
 
                     var reqData = JsonConvert.DeserializeObject(rpcContext.ReqData, rpcCallMethod.ReqType);
-                    var resultTask = proxyMethod.Invoke(service, new[] { reqData }) as Task;
-                    if (resultTask == null)
+                    if (!(proxyMethod.Invoke(service, new[] { reqData }) is Task resultTask))
                         throw new Exception("Rpc Call Method Result Task Is Null");
 
                     var result = resultTask.GetType().GetProperty("Result").GetValue(resultTask);
@@ -62,7 +61,7 @@ namespace Rpc.Infrastructures.Server.RPC
                     callResult.IsSuccess = false;
                     callResult.ResData = string.Empty;
                     callResult.Ex = ex.ToString();
-                    callResult.ExMessage = ex.Message;
+                    callResult.ExMessage = ex.InnerException?.Message ?? ex.Message;
                 }
                 return Task.FromResult(new RpcReplyData
                 {

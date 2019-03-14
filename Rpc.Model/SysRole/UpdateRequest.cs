@@ -9,6 +9,9 @@ namespace Rpc.Model.SysRole
     /// </summary>
     public class UpdateRequest : AddRequest
     {
+        /// <summary>
+        /// ID
+        /// </summary>
         public int ID { get; set; }
     }
 }

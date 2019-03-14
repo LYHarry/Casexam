@@ -9,7 +9,14 @@ namespace Rpc.ViewModel
     /// </summary>
     public enum ServiceStatus
     {
+        /// <summary>
+        /// 失败状态
+        /// </summary>
         Failure = 0,
+
+        /// <summary>
+        /// 成功状态
+        /// </summary>
         Success = 1
     }
 }
