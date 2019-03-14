@@ -10,6 +10,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Rpc.Api.Filter;
+using Rpc.Infrastructures.Server.RequestClient;
+using Rpc.Infrastructures.Server.RPC;
 
 namespace Rpc.Api
 {
@@ -24,11 +26,10 @@ namespace Rpc.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc(opt =>
-            {
-                opt.Filters.Add<GlobalException>();
-            })
-            .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            //注入 rpc 服务地址项
+            services.Configure<List<ServiceSiteOption>>(Configuration.GetSection("RpcServiceOptions"));
+            // 注入 服务请求 操作类
+            services.AddScoped<IServiceRequestClient, ServiceRequestClient>();
 
             // ==================  Swagger ===================
             services.AddSwaggerGen(c =>
@@ -46,6 +47,12 @@ namespace Rpc.Api
                 c.CustomSchemaIds(p => p.FullName);
                 c.DescribeAllEnumsAsStrings();
             });
+
+            services.AddMvc(opt =>
+            {
+                opt.Filters.Add<GlobalException>();
+            })
+            .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

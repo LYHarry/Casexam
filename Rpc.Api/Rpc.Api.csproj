@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Rpc.Infrastructures.Server\Rpc.Infrastructures.Server.csproj" />
     <ProjectReference Include="..\Rpc.Model\Rpc.Model.csproj" />
     <ProjectReference Include="..\Rpc.ViewModel\Rpc.ViewModel.csproj" />
   </ItemGroup>

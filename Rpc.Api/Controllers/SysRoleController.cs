@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Rpc.Infrastructures.Server.RequestClient;
 using Rpc.Model.SysRole;
 using Rpc.ViewModel;
 using Rpc.ViewModel.SysRole;
@@ -13,11 +14,18 @@ namespace Rpc.Api.Controllers
     [ApiController]
     public class SysRoleController : Controller
     {
+        private readonly IServiceRequestClient _requestClient;
+
+        public SysRoleController(IServiceRequestClient client)
+        {
+            _requestClient = client;
+        }
+
         [HttpPost]
         [Route("Add")]
         public async Task<AjaxResult<bool>> Add(AddRequest request)
         {
-            var result = await Task.FromResult(true);
+            var result = await _requestClient.RequestAsync<AddRequest, bool>(request);
             return new AjaxResult<bool>().SetSuccess(result);
         }
 

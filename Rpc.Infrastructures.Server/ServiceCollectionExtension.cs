@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Rpc.Infrastructures.Repository;
 using System;
@@ -14,7 +15,7 @@ namespace Rpc.Infrastructures.Server
         {
             // 注入 数据库连接项
             var dbConnOptions = configuration.GetSection("DbConnectionOptions").Get<DbConnectionOptions>();
-            services.AddSingleton(dbConnOptions);
+            services.AddSingleton(Options.Create(dbConnOptions));
             // 注入 UnitOfWork 工作单元
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             // 注入 DbContext 数据库上下文

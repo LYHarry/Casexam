@@ -15,9 +15,9 @@ namespace Rpc.Infrastructures.Server.RequestClient
     /// </summary>
     public class ServiceRequestClient : IServiceRequestClient
     {
-        private readonly RpcServiceOptions _rpcServices;
+        private readonly List<ServiceSiteOption> _rpcServices;
 
-        public ServiceRequestClient(IOptions<RpcServiceOptions> rpcServiceOptions)
+        public ServiceRequestClient(IOptions<List<ServiceSiteOption>> rpcServiceOptions)
         {
             _rpcServices = rpcServiceOptions.Value;
         }
@@ -43,7 +43,7 @@ namespace Rpc.Infrastructures.Server.RequestClient
         /// <returns></returns>
         private Task<TResponse> RpcInvokeAsync<TRequest, TResponse>(TRequest request)
         {
-            Channel channel = new Channel("127.0.0.1:9007", ChannelCredentials.Insecure);
+            Channel channel = new Channel("127.0.0.1:9401", ChannelCredentials.Insecure);
             var client = new CallRpcService.CallRpcServiceClient(channel);
             var reply = client.Run(new RpcRequestData()
             {
@@ -54,7 +54,7 @@ namespace Rpc.Infrastructures.Server.RequestClient
                     RespTypeName = typeof(TResponse).FullName
                 })
             });
-            var result = JsonConvert.DeserializeObject<RpcCallMethodResult>(reply.RepData);
+            var result = JsonConvert.DeserializeObject<RpcCallMethodResult>(reply.RespData);
             if (!result.IsSuccess)
                 throw new Exception(result.ExMessage);
 

@@ -9,7 +9,6 @@ using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
-
 namespace Rpc.Protocols
 {
 
@@ -30,15 +29,15 @@ namespace Rpc.Protocols
             byte[] descriptorData = global::System.Convert.FromBase64String(
                 string.Concat(
                   "ChNDYWxsUnBjTWV0aG9kLnByb3RvEg1ScGMuUHJvdG9jb2xzIiEKDlJwY1Jl",
-                  "cXVlc3REYXRhEg8KB1JlcURhdGEYASABKAkiHwoMUnBjUmVwbHlEYXRhEg8K",
-                  "B1JlcERhdGEYASABKAkyVQoOQ2FsbFJwY1NlcnZpY2USQwoDUnVuEh0uUnBj",
-                  "LlByb3RvY29scy5ScGNSZXF1ZXN0RGF0YRobLlJwYy5Qcm90b2NvbHMuUnBj",
-                  "UmVwbHlEYXRhIgBiBnByb3RvMw=="));
+                  "cXVlc3REYXRhEg8KB1JlcURhdGEYASABKAkiIAoMUnBjUmVwbHlEYXRhEhAK",
+                  "CFJlc3BEYXRhGAEgASgJMlUKDkNhbGxScGNTZXJ2aWNlEkMKA1J1bhIdLlJw",
+                  "Yy5Qcm90b2NvbHMuUnBjUmVxdWVzdERhdGEaGy5ScGMuUHJvdG9jb2xzLlJw",
+                  "Y1JlcGx5RGF0YSIAYgZwcm90bzM="));
             descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
                 new pbr::FileDescriptor[] { },
                 new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::Rpc.Protocols.RpcRequestData), global::Rpc.Protocols.RpcRequestData.Parser, new[]{ "ReqData" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Rpc.Protocols.RpcReplyData), global::Rpc.Protocols.RpcReplyData.Parser, new[]{ "RepData" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Rpc.Protocols.RpcReplyData), global::Rpc.Protocols.RpcReplyData.Parser, new[]{ "RespData" }, null, null, null)
                 }));
         }
         #endregion
@@ -233,7 +232,7 @@ namespace Rpc.Protocols
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public RpcReplyData(RpcReplyData other) : this()
         {
-            repData_ = other.repData_;
+            respData_ = other.respData_;
             _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
         }
 
@@ -243,16 +242,16 @@ namespace Rpc.Protocols
             return new RpcReplyData(this);
         }
 
-        /// <summary>Field number for the "RepData" field.</summary>
-        public const int RepDataFieldNumber = 1;
-        private string repData_ = "";
+        /// <summary>Field number for the "RespData" field.</summary>
+        public const int RespDataFieldNumber = 1;
+        private string respData_ = "";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-        public string RepData
+        public string RespData
         {
-            get { return repData_; }
+            get { return respData_; }
             set
             {
-                repData_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+                respData_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
             }
         }
 
@@ -273,7 +272,7 @@ namespace Rpc.Protocols
             {
                 return true;
             }
-            if (RepData != other.RepData) return false;
+            if (RespData != other.RespData) return false;
             return Equals(_unknownFields, other._unknownFields);
         }
 
@@ -281,7 +280,7 @@ namespace Rpc.Protocols
         public override int GetHashCode()
         {
             int hash = 1;
-            if (RepData.Length != 0) hash ^= RepData.GetHashCode();
+            if (RespData.Length != 0) hash ^= RespData.GetHashCode();
             if (_unknownFields != null)
             {
                 hash ^= _unknownFields.GetHashCode();
@@ -298,10 +297,10 @@ namespace Rpc.Protocols
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         public void WriteTo(pb::CodedOutputStream output)
         {
-            if (RepData.Length != 0)
+            if (RespData.Length != 0)
             {
                 output.WriteRawTag(10);
-                output.WriteString(RepData);
+                output.WriteString(RespData);
             }
             if (_unknownFields != null)
             {
@@ -313,9 +312,9 @@ namespace Rpc.Protocols
         public int CalculateSize()
         {
             int size = 0;
-            if (RepData.Length != 0)
+            if (RespData.Length != 0)
             {
-                size += 1 + pb::CodedOutputStream.ComputeStringSize(RepData);
+                size += 1 + pb::CodedOutputStream.ComputeStringSize(RespData);
             }
             if (_unknownFields != null)
             {
@@ -331,9 +330,9 @@ namespace Rpc.Protocols
             {
                 return;
             }
-            if (other.RepData.Length != 0)
+            if (other.RespData.Length != 0)
             {
-                RepData = other.RepData;
+                RespData = other.RespData;
             }
             _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
         }
@@ -351,7 +350,7 @@ namespace Rpc.Protocols
                         break;
                     case 10:
                         {
-                            RepData = input.ReadString();
+                            RespData = input.ReadString();
                             break;
                         }
                 }

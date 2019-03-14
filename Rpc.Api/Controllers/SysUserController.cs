@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Rpc.Infrastructures.Server.RequestClient;
 using Rpc.Model.SysUser;
 using Rpc.ViewModel;
 using Rpc.ViewModel.SysUser;
@@ -13,6 +14,13 @@ namespace Rpc.Api.Controllers
     [ApiController]
     public class SysUserController : Controller
     {
+        private readonly IServiceRequestClient _requestClient;
+
+        public SysUserController(IServiceRequestClient client)
+        {
+            _requestClient = client;
+        }
+
         [HttpPost]
         [Route("Add")]
         public async Task<AjaxResult<bool>> Add(AddRequest request)

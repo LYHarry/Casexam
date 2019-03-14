@@ -38,7 +38,8 @@ namespace Rpc.Infrastructures.Server.RPC
                 try
                 {
                     var rpcContext = JsonConvert.DeserializeObject<RpcMsgContext>(request.ReqData);
-                    var rpcCallMethod = _serviceMethods.Where(x => x.MethodName == rpcContext.MethodName)
+                    var rpcCallMethod = _serviceMethods.Where(x => x.RespType.FullName == rpcContext.RespTypeName
+                                                                   && x.ReqType.FullName == rpcContext.ReqTypeName)
                                                        .FirstOrDefault();
                     if (rpcCallMethod == null)
                         throw new Exception("Rpc Call Method Not Find");
@@ -65,7 +66,7 @@ namespace Rpc.Infrastructures.Server.RPC
                 }
                 return Task.FromResult(new RpcReplyData
                 {
-                    RepData = JsonConvert.SerializeObject(callResult)
+                    RespData = JsonConvert.SerializeObject(callResult)
                 });
             }
         }

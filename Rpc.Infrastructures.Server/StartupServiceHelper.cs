@@ -90,7 +90,7 @@ namespace Rpc.Infrastructures.Server
                     {
                         MethodName = method.Name,
                         ServiceType = item,
-                        RepType = reponseType,
+                        RespType = reponseType,
                         ReqType = requestType,
                         Namespace = item.FullName
                     });

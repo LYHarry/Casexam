@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Rpc.Infrastructures.Server.RequestClient
 {
@@ -9,6 +10,6 @@ namespace Rpc.Infrastructures.Server.RequestClient
     /// </summary>
     public interface IServiceRequestClient
     {
-
+        Task<TResponse> RequestAsync<TRequest, TResponse>(TRequest request);
     }
 }
