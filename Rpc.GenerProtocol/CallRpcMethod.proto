@@ -1,0 +1,15 @@
+﻿syntax = "proto3";
+
+package Rpc.Protocols;
+
+service CallRpcService {
+  rpc Run (RpcRequestData) returns (RpcReplyData) {}
+}
+
+message RpcRequestData {
+  string ReqData = 1;
+}
+
+message RpcReplyData {
+  string RespData = 1;
+}

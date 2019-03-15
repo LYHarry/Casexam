@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rpc.UserServer.Interface", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rpc.Protocols", "Rpc.Protocols\Rpc.Protocols.csproj", "{5FEF3985-E87C-4792-8AF2-7DD5294F0FB1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rpc.GenerProtocol", "Rpc.GenerProtocol\Rpc.GenerProtocol.csproj", "{35BDBA00-6ACB-4D69-912F-269E8F076198}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -101,6 +103,10 @@ Global
 		{5FEF3985-E87C-4792-8AF2-7DD5294F0FB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FEF3985-E87C-4792-8AF2-7DD5294F0FB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FEF3985-E87C-4792-8AF2-7DD5294F0FB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35BDBA00-6ACB-4D69-912F-269E8F076198}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35BDBA00-6ACB-4D69-912F-269E8F076198}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35BDBA00-6ACB-4D69-912F-269E8F076198}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35BDBA00-6ACB-4D69-912F-269E8F076198}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -119,6 +125,7 @@ Global
 		{3AA9F391-F9B1-473C-9B84-331F072CEB80} = {AB9BAC1D-4107-4EBF-B3DC-E8E43CBA8676}
 		{97229A42-1903-4ACE-A8EF-3A3E110214FB} = {AB9BAC1D-4107-4EBF-B3DC-E8E43CBA8676}
 		{5FEF3985-E87C-4792-8AF2-7DD5294F0FB1} = {CAC32DAE-0BAF-4D33-AC7A-4944DC359E5F}
+		{35BDBA00-6ACB-4D69-912F-269E8F076198} = {CAC32DAE-0BAF-4D33-AC7A-4944DC359E5F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {58D327C7-9B6A-4D71-9D12-28C00035DD56}

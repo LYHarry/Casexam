@@ -5,3 +5,6 @@
 bin/
 
 obj/
+
+# 第三方包管理文件夹
+packages/
