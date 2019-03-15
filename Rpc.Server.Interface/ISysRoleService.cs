@@ -18,5 +18,7 @@ namespace Rpc.Server.Interface
         Task<bool> Update(UpdateRequest request);
 
         Task<bool> Delete(int id);
+
+        Task<bool> NoArguments();
     }
 }

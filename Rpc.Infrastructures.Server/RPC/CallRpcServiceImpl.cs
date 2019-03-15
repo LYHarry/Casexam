@@ -38,8 +38,8 @@ namespace Rpc.Infrastructures.Server.RPC
                 try
                 {
                     var rpcContext = JsonConvert.DeserializeObject<RpcMsgContext>(request.ReqData);
-                    var rpcCallMethod = _serviceMethods.Where(x => x.RespType.FullName == rpcContext.RespTypeName
-                                                                   && x.ReqType.FullName == rpcContext.ReqTypeName)
+                    var rpcCallMethod = _serviceMethods.Where(x => x.RespTypeName == rpcContext.RespTypeName
+                                                                  && x.ReqType == rpcContext.ReqType)
                                                        .FirstOrDefault();
                     if (rpcCallMethod == null)
                         throw new Exception("Rpc Call Method Not Find");
@@ -47,8 +47,13 @@ namespace Rpc.Infrastructures.Server.RPC
                     var service = scope.GetService(rpcCallMethod.ServiceType.GetInterface($"I{rpcCallMethod.ServiceType.Name}"));
                     var proxyMethod = service.GetType().GetMethod(rpcCallMethod.MethodName);
 
-                    var reqData = JsonConvert.DeserializeObject(rpcContext.ReqData, rpcCallMethod.ReqType);
-                    if (!(proxyMethod.Invoke(service, new[] { reqData }) is Task resultTask))
+                    object[] reqParam = null;
+                    if (!string.IsNullOrWhiteSpace(rpcContext.ReqData))
+                    {
+                        var reqData = JsonConvert.DeserializeObject(rpcContext.ReqData, rpcCallMethod.ReqType);
+                        reqParam = new[] { reqData };
+                    }
+                    if (!(proxyMethod.Invoke(service, reqParam) is Task resultTask))
                         throw new Exception("Rpc Call Method Result Task Is Null");
 
                     var result = resultTask.GetType().GetProperty("Result").GetValue(resultTask);
@@ -58,16 +63,31 @@ namespace Rpc.Infrastructures.Server.RPC
                 catch (Exception ex)
                 {
                     unitOfWork.Rollback();
+                    ex = GetRawException(ex);
                     callResult.IsSuccess = false;
                     callResult.ResData = string.Empty;
                     callResult.Ex = ex.ToString();
-                    callResult.ExMessage = ex.InnerException?.Message ?? ex.Message;
+                    callResult.ExMessage = ex.Message;
                 }
                 return Task.FromResult(new RpcReplyData
                 {
                     RespData = JsonConvert.SerializeObject(callResult)
                 });
             }
+        }
+
+        /// <summary>
+        /// 得到内部原始异常
+        /// </summary>
+        /// <param name="exception"></param>
+        /// <returns></returns>
+        private Exception GetRawException(Exception exception)
+        {
+            if (exception == null)
+                return new Exception();
+            if (exception.InnerException == null)
+                return exception;
+            return GetRawException(exception.InnerException);
         }
     }
 }

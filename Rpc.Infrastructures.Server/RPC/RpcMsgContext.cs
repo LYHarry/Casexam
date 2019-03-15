@@ -20,9 +20,9 @@ namespace Rpc.Infrastructures.Server.RPC
         public string Namespace { get; set; }
 
         /// <summary>
-        /// 方法请求类型名称
+        /// 方法请求类型
         /// </summary>
-        public string ReqTypeName { get; set; }
+        public Type ReqType { get; set; }
 
         /// <summary>
         /// 方法响应类型名称

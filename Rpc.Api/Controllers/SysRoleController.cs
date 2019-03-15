@@ -52,5 +52,13 @@ namespace Rpc.Api.Controllers
             var result = await _requestClient.RequestAsync<int, bool>(id);
             return new AjaxResult<bool>().SetSuccess(result);
         }
+
+        [HttpGet]
+        [Route("NoArgument")]
+        public async Task<AjaxResult<bool>> NoArguments()
+        {
+            var result = await _requestClient.RequestAsync<object, bool>(null);
+            return new AjaxResult<bool>().SetSuccess(result);
+        }
     }
 }

@@ -71,5 +71,10 @@ namespace Rpc.Server
             var row = await _sysRoleRepository.UpdateAsync(requestEntity);
             return row > 0;
         }
+
+        public async Task<bool> NoArguments()
+        {
+            return await Task.FromResult(true);
+        }
     }
 }

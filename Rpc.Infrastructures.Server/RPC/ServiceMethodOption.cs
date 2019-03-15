@@ -15,9 +15,9 @@ namespace Rpc.Infrastructures.Server.RPC
         public Type ReqType { get; set; }
 
         /// <summary>
-        /// 返回参数类型
+        /// 返回参数类型名称
         /// </summary>
-        public Type RespType { get; set; }
+        public string RespTypeName { get; set; }
 
         /// <summary>
         /// 方法名称

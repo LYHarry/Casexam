@@ -45,17 +45,19 @@ namespace Rpc.Infrastructures.Server.RequestClient
         {
             Channel channel = new Channel("127.0.0.1:9401", ChannelCredentials.Insecure);
             var client = new CallRpcService.CallRpcServiceClient(channel);
-
+            //创建rpc请求消息上下文
             var rpcContext = new RpcMsgContext()
             {
                 ReqData = JsonConvert.SerializeObject(request),
-                ReqTypeName = typeof(TRequest).FullName,
+                ReqType = typeof(TRequest),
                 RespTypeName = typeof(TResponse).FullName
             };
             if (request == null)
             {
-                rpcContext.ReqData = null;
-                rpcContext.ReqTypeName = string.Empty;
+                if (typeof(TRequest) != typeof(object))
+                    throw new Exception("请求参数为空时请求类型必须为 object 类型.");
+                rpcContext.ReqData = string.Empty;
+                rpcContext.ReqType = null;
             }
             var reply = client.Run(new RpcRequestData()
             {
