@@ -33,7 +33,7 @@ namespace Rpc.Api.Controllers
         [Route("List")]
         public async Task<AjaxResult<PagedResult<GetListResult>>> List(GetListRequest request)
         {
-            var result = await Task.FromResult(new PagedResult<GetListResult>());
+            var result = await _requestClient.RequestAsync<GetListRequest, PagedResult<GetListResult>>(request);
             return new AjaxResult<PagedResult<GetListResult>>().SetSuccess(result);
         }
 
@@ -41,7 +41,7 @@ namespace Rpc.Api.Controllers
         [Route("Update")]
         public async Task<AjaxResult<bool>> Update(UpdateRequest request)
         {
-            var result = await Task.FromResult(true);
+            var result = await _requestClient.RequestAsync<UpdateRequest, bool>(request);
             return new AjaxResult<bool>().SetSuccess(result);
         }
 
@@ -49,7 +49,7 @@ namespace Rpc.Api.Controllers
         [Route("Delete")]
         public async Task<AjaxResult<bool>> Delete(int id)
         {
-            var result = await Task.FromResult(true);
+            var result = await _requestClient.RequestAsync<int, bool>(id);
             return new AjaxResult<bool>().SetSuccess(result);
         }
     }

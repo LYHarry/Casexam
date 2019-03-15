@@ -45,14 +45,21 @@ namespace Rpc.Infrastructures.Server.RequestClient
         {
             Channel channel = new Channel("127.0.0.1:9401", ChannelCredentials.Insecure);
             var client = new CallRpcService.CallRpcServiceClient(channel);
+
+            var rpcContext = new RpcMsgContext()
+            {
+                ReqData = JsonConvert.SerializeObject(request),
+                ReqTypeName = typeof(TRequest).FullName,
+                RespTypeName = typeof(TResponse).FullName
+            };
+            if (request == null)
+            {
+                rpcContext.ReqData = null;
+                rpcContext.ReqTypeName = string.Empty;
+            }
             var reply = client.Run(new RpcRequestData()
             {
-                ReqData = JsonConvert.SerializeObject(new RpcMsgContext()
-                {
-                    ReqData = JsonConvert.SerializeObject(request),
-                    ReqTypeName = typeof(TRequest).FullName,
-                    RespTypeName = typeof(TResponse).FullName
-                })
+                ReqData = JsonConvert.SerializeObject(rpcContext)
             });
             var result = JsonConvert.DeserializeObject<RpcCallMethodResult>(reply.RespData);
             if (!result.IsSuccess)
