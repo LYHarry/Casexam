@@ -1,3 +1,3 @@
 # EFCoreDemo
 
-EF Core 学习例子
+EFCore 学习例子
