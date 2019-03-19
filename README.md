@@ -1,3 +1,3 @@
-# Casexam
+# GoDemo
 
-学习案例，代码测试 Demo 仓库
+Go 学习案例
