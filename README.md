@@ -1,3 +1,3 @@
-# Casexam
+# EFCoreDemo
 
-学习案例，代码测试 Demo 仓库
+EF Core 学习例子
