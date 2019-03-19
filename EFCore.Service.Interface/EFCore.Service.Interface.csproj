@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EFCore.Model\EFCore.Model.csproj" />
+    <ProjectReference Include="..\EFCore.ViewModel\EFCore.ViewModel.csproj" />
+  </ItemGroup>
+
 </Project>

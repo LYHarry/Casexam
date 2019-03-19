@@ -1,33 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace EFCore.Entity
+namespace EFCore.ViewModel.SysRole
 {
     /// <summary>
-    /// 系统角色
+    /// 系统角色分页列表返回参数
     /// </summary>
-    [Table("SysRole", Schema = "public")]
-    public class SysRoleEntity
+    public class GetListResult
     {
         /// <summary>
         /// ID
         /// </summary>
-        [Key]
         public int ID { get; set; }
 
         /// <summary>
         /// 名称
         /// </summary>
-        [StringLength(20)]
         public string Name { get; set; }
 
         /// <summary>
         /// 备注
         /// </summary>
-        [StringLength(200)]
         public string Remark { get; set; }
 
         /// <summary>

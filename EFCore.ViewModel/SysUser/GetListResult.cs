@@ -1,45 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace EFCore.Entity
+namespace EFCore.ViewModel.SysUser
 {
     /// <summary>
-    /// 系统管理员用户
+    /// 系统管理员用户分页列表返回参数
     /// </summary>
-    [Table("SysUser", Schema = "public")]
-    public class SysUserEntity
+    public class GetListResult
     {
         /// <summary>
         /// ID
         /// </summary>
-        [Key]
         public int ID { get; set; }
 
         /// <summary>
         /// 名称
         /// </summary>
-        [StringLength(20)]
         public string Name { get; set; }
 
         /// <summary>
         /// 账号
         /// </summary>
-        [StringLength(50)]
         public string Account { get; set; }
 
         /// <summary>
-        /// 密码
+        /// 角色名称
         /// </summary>
-        [StringLength(50)]
-        public string Password { get; set; }
-
-        /// <summary>
-        /// 角色ID
-        /// </summary>
-        public int RoleID { get; set; }
+        public int RoleName { get; set; }
 
         /// <summary>
         /// 状态

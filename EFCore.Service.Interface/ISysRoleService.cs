@@ -1,0 +1,21 @@
+﻿using EFCore.Model.SysRole;
+using EFCore.ViewModel;
+using EFCore.ViewModel.SysRole;
+using System.Threading.Tasks;
+
+namespace EFCore.Service.Interface
+{
+    /// <summary>
+    /// 系统角色业务处理类
+    /// </summary>
+    public interface ISysRoleService : IService
+    {
+        Task<bool> Add(AddRequest request);
+
+        Task<PagedResult<GetListResult>> List(GetListRequest request);
+
+        Task<bool> Update(UpdateRequest request);
+
+        Task<bool> Delete(int id);
+    }
+}
