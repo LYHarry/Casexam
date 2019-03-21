@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NetCore.Api.Filter;
+using NetCore.Infrastructures.JwtToken;
 using NetCore.Infrastructures.Repository;
 using NetCore.Infrastructures.Service;
 using NetCore.Repository;
@@ -24,29 +25,59 @@ namespace NetCore.Api
 
         public IConfiguration Configuration { get; }
 
-
+        /// <summary>
+        /// 注册服务
+        /// </summary>
+        /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
-            // ==================  Swagger ===================
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info()
-                {
-                    Title = "NetCore.Api",
-                    Description = "NetCore.Demo"
-                });
-                c.IncludeXmlComments($"{AppDomain.CurrentDomain.BaseDirectory}/NetCore.Api.xml", true);
-                // 接口请求参数注释文档
-                c.IncludeXmlComments($"{AppDomain.CurrentDomain.BaseDirectory}/NetCore.Models.xml");
-                // 接口返回参数注释文档
-                c.IncludeXmlComments($"{AppDomain.CurrentDomain.BaseDirectory}/NetCore.ViewModels.xml");
-                // 生成 API 时，如果有相同类名，但是命名空间又不相同时，
-                // 则会报 See config settings - "CustomSchemaIds" for a workaround
-                c.CustomSchemaIds(p => p.FullName);
-                c.DescribeAllEnumsAsStrings();
-                c.DocInclusionPredicate((docName, description) => true);
-            });
+            //注册 Token
+            TokenAuthHelper.AddTokenService(services, Configuration);
 
+            //注册 swagger
+            AddSwagger(services);
+
+            // 注册自定义实例
+            AddInstance(services);
+
+            // =================== 注册 MVC 中间件=========================
+            services.AddMvc(option =>
+            {
+                option.Filters.Add<GlobalException>();
+            })
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+        }
+
+        /// <summary>
+        /// 配置 http 请求管道
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="env"></param>
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
+            // 当前环境为开发环境时，抛出异常错误信息
+            if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
+
+            app.UseAuthentication(); //启用 Token 验证
+            app.UseStaticFiles(); // 启用默态页面文件
+            app.UseMvc();
+
+            // ==================  Swagger ===================
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "NetCore.Api");
+            });
+        }
+
+
+        /// <summary>
+        /// 注册自定义实例服务
+        /// </summary>
+        /// <param name="services"></param>
+        private void AddInstance(IServiceCollection services)
+        {
             #region ====================  注入实例 =========================
 
             // 注入 数据库连接项
@@ -77,30 +108,33 @@ namespace NetCore.Api
             services.AddServices(typeof(DbService).Assembly, typeof(IDbService).Assembly, typeof(IDbService), "Repository");
 
             #endregion
-
-            // =================== 注册 MVC 中间件=========================
-            services.AddMvc(option =>
-            {
-                option.Filters.Add<GlobalException>();
-            })
-                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+
+
+        /// <summary>
+        /// 注册 Swagger 接口文档服务
+        /// </summary>
+        /// <param name="services"></param>
+        private void AddSwagger(IServiceCollection services)
         {
-            if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
-
-            app.UseStaticFiles();
-            app.UseMvc();
-
-            // ==================  Swagger ===================
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
+            services.AddSwaggerGen(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "NetCore.Api");
-                //c.RoutePrefix = string.Empty; // 加上此句后好像页面显示不出来，swagger相关的js报404
+                c.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info()
+                {
+                    Title = "NetCore.Api",
+                    Description = "NetCore.Demo"
+                });
+                c.IncludeXmlComments($"{AppDomain.CurrentDomain.BaseDirectory}/NetCore.Api.xml", true);
+                // 接口请求参数注释文档
+                c.IncludeXmlComments($"{AppDomain.CurrentDomain.BaseDirectory}/NetCore.Models.xml");
+                // 接口返回参数注释文档
+                c.IncludeXmlComments($"{AppDomain.CurrentDomain.BaseDirectory}/NetCore.ViewModels.xml");
+                // 生成 API 时，如果有相同类名，但是命名空间又不相同时，
+                // 则会报 See config settings - "CustomSchemaIds" for a workaround
+                c.CustomSchemaIds(p => p.FullName);
+                c.DescribeAllEnumsAsStrings();
+                c.DocInclusionPredicate((docName, description) => true);
             });
-
-
         }
     }
 }
