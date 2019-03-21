@@ -24,28 +24,26 @@ namespace NetCore.Infrastructures.Repository
             _transaction = unitOfWork.GeTransaction();
         }
 
-        public Task<int> ExecuteAsync(string sql, object param = null, int? commandTimeout = null, CommandType? commandType = null)
-        {
-            return _connection.ExecuteAsync(sql, param, _transaction, commandTimeout, commandType);
-        }
-
-        public async Task<PagedResult<T>> GetPagedAsync<T>(QueryPageParameter queryParameter, int? commandTimeout = null, CommandType? commandType = null)
+        public async Task<PagedResult<T>> GetPagedAsync<T>(QueryPageParameter queryParameter, int? commandTimeout = null)
         {
             if (string.IsNullOrWhiteSpace(queryParameter.Field))
                 throw new ArgumentException("Field is not null");
-
             if (string.IsNullOrWhiteSpace(queryParameter.FromSql))
                 throw new ArgumentException("FromSql is not null");
-
-            var countSql = $"SELECT COUNT(1) FROM {queryParameter.FromSql};";
+            StringBuilder strsql = new StringBuilder();
+            strsql.Append($"SELECT COUNT(1) FROM {queryParameter.FromSql}; ");
             if (!string.IsNullOrWhiteSpace(queryParameter.GroupBy))
-                countSql =
-                    $"SELECT COUNT(1) FROM (SELECT {queryParameter.Field} FROM {queryParameter.FromSql} {queryParameter.GroupBy})t1;";
-
-            var sql =
-                $"{countSql} SELECT {queryParameter.Field} FROM {queryParameter.FromSql} {queryParameter.GroupBy} ORDER BY {queryParameter.OrderBy} OFFSET {(queryParameter.PageNumber - 1) * queryParameter.PageSize} ROWS FETCH NEXT {queryParameter.PageSize} ROWS ONLY;";
-            var result = await _connection.QueryMultipleAsync(sql, queryParameter.Param, _transaction, commandTimeout,
-                commandType);
+            {
+                strsql.Clear();
+                strsql.Append($"SELECT COUNT(1) FROM ");
+                strsql.Append($"(SELECT {queryParameter.Field} FROM {queryParameter.FromSql} {queryParameter.GroupBy})");
+                strsql.Append(" t1; ");
+            }
+            strsql.Append($" SELECT {queryParameter.Field} FROM {queryParameter.FromSql} {queryParameter.GroupBy}");
+            strsql.Append($" ORDER BY {queryParameter.OrderBy}");
+            strsql.Append($" LIMIT {queryParameter.PageSize}");
+            strsql.Append($" OFFSET {(queryParameter.PageNumber - 1) * queryParameter.PageSize} ;");
+            var result = await _connection.QueryMultipleAsync(strsql.ToString(), queryParameter.Param, _transaction, commandTimeout);
             return new PagedResult<T>
             {
                 PageIndex = queryParameter.PageNumber,

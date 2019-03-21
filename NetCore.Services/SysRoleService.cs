@@ -52,7 +52,7 @@ namespace NetCore.Services
             var query = new QueryPageParameter
             {
                 Field = " * ",
-                FromSql = "sysrole WHERE \"Status\"=1 ",
+                FromSql = "\"SysRole\" WHERE \"Status\"=1 ",
                 OrderBy = "\"CreateDate\" DESC",
                 PageNumber = request.PageIndex,
                 PageSize = request.PageSize,

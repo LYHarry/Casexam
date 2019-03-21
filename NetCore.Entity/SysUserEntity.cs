@@ -9,7 +9,7 @@ namespace NetCore.Entity
     /// <summary>
     /// 系统管理员用户
     /// </summary>
-    [Table("SysUser", Schema = "public")]
+    [Table("SysUser")]
     public class SysUserEntity
     {
         /// <summary>

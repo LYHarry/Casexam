@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -40,7 +41,8 @@ namespace NetCore.Infrastructures.Repository
 
         public Task<TEntity> GetAsync(string sql, object param = null)
         {
-            return _connection.QueryFirstOrDefaultAsync<TEntity>(sql, param, _transaction);
+            var result = _connection.GetList<TEntity>(sql, param, _transaction).FirstOrDefault();
+            return Task.FromResult(result);
         }
 
         public Task<TKey> InsertAsync(TEntity entity)

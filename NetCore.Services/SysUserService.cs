@@ -32,10 +32,10 @@ namespace NetCore.Services
 
         public async Task<bool> Add(AddRequest request)
         {
-            var isExsit = await _sysUserRepository.ExsitsAsync("where Account=@acct", new { acct = request.Account });
+            var isExsit = await _sysUserRepository.ExsitsAsync("where \"Account\"=@acct", new { acct = request.Account });
             if (isExsit)
                 throw new Exception("此账号已存在");
-            isExsit = await _sysRoleRepository.ExsitsAsync("where ID=@id", new { id = request.RoleID });
+            isExsit = await _sysRoleRepository.ExsitsAsync("where \"ID\"=@id", new { id = request.RoleID });
             if (!isExsit)
                 throw new Exception("账号所属角色不存在");
 
@@ -55,8 +55,8 @@ namespace NetCore.Services
         public async Task<PagedResult<GetListResult>> List(GetListRequest request)
         {
             StringBuilder sbstr = new StringBuilder();
-            sbstr.Append("sysuser u LEFT JOIN sysrole r on u.roleid=r.ID");
-            sbstr.Append("WHERE u.\"Status\"=1 AND r.\"Status\"=1");
+            sbstr.Append(" \"SysUser\" u LEFT JOIN \"SysRole\" r on u.\"RoleID\" = r.\"ID\" ");
+            sbstr.Append(" WHERE u.\"Status\" = 1 AND r.\"Status\" = 1 ");
             var query = new QueryPageParameter
             {
                 Field = " u.*,r.\"Name\"  AS RoleName ",
@@ -71,7 +71,7 @@ namespace NetCore.Services
 
         public async Task<bool> Login(LoginRequest request)
         {
-            var userEntity = await _sysUserRepository.GetAsync("where Account=@acct", new { acct = request.Account });
+            var userEntity = await _sysUserRepository.GetAsync("where \"Account\"=@acct", new { acct = request.Account });
             if (userEntity == null)
                 throw new Exception("此账号不存在");
             if (userEntity.Password != request.Password)
