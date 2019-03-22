@@ -52,6 +52,19 @@ namespace NetCore.Api
 
         /// <summary>
         /// 配置 http 请求管道
+        /// <para>
+        /// <remarks>
+        /// 常见管道配置顺序：
+        ///     1. 异常/错误处理
+        ///     2. HTTP 严格传输安全协议
+        ///     3. HTTPS 重定向
+        ///     4. 静态文件服务器
+        ///     5. Cookie 策略实施
+        ///     6. 身份验证
+        ///     7. 会话
+        ///     8. MVC
+        /// </remarks>
+        /// </para>
         /// </summary>
         /// <param name="app"></param>
         /// <param name="env"></param>
@@ -62,10 +75,11 @@ namespace NetCore.Api
             {
                 app.UseDeveloperExceptionPage();
             }
-            //启用 Token 验证
-            app.UseAuthentication();
             //启用默态页面文件
             app.UseStaticFiles();
+
+            //启用 Token 验证
+            app.UseAuthentication();
 
             // ==================  Swagger ===================
             app.UseSwagger();
@@ -121,8 +135,7 @@ namespace NetCore.Api
             #endregion
 
         }
-
-
+        
         /// <summary>
         /// 注册 Swagger 接口文档服务
         /// </summary>
