@@ -9,6 +9,7 @@ namespace NetCore.Api.Controllers
 {
     [Route("api/Token")]
     [ApiController]
+    [AllowAnonymous]
     public class TokenController : Controller
     {
         private readonly TokenProviderOptions _jwtTokenOption;
@@ -18,13 +19,11 @@ namespace NetCore.Api.Controllers
             _jwtTokenOption = jwttoken.Value;
         }
 
-
         /// <summary>
         /// 成生 jwt token
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        [AllowAnonymous]
         [Route("Produce")]
         public async Task<AjaxResult<string>> Produce(JwtClaimTypeParam request)
         {

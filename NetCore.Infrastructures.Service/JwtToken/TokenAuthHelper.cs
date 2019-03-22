@@ -25,11 +25,10 @@ namespace NetCore.Infrastructures.JwtToken
         {
             var claims = new List<Claim>
             {
-                new Claim(JwtClaimType.UserId, jwtClaim.UserId.ToString()),
+                new Claim(JwtClaimType.UserId, jwtClaim.UserId.ToString(),ClaimValueTypes.Integer32),
                 new Claim(JwtClaimType.UserName, jwtClaim.UserName),
                 new Claim(JwtClaimType.Account, jwtClaim.Account),
-                new Claim(JwtClaimType.Phone, jwtClaim.Phone),
-                new Claim(JwtClaimType.RoleId, jwtClaim.RoleId.ToString()),
+                new Claim(JwtClaimType.RoleId, jwtClaim.RoleId.ToString(),ClaimValueTypes.Integer32),
                 new Claim(JwtClaimType.RoleName, jwtClaim.RoleName),
                 new Claim(JwtClaimType.SecuritySeal, Guid.NewGuid().ToString("N"))
             };

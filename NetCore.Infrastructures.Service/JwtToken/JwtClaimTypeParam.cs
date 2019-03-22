@@ -25,11 +25,6 @@ namespace NetCore.Infrastructures.JwtToken
         public string Account { get; set; }
 
         /// <summary>
-        /// 手机号
-        /// </summary>
-        public string Phone { get; set; }
-
-        /// <summary>
         /// 角色ID
         /// </summary>
         public int RoleId { get; set; }

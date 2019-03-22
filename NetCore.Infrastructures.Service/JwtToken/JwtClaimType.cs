@@ -23,12 +23,7 @@ namespace NetCore.Infrastructures.JwtToken
         /// 账户
         /// </summary>
         public const string Account = "http://schemas.microsoft.com/ws/2008/06/identity/claims/account";
-
-        /// <summary>
-        /// 手机号
-        /// </summary>
-        public const string Phone = "http://schemas.microsoft.com/ws/2008/06/identity/claims/phone";
-
+        
         /// <summary>
         /// 角色ID
         /// </summary>
