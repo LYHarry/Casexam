@@ -30,9 +30,9 @@
 
 # swagger
 
- 报 See config settings - "CustomSchemaIds" for a workaround 错误
+报 See config settings - "CustomSchemaIds" for a workaround 错误
 
- 原因：有相同类名，但是命名空间又不相同
+原因：有相同类名，但是命名空间又不相同
 
 解决方案：设置 CustomSchemaIds(p => p.FullName)
 
@@ -44,14 +44,8 @@
 
 #### header
 
-由声明类型和声明加密的算法组成
-
-```json
-{
-  'typ': 'JWT',
-  'alg': 'HS256'
-}
-```
+**typ**: 'JWT'  表示令牌的类型
+**alg**: 'HS256' 表示签名使用的算法
 
 #### payload
 
@@ -71,11 +65,11 @@
 
 #### signature
 
-var encodeStr = base64(header) + "." + base64(payload);
+var encodeStr = base64(header) + "." + base64(payload) ;
 
-var secret = "服务端自定的加密字符串密钥";
+var secret = "服务端自定的加密字符串密钥" ;
 
-var signature = HmacSha256(encodeStr + "." + secret);
+var signature = HmacSha256(encodeStr + "." + secret) ;
 
 # 未完成功能
 
