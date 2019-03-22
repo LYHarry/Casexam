@@ -23,7 +23,6 @@ namespace NetCore.Infrastructures.Extensions
         {
             if (source == null)
                 return default(TDestination);
-
             var config = new MapperConfiguration(cfg => cfg.CreateMap(source.GetType(), typeof(TDestination)));
             var mapper = config.CreateMapper();
             return mapper.Map<TDestination>(source);

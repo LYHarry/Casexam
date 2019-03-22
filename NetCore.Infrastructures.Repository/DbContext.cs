@@ -24,6 +24,13 @@ namespace NetCore.Infrastructures.Repository
             _transaction = unitOfWork.GeTransaction();
         }
 
+        /// <summary>
+        /// 分页查询
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="queryParameter"></param>
+        /// <param name="commandTimeout"></param>
+        /// <returns></returns>
         public async Task<PagedResult<T>> GetPagedAsync<T>(QueryPageParameter queryParameter, int? commandTimeout = null)
         {
             if (string.IsNullOrWhiteSpace(queryParameter.Field))

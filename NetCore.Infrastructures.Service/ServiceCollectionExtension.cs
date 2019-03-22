@@ -11,6 +11,9 @@ using System.Text;
 
 namespace NetCore.Infrastructures.Service
 {
+    /// <summary>
+    /// IServiceCollection 扩展类
+    /// </summary>
     public static class ServiceCollectionExtension
     {
         /// <summary>
