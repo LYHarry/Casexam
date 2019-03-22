@@ -38,16 +38,16 @@
 
 # JWT
 
-### JWT 构成
+## JWT 构成
 
 头部(header).载荷(payload).签名(signature)
 
-#### header
+### header
 
 **typ**: 'JWT'  表示令牌的类型
 **alg**: 'HS256' 表示签名使用的算法
 
-#### payload
+### payload
 
 **iss**: jwt签发者
 
@@ -63,7 +63,7 @@
 
 **jti**: jwt的唯一身份标识，主要用来作为一次性token,从而回避重放攻击
 
-#### signature
+### signature
 
 var encodeStr = base64(header) + "." + base64(payload) ;
 
