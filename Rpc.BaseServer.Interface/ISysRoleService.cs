@@ -4,7 +4,7 @@ using Rpc.ViewModel;
 using Rpc.ViewModel.SysRole;
 using System.Threading.Tasks;
 
-namespace Rpc.Server.Interface
+namespace Rpc.BaseServer.Interface
 {
     /// <summary>
     /// 系统角色业务处理类
@@ -18,7 +18,5 @@ namespace Rpc.Server.Interface
         Task<bool> Update(UpdateRequest request);
 
         Task<bool> Delete(int id);
-
-        Task<bool> NoArguments();
     }
 }

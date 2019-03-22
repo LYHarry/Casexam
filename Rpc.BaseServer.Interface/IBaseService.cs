@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Rpc.Server.Interface
+namespace Rpc.BaseServer.Interface
 {
     public interface IBaseService
     {
+
     }
 }

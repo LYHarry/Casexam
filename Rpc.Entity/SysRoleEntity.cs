@@ -9,7 +9,7 @@ namespace Rpc.Entity
     /// <summary>
     /// 系统角色
     /// </summary>
-    [Table("SysRole", Schema = "public")]
+    [Table("SysRole")]
     public class SysRoleEntity
     {
         /// <summary>

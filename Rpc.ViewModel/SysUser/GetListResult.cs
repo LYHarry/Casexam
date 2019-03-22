@@ -27,7 +27,7 @@ namespace Rpc.ViewModel.SysUser
         /// <summary>
         /// 角色名称
         /// </summary>
-        public int RoleName { get; set; }
+        public string RoleName { get; set; }
 
         /// <summary>
         /// 状态

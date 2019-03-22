@@ -20,7 +20,7 @@ namespace Dapper
             SetDialect(_dialect);
         }
 
-        private static Dialect _dialect = Dialect.PostgreSQL;
+        private static Dialect _dialect = Dialect.SQLServer;
         private static string _encapsulation;
         private static string _getIdentitySql;
         private static string _getPagedListSql;
@@ -934,13 +934,13 @@ namespace Dapper
             string tableName;
 
             if (TableNames.TryGetValue(type, out tableName))
-                return tableName.ToLower();
+                return tableName;
 
             tableName = _tableNameResolver.ResolveTableName(type);
 
             TableNames.AddOrUpdate(type, tableName, (t, v) => tableName);
 
-            return tableName.ToLower();
+            return tableName;
         }
 
         private static string GetColumnName(PropertyInfo propertyInfo)
@@ -1010,7 +1010,7 @@ namespace Dapper
                 var tableattr = type.GetCustomAttributes(true).SingleOrDefault(attr => attr.GetType().Name == typeof(TableAttribute).Name) as dynamic;
                 if (tableattr != null)
                 {
-                    tableName = Dialect.PostgreSQL == _dialect ? tableattr.Name : Encapsulate(tableattr.Name);
+                    tableName = Encapsulate(tableattr.Name);
                     try
                     {
                         if (!String.IsNullOrEmpty(tableattr.Schema))

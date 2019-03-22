@@ -5,17 +5,17 @@ using System.Text;
 namespace Rpc.ViewModel
 {
     /// <summary>
-    /// 服务状态
+    /// 服务返回状态
     /// </summary>
     public enum ServiceStatus
     {
         /// <summary>
-        /// 失败状态
+        /// 失败
         /// </summary>
         Failure = 0,
 
         /// <summary>
-        /// 成功状态
+        /// 成功
         /// </summary>
         Success = 1
     }

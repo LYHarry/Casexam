@@ -6,5 +6,6 @@ namespace Rpc.UserServer.Interface
 {
     public interface IUserService
     {
+
     }
 }

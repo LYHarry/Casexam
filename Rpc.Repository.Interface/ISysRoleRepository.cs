@@ -1,5 +1,8 @@
 ﻿using Rpc.Entity;
 using Rpc.Infrastructures.Repository;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Rpc.Repository.Interface
 {

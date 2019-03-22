@@ -1,14 +1,10 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Rpc.BaseServer.Interface;
 using Rpc.Infrastructures.Server;
 using Rpc.Repository;
 using Rpc.Repository.Interface;
-using Rpc.Server.Interface;
 using System;
-using System.IO;
-using System.Reflection;
 
-namespace Rpc.Server
+namespace Rpc.BaseServer
 {
     class Program
     {

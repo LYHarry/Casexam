@@ -11,7 +11,7 @@ namespace Rpc.ViewModel
     public class AjaxResult<TData>
     {
         /// <summary>
-        /// 服务状态码
+        /// 服务返回状态
         /// </summary>
         public ServiceStatus Status { get; set; }
 
@@ -28,9 +28,9 @@ namespace Rpc.ViewModel
         /// <summary>
         /// 设置值
         /// </summary>
-        /// <param name="state"></param>
-        /// <param name="msg"></param>
-        /// <param name="data"></param>
+        /// <param name="state">返回状态</param>
+        /// <param name="msg">提示消息</param>
+        /// <param name="data">返回数据</param>
         /// <returns></returns>
         public AjaxResult<TData> SetValue(ServiceStatus state, string msg, TData data)
         {
@@ -41,10 +41,10 @@ namespace Rpc.ViewModel
         }
 
         /// <summary>
-        /// 设置错误信息
+        /// 设置失败值
         /// </summary>
-        /// <param name="msg"></param>
-        /// <param name="data"></param>
+        /// <param name="msg">提示消息</param>
+        /// <param name="data">返回数据</param>
         /// <returns></returns>
         public AjaxResult<TData> SetFail(string msg, TData data)
         {
@@ -52,9 +52,9 @@ namespace Rpc.ViewModel
         }
 
         /// <summary>
-        /// 设置错误信息
+        /// 设置失败值
         /// </summary>
-        /// <param name="msg"></param>
+        /// <param name="msg">提示消息</param>
         /// <returns></returns>
         public AjaxResult<TData> SetFail(string msg)
         {
@@ -62,10 +62,10 @@ namespace Rpc.ViewModel
         }
 
         /// <summary>
-        /// 设置成功信息
+        /// 设置成功值
         /// </summary>
-        /// <param name="msg"></param>
-        /// <param name="data"></param>
+        /// <param name="msg">提示消息</param>
+        /// <param name="data">返回数据</param>
         /// <returns></returns>
         public AjaxResult<TData> SetSuccess(string msg, TData data)
         {
@@ -73,9 +73,9 @@ namespace Rpc.ViewModel
         }
 
         /// <summary>
-        /// 设置成功信息
+        /// 设置成功值
         /// </summary>
-        /// <param name="data"></param>
+        /// <param name="data">返回数据</param>
         /// <returns></returns>
         public AjaxResult<TData> SetSuccess(TData data)
         {

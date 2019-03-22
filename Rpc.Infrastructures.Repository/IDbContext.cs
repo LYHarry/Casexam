@@ -1,6 +1,5 @@
 ﻿using Rpc.Infrastructures.Repository.Models;
 using Rpc.ViewModel;
-using System.Data;
 using System.Threading.Tasks;
 
 namespace Rpc.Infrastructures.Repository
@@ -10,9 +9,13 @@ namespace Rpc.Infrastructures.Repository
     /// </summary>
     public interface IDbContext
     {
-        Task<PagedResult<T>> GetPagedAsync<T>(QueryPageParameter queryParameter, int? commandTimeout = null, CommandType? commandType = null);
-
-        Task<int> ExecuteAsync(string sql, object param = null, int? commandTimeout = null, CommandType? commandType = null);
-
+        /// <summary>
+        /// 分页查询
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="queryParameter"></param>
+        /// <param name="commandTimeout"></param>
+        /// <returns></returns>
+        Task<PagedResult<T>> GetPagedAsync<T>(QueryPageParameter queryParameter, int? commandTimeout = null);
     }
 }

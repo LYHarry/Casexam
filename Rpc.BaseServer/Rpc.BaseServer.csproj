@@ -17,9 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Rpc.BaseServer.Interface\Rpc.BaseServer.Interface.csproj" />
     <ProjectReference Include="..\Rpc.Infrastructures.Util\Rpc.Infrastructures.Util.csproj" />
     <ProjectReference Include="..\Rpc.Repository\Rpc.Repository.csproj" />
-    <ProjectReference Include="..\Rpc.Server.Interface\Rpc.Server.Interface.csproj" />
   </ItemGroup>
 
 </Project>

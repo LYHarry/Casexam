@@ -24,6 +24,9 @@ namespace Rpc.Infrastructures.Server.RPC
         /// </summary>
         public string MethodName { get; set; }
 
+        /// <summary>
+        /// 命名空间
+        /// </summary>
         public string Namespace { get; set; }
 
         /// <summary>

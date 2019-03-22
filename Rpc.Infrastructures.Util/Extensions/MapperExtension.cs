@@ -6,7 +6,7 @@ using System.Data;
 using System.Reflection;
 using System.Text;
 
-namespace NetCore.Infrastructures.Extensions
+namespace Rpc.Infrastructures.Extensions
 {
     /// <summary>
     /// AutoMapper 扩展帮助类
@@ -23,7 +23,6 @@ namespace NetCore.Infrastructures.Extensions
         {
             if (source == null)
                 return default(TDestination);
-
             var config = new MapperConfiguration(cfg => cfg.CreateMap(source.GetType(), typeof(TDestination)));
             var mapper = config.CreateMapper();
             return mapper.Map<TDestination>(source);

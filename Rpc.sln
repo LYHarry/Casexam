@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28010.2046
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rpc.Api", "Rpc.Api\Rpc.Api.csproj", "{0DB58ABA-FCD1-463E-A051-829E278A98EF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rpc.Server", "Rpc.Server\Rpc.Server.csproj", "{FB0CE6DF-5A36-44C1-863F-22EA519FEC22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rpc.BaseServer", "Rpc.BaseServer\Rpc.BaseServer.csproj", "{FB0CE6DF-5A36-44C1-863F-22EA519FEC22}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rpc.Model", "Rpc.Model\Rpc.Model.csproj", "{DC239601-5F05-4981-A960-7687844B4F53}"
 EndProject
@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rpc.Repository", "Rpc.Repos
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rpc.Repository.Interface", "Rpc.Repository.Interface\Rpc.Repository.Interface.csproj", "{B0EE6F39-4927-4382-914C-1CE33304BACF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rpc.Server.Interface", "Rpc.Server.Interface\Rpc.Server.Interface.csproj", "{6F57D1AC-D997-43DB-AE5F-7CCB2E29874E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rpc.BaseServer.Interface", "Rpc.BaseServer.Interface\Rpc.BaseServer.Interface.csproj", "{6F57D1AC-D997-43DB-AE5F-7CCB2E29874E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{AB9BAC1D-4107-4EBF-B3DC-E8E43CBA8676}"
 EndProject
@@ -27,17 +27,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rpc.Infrastructures.Util", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Entity", "Entity", "{B8F8E008-79CD-4622-B3EC-F363285E3534}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rpc.Entity", "Rpc.Entity\Rpc.Entity.csproj", "{8B3EA95A-D542-4E70-9F73-451DD4C4E388}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rpc.Entity", "Rpc.Entity\Rpc.Entity.csproj", "{8B3EA95A-D542-4E70-9F73-451DD4C4E388}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rpc.ViewModel", "Rpc.ViewModel\Rpc.ViewModel.csproj", "{9B70162B-2C47-46DE-8462-9AA21CB112D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rpc.ViewModel", "Rpc.ViewModel\Rpc.ViewModel.csproj", "{9B70162B-2C47-46DE-8462-9AA21CB112D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rpc.Infrastructures.Repository", "Rpc.Infrastructures.Repository\Rpc.Infrastructures.Repository.csproj", "{2B36E5AA-2394-4A50-BD8B-EC9ABFD7354D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rpc.Infrastructures.Repository", "Rpc.Infrastructures.Repository\Rpc.Infrastructures.Repository.csproj", "{2B36E5AA-2394-4A50-BD8B-EC9ABFD7354D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rpc.UserServer", "Rpc.UserServer\Rpc.UserServer.csproj", "{3AA9F391-F9B1-473C-9B84-331F072CEB80}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rpc.UserServer", "Rpc.UserServer\Rpc.UserServer.csproj", "{3AA9F391-F9B1-473C-9B84-331F072CEB80}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rpc.UserServer.Interface", "Rpc.UserServer.Interface\Rpc.UserServer.Interface.csproj", "{97229A42-1903-4ACE-A8EF-3A3E110214FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rpc.UserServer.Interface", "Rpc.UserServer.Interface\Rpc.UserServer.Interface.csproj", "{97229A42-1903-4ACE-A8EF-3A3E110214FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rpc.Protocols", "Rpc.Protocols\Rpc.Protocols.csproj", "{5FEF3985-E87C-4792-8AF2-7DD5294F0FB1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rpc.Protocols", "Rpc.Protocols\Rpc.Protocols.csproj", "{5FEF3985-E87C-4792-8AF2-7DD5294F0FB1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rpc.GenerProtocol", "Rpc.GenerProtocol\Rpc.GenerProtocol.csproj", "{35BDBA00-6ACB-4D69-912F-269E8F076198}"
 EndProject

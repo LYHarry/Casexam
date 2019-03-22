@@ -43,6 +43,8 @@ namespace Rpc.Infrastructures.Repository
                         throw new Exception("数据库类型 DbType 设置错误.");
                     }
             }
+            //设置 dapper 默认数据库为 PostgreSQL
+            Dapper.SimpleCRUD.SetDialect(Dapper.SimpleCRUD.Dialect.PostgreSQL);
             _dbConnection.Open();
             _isCommit = false;
             _dbTransaction = _dbConnection.BeginTransaction();

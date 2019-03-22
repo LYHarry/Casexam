@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <AssemblyName>Rpc.BaseServer.Interface</AssemblyName>
+    <RootNamespace>Rpc.BaseServer.Interface</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

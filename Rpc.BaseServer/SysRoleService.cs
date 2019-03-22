@@ -1,16 +1,16 @@
-﻿using NetCore.Infrastructures.Extensions;
+﻿using Rpc.BaseServer.Interface;
 using Rpc.Entity;
+using Rpc.Infrastructures.Extensions;
 using Rpc.Infrastructures.Repository;
 using Rpc.Infrastructures.Repository.Models;
 using Rpc.Model.SysRole;
 using Rpc.Repository.Interface;
-using Rpc.Server.Interface;
 using Rpc.ViewModel;
 using Rpc.ViewModel.SysRole;
 using System;
 using System.Threading.Tasks;
 
-namespace Rpc.Server
+namespace Rpc.BaseServer
 {
     /// <summary>
     /// 系统角色业务处理类
@@ -50,7 +50,7 @@ namespace Rpc.Server
             var query = new QueryPageParameter
             {
                 Field = " * ",
-                FromSql = "sysrole WHERE \"Status\"=1 ",
+                FromSql = "\"SysRole\" WHERE \"Status\"=1 ",
                 OrderBy = "\"CreateDate\" DESC",
                 PageNumber = request.PageIndex,
                 PageSize = request.PageSize,
@@ -70,11 +70,6 @@ namespace Rpc.Server
             requestEntity.CreateDate = roleEntity.CreateDate;
             var row = await _sysRoleRepository.UpdateAsync(requestEntity);
             return row > 0;
-        }
-
-        public async Task<bool> NoArguments()
-        {
-            return await Task.FromResult(true);
         }
     }
 }
