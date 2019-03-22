@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NetCore.Api.Filter
 {
-    public class GlobalException : IExceptionFilter
+    public class GlobalExceptionFilter : IExceptionFilter
     {
         public void OnException(ExceptionContext context)
         {

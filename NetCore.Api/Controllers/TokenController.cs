@@ -23,7 +23,7 @@ namespace NetCore.Api.Controllers
         /// 成生 jwt token
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
+        [HttpPost]
         [AllowAnonymous]
         [Route("Produce")]
         public async Task<AjaxResult<string>> Produce(JwtClaimTypeParam request)

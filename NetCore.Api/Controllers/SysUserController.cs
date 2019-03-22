@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NetCore.Models.SysUser;
 using NetCore.Services.Interface;
 using NetCore.ViewModels;
 using NetCore.ViewModels.SysUser;
+using System.Threading.Tasks;
 
 namespace NetCore.Api.Controllers
 {
@@ -16,6 +13,7 @@ namespace NetCore.Api.Controllers
     /// </summary>
     [Route("api/SysUser")]
     [ApiController]
+    [Authorize]
     public class SysUserController : Controller
     {
         private readonly ISysUserService _sysUserService;

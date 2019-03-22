@@ -61,19 +61,28 @@ namespace NetCore.Infrastructures.JwtToken
             //添加jwt验证
             services.AddAuthentication(opt =>
             {
-
-            }).AddJwtBearer(opt =>
+                opt.DefaultAuthenticateScheme = "JwtBearer";
+                opt.DefaultChallengeScheme = "JwtBearer"; //这两个名字要一致
+            }).AddJwtBearer("JwtBearer", opt =>
             {
                 opt.TokenValidationParameters = new TokenValidationParameters
                 {
-                    ValidateIssuer = true,//是否验证Issuer
-                    ValidateAudience = true,//是否验证Audience
-                    ValidateLifetime = true,//是否验证失效时间
-                    ValidateIssuerSigningKey = true,//是否验证SecurityKey
+                    //是否验证Issuer
+                    ValidateIssuer = true,
+                    //是否验证Audience
+                    ValidateAudience = true,
+                    //是否验证失效时间,使用当前时间与Token的Claims中的NotBefore和Expires对比
+                    ValidateLifetime = true,
+                    //是否验证SecurityKey
+                    ValidateIssuerSigningKey = true,
+                    //是否要求Token的Claims中必须包含Expires
+                    RequireExpirationTime = true,
+                    //验证时间时的时钟偏移
+                    ClockSkew = TimeSpan.Zero,
                     ValidAudience = jwtOption.Audience,
                     ValidIssuer = jwtOption.Issuer,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtOption.SecurityKey)),
-                    ClockSkew = TimeSpan.Zero //验证时间时的时钟偏移
+
                 };
             });
         }
