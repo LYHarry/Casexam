@@ -1,0 +1,66 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="InformationMaster.master.cs" Inherits="InformationMaster" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>行吧</title>
+    <%--导入css文件--%>
+    <link href="../CSS/HomeSite.css" rel="stylesheet" />
+    <%-- 导入显示本地地址接口 --%>
+    <script type="text/javascript" src="http://int.dpool.sina.com.cn/iplookup/iplookup.php? format=js"></script>
+    <%--导入jQuery库文件--%>
+    <script src="../jQuery/jquery-2.1.1.js"></script>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <%-- 最顶端显示信息 --%>
+        <div class="mostTop">
+            <span class="leftShow">
+                <script type="text/javascript">
+                    //显示本地地址
+                    var myprovince = remote_ip_info['province'];  //得到省份
+                    var mycity = remote_ip_info['city'];  //得到诚市
+                    document.write(myprovince + ' ' + mycity);
+                </script>
+            </span>
+            <span><a href="../Home/ListCyc.aspx">行吧</a></span>
+            <span><a href="../Home/QuestionList.aspx">常见问题</a></span>
+            <span><a href="#">手机版</a></span>
+            <span><a href="../MyCenter/MyCenter.aspx">我的订单</a></span>
+            <span><a href="../Account/Register.aspx">注册</a></span>
+            <span><a href="../Account/Login.aspx">登录</a></span>
+        </div>
+
+
+        <div id="middleContent">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+
+
+        <%-- 页尾 --%>
+        <div class="foot">
+            <a href="../Home/ListCyc.aspx">网站首页</a>
+            <span>|</span>
+            <a href="../Home/ProjectIntroduce.aspx">项目介绍</a>
+            <span>|</span>
+            <a href="../Home/HireProcedure.aspx">租赁流程</a>
+            <span>|</span>
+            <a href="../Home/CustomerFeedback.aspx">客户反馈</a>
+            <span>|</span>
+            <a href="../Home/AboutUs.aspx">关于我们</a>
+            <span>|</span>
+            <a href="../Account/Register.aspx">加入我们</a>
+            <span>|</span>
+            <a href="../Manager/ManagerLogin.aspx">后台登录</a>
+            <p>Copyright &copy;2014-2020 HireCyc, All Rights Reserved.</p>
+        </div>
+
+    </form>
+</body>
+</html>

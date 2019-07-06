@@ -1,0 +1,61 @@
+﻿
+/*常见问题集合CSS文件*/
+
+/*显示每种车辆类型出租信息区域样式*/
+#wareCon {
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    padding: 10px;
+}
+    /*表格样式*/
+    #wareCon table {
+        width: 100%;
+        font-size: 15px;
+        text-align: center;
+        color: rgba(52, 43, 43, 0.92);
+    }
+        /*行样式*/
+        #wareCon table tr {
+            line-height: 28px;
+        }
+
+/*取车注意事项区域,常见问题列表区域样式*/
+#GetCycNote, #questionCon, #payModeCon {
+    margin-top: 35px;
+    font-size: 20px;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    padding: 10px;
+    width: 240px;
+    margin-bottom: 20px;
+}
+/*取车注意事项区域*/
+#GetCycNote {
+    float: right;
+    width: 340px;
+    margin-right: 20px;
+}
+    /*li样式*/
+    #GetCycNote li, #questionCon li {
+        line-height: 30px;
+    }
+/*常见问题列表超链接样式*/
+#questionCon a {
+    color: black;
+}
+
+    #questionCon a:hover {
+        color: red;
+        text-decoration: underline;
+    }
+
+/*预定车辆流程区域样式*/
+#payModeCon {
+    width: 875px;
+    line-height: 30px;
+}
+
+    #payModeCon span {
+        margin-right: 10px;
+    }

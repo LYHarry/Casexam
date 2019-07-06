@@ -1,0 +1,293 @@
+﻿/*员工注册CSS文件*/
+
+/* body 共同样式 */
+body {
+    margin: 0px;
+    padding: 0px;
+    font-size: 12px;
+    font-family: "宋体";
+    color: #606060;
+    background-color: rgba(176, 239, 163, 0.78);
+}
+/* 去掉默认样式 */
+h1, h2, h3, h4, h5, h6, table, input, ul, li, p, img, dl, dt, dd, a {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    border: 0;
+    border-style: none;
+    text-decoration: none;
+}
+
+/*顶端LOGO区域样式*/
+#topCon {
+    height: 80px;
+    width: 800px;
+    margin: 20px auto;
+}
+    /*顶端LOGO区域——编码区域样式*/
+    #topCon #encoded {
+        line-height: 25px;
+        width: 180px;
+        float: right;
+        margin-top: 50px;
+    }
+
+/* 编码区域——字体超链接样式 */
+#encoded a:link, #encoded a:visited {
+    color: #999;
+}
+
+#encoded a:hover {
+    color: red;
+    text-decoration: underline;
+}
+
+/*中间内容区域样式*/
+#middleCon {
+    min-height: 600px;
+    width: 800px;
+    overflow: hidden;
+    margin: 5px auto;
+    position: relative;
+    border: 1px solid #b8cbd9;
+}
+    /*中间内容区域——左边导航条样式*/
+    #middleCon #leftCon {
+        background-color: #e1ebf4;
+        height: 770px;
+        width: 200px;
+        position: absolute;
+        border-right: 1px solid #b8cbd9;
+    }
+
+/*左边导航条字体样式*/
+#leftCon span {
+    color: white;
+    font-size: 30px;
+    width: 215px;
+    display: block;
+    margin-top: 20px;
+    margin-left: 3px;
+    text-align: center;
+    height: 76px;
+    line-height: 76px;
+    letter-spacing: 5px;
+    background: url(../Images/other/ManaRegBg.jpg) no-repeat right center #60b2e4;
+    z-index: 9999;
+    border-radius: 2px;
+    /* 阴影效果 */
+    box-shadow: 4px 5px 4px AppWorkspace;
+}
+
+/*左边导航条——联系方式区域样式*/
+#leftCon #fontCon {
+    width: 180px;
+    height: 200px;
+    margin: 400px auto;
+    border-radius: 3px;
+    background-color: #ebf3f6;
+}
+
+/*左边导航条——联系方式标题样式*/
+#fontCon span {
+    height: 30px;
+    line-height: 30px;
+    font-size: 16px;
+    background-color: #60b2e4;
+    width: 180px;
+    margin: 0;
+    background-image: none;
+    border-radius: initial;
+    box-shadow: none;
+}
+/*左边导航条——联系方式内容样式*/
+#fontCon ul {
+    font-size: 14px;
+    line-height: 28px;
+    margin-top: 20px;
+    margin-left: 5px;
+}
+
+/*中间内容区域——右边内容区域样式*/
+#middleCon #rightCon {
+    height: 770px;
+    width: 600px;
+    overflow: hidden;
+    float: right;
+    z-index: -1;
+    background-color: #f8fdff;
+}
+
+/*右边内容区域——显示图片*/
+#rightCon #showImg {
+    width: 480px;
+    height: 120px;
+    margin: 20px auto;
+    padding: 5px;
+    background-color: #e1ebf4;
+}
+
+/*图片样式*/
+#showImg img {
+    width: 480px;
+    height: 120px;
+}
+
+/*输入内容区域样式*/
+#rightCon #content {
+    width: 500px;
+    margin: 20px auto;
+}
+
+/*输入内容区域——标题样式*/
+#content #tilte {
+    font-size: 20px;
+    letter-spacing: 5px;
+    border-left: 2px solid #66acd6;
+    padding-left: 10px;
+    width: 500px;
+    line-height: 30px;
+    display: inline;
+}
+
+/*填写内容区域样式*/
+#content #inputCon {
+    border-top: 1px solid #b8cbd9;
+    width: 500px;
+    color: rgba(53, 49, 49, 0.90);
+    padding-top: 10px;
+    font-size: 15px;
+    margin: 5px auto;
+}
+
+/*注册输入区域——li样式*/
+#inputCon ul li {
+    line-height: 28px;
+    display: block;
+    margin-bottom: 15px;
+}
+
+/*输入框样式*/
+.inputFrame {
+    width: 180px;
+    height: 28px;
+    line-height: 28px;
+    border: 1px solid #C0C0C0;
+    border-radius: 2px;
+}
+
+/*有水印的文本框样式*/
+.grayCol {
+    color: gray;
+}
+
+/*下拉列表框样式*/
+.dropList {
+    width: 100px;
+    height: 25px;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+/*地址输入框样式*/
+.addressInput {
+    margin-left: 65px;
+    width: 320px;
+    height: 28px;
+    line-height: 28px;
+    border: 1px solid #C0C0C0;
+    border-radius: 2px;
+    color: gray;
+}
+
+/*地址选择区域样式*/
+#citySelect {
+    width: 350px;
+    margin-left: 68px;
+}
+
+/*地址选择字体样式*/
+#cityFont {
+    float: left;
+}
+
+/*多选按钮样式*/
+.agreeCheck {
+    width: 18px;
+    height: 18px;
+}
+
+/*按钮样式*/
+.but {
+    background-color: #0094ff;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    width: 200px;
+    height: 35px;
+    border-style: none;
+    border-radius: 2px;
+    display: block;
+    margin-left: 20px;
+    margin-top: 30px;
+    letter-spacing: 10px;
+    cursor: pointer;
+}
+    /*按钮超链接样式*/
+    .but:hover {
+        color: white;
+        background-color: #c61a37;
+    }
+
+/*页尾内容区域样式*/
+#footCon {
+    line-height: 30px;
+    font-size: 14px;
+    width: 800px;
+    overflow: hidden;
+    margin: 20px auto;
+    text-align: center;
+}
+
+
+/*注册成功，员工信息显示区域样式*/
+#showCon {
+    line-height: 25px;
+    margin-top: 30px;
+}
+    /*字体样式*/
+    #showCon p {
+        font-size: 18px;
+        display: block;
+        margin-top: 15px;
+    }
+    /*内容区域样式*/
+    #showCon #con {
+        margin-left: 40px;
+    }
+        /*账号字体样式*/
+        #showCon #con #acc {
+            font-size: 30px;
+            font-weight: bold;
+            color: black;
+            margin-left: 10px;
+        }
+
+    /*安全提示样式*/
+    #showCon #mana {
+        margin-top: 150px;
+        display: block;
+    }
+    /*去登录字体样式*/
+    #showCon a {
+        display: block;
+        float: right;
+        font-size: 18px;
+        margin-right: 30px;
+    }
+
+        #showCon a:hover {
+            color: red;
+            text-decoration: underline;
+        }

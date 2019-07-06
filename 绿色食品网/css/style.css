@@ -1,0 +1,101 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* body 共同样式*/
+body{ margin:0; padding:0; font-size:12px; font-family:"宋体"; color:#606060; background: url(../image/bg.jpg) no-repeat center top; }
+h1,h2,ul,li,p,img,dl,dt,dd{ margin:0; padding:0; list-style:none; border:0;}
+
+/* logo */
+.top{ width:975px; height:99px; margin:0 auto; padding:20px 0 0 5px;}
+
+/* 导航条 */
+.nav{width:980px; height:60px; margin:0 auto}
+.navLeft{display:block; width:18px; height:60px; background:url(../image/nav_left.jpg) no-repeat; float:left}
+.nav ul{ width:944px; height:55px; float: left; background:url(../image/nav_center.jpg) repeat-x; padding-top:5px}
+.nav ul li{ width:104px; height:35px; line-height:35px; float:left; text-align:center; background:url(../image/nav_line.jpg) no-repeat right top;}
+.nav ul li.nobg{ background:none}
+.nav a:link,.nav a:visited{ font-size:14px; color:#FFF; font-weight:bold; text-decoration:none;}
+.nav a:hover{ text-decoration:underline;}
+.navRight{ display:block; width:18px; height:60px; background: url(../image/nav_right.jpg) no-repeat; float: right}
+
+/* 主体图片 */
+.banner{ width:980px; height:382px; margin:0 auto;}
+
+/* 主体内容 */
+.content{ width:980px; margin:6px auto 0; background: url(../image/bg1.jpg) no-repeat top center #fff; overflow:hidden;}
+.content .top{ width:970px; height:91px; border-bottom:1px solid #D0D0D0; padding-left:10px;}
+.content .top li{ width:209px; height:64px; margin-right:7px; float:left; background: url(../image/bg2.jpg) no-repeat; padding:10px 13px;}
+p.one{ height:26px;}
+p.two{ padding-left:34px; color:#9d9d9d; line-height:18px;}
+
+/* 主体尾部 */
+.bottom{ width:980px; height:209px; background:url(../image/bg3.jpg) repeat-x;}
+
+/* 主体尾部左侧 */
+.botleft{ width:302px; height:198px; float:left;background:url(../image/bg_line.jpg) no-repeat top right; padding:11px 10px 0;}
+.botleft h2{ height:39px; position:relative;}
+.botleft h2 a{ width:34px; height:21px; display:block; position:absolute; right:0; top:8px;}
+.botleft dl{ width:302px; height:125px; padding-top:22px;}
+.botleft dl dt{ width:102px; height:125px; float:left;}
+.botleft dl dt img{ width:96px; height:82px; border:1px solid #D8D8D8; padding:2px;}
+.botleft dl dd{ width:190px; height:125px; float:right; color:#606060; line-height:20px;}
+.botleft dl dd a:link,.botleft dl dd a:visited{ color:#398C00; text-decoration:none;}
+.botleft dl dd a:hover{ text-decoration:underline;}
+
+/* 主体尾部中间 */
+.botcenter{ width:388px; height:198px; float:left; background:url(../image/bg_line.jpg) no-repeat top right; padding:11px 10px 0;}
+.botcenter h2{ height:39px; position:relative;}
+.botcenter h2 a{ width:34px; height:21px; display:block; position:absolute; right:0; top:8px; }
+.botcenter ul{ width:388px; height:120px; padding-top:22px; overflow:hidden;}
+.botcenter ul li{ width:122px; height:120px; float:left; margin-right:10px;}
+.botcenter p.cpone{ width:122px; height:96px;}
+.botcenter p.cpone img{ width:116px; height:90px; border:1px solid #D8D8D8; padding:2px;}
+.botcenter p.cptwo{ height:24px; line-height:24px;}
+.botcenter ul li.nopad{ margin-right:0;} 
+
+/*主体尾部右侧*/
+.botright{ width:230px; height:198px; float:left; padding:11px 10px 0;}
+.botright h2{ height:38px;}
+.botright p{ padding-top:22px; color:#5F5F5F; line-height:25px;}
+
+/*尾部导航条*/
+.botnav{ width:980px; height:34px; line-height:34px; margin:10px auto 2px; text-align:center; background:url(../image/bg4.jpg) repeat-x;}
+.botnav a:link,.botnav a:visited{ font-size:12px; color:#FFF; text-decoration:none;}
+.botnav a:hover{ text-decoration:underline;}
+.botnav span{ margin:0 9px; color:#FFF;}
+
+.wrapfoot{ width:100%; height:88px; background:url(../image/bg5.jpg) repeat-x; border-bottom:3px solid #69BA17;}
+.foot{ width:980px; padding-top:25px; line-height:22px; height:63px; color:#606060; margin:0 auto; position: relative;}
+.foot img{ position:absolute; right:15px; top:25px;}
+
+.wraplist{ width:958px; margin:6px auto 0; background: url(../image/bg1.jpg) no-repeat top left #FFF; overflow:hidden; padding:10px 11px 0;}
+.wraplistleft{ width:214px; overflow:hidden; float:left;}
+.wraplistleft h2{ width:214px; height:56px;}
+.wraplistleft ul{ width:198px; margin:0 7px; border-left:1px solid #E0E0E0;border-right:1px solid #E0E0E0; background: #F4F4F4;}
+.wraplistleft ul li{ width:108px; height:32px; line-height:32px; background:url(../image/bg_line1.jpg) no-repeat left bottom; padding-left:10px;}
+.wraplistleft ul li a:link,.wraplistleft ul li a:visited{ font-size:12px; color: #616161; text-decoration:none; background: url(../image/jt.jpg) no-repeat left center; padding-left:12px;}
+.wraplistleft ul li a:hover{ text-decoration:underline;}
+.wraplistleft .bot{ width:200px; height:18px; margin:0 auto;}
+.wraplistleft .contact{ line-height:20px; width:178px; margin:0 7px; border-left:1px solid #E0E0E0;border-right:1px solid #E0E0E0; background: #F4F4F4; padding:0 10px; color:#5F5F5F}
+.wraplistleft .mar10{ margin-bottom:10px;}
+
+.wraplistright{ width:734px; overflow:hidden; float:right;}
+.wraplistright h2{ width:689px; height:32px; background: url(../image/tit_bg.jpg) no-repeat; font-size:14px; padding:18px 0 0 45px; position:relative;}
+.wraplistright h2 span{ font-size:12px; font-weight:normal; position:absolute; top:22px; right:21px;}
+.wraplistright h2 a:link,.wraplistright h2 a:visited{color: #000; text-decoration:none;}
+.wraplistright h2 a:hover{text-decoration:underline;}
+.wraplistright box{ width:700px; padding:0 17px;}
+
+
+
+.box dl{ width:700px; height:45px; line-height:45px; background:url(../image/bot_b.jpg) repeat-x left bottom;}
+.box dl dt{ background:url(../image/bot.jpg) no-repeat left center;width:505px; float:left; padding-left:15px;}
+.box dl dd{ width:90px; float:right; text-align:center;}
+.box a:link,.box a:visited{color: #000000; text-decoration:none;}
+.box a:hover{text-decoration:underline;}
+
+.pagelist{ text-align:center; width:700px; height:66px; line-height:66px;}
+
+
+.box h3{ width:700px; height:35px; text-align:center; line-height:35px; font-size:16px;}
+.box p{ margin-bottom:10px; text-indent:2em; font-size:14px; line-height:22px;}

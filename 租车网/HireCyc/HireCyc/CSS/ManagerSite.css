@@ -1,0 +1,262 @@
+﻿/*管理员主页面CSS文件*/
+
+/* body 共同样式 */
+body {
+    margin: 0px;
+    padding: 0px;
+    font-size: 12px;
+    font-family: "宋体","微软雅黑","黑体",Cambria,'Angsana New';
+    color: #606060;
+    background-color: #f5f5f5;
+}
+/* 去掉默认样式 */
+h1, h2, h3, h4, h5, h6, table, ul, li, p, img, dl, dt, dd, a {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    border: 0;
+    border-style: none;
+    text-decoration: none;
+}
+    /* 超链接公用样式 */
+    a:link, a:visited {
+        color: black;
+    }
+
+    a:hover {
+        color: red;
+        text-decoration: underline;
+    }
+
+/*整个活动页面样式*/
+#bodyStyle {
+    min-height: 600px;
+    overflow: hidden;
+    margin: 2px auto;
+    background-color: #dfedf8;
+    position: relative;
+}
+    /*顶端LOGO*/
+    #bodyStyle #topLogo {
+        width: 1320px;
+        height: 70px;
+        background-color: #307caf;
+        margin: 0 auto;
+        position: relative;
+        border-bottom-left-radius: 20px;
+    }
+/*顶端LOGO——左边信息*/
+#topLogo #topLogo_left {
+    width: 280px;
+    height: 69px;
+    position: absolute;
+    margin-left: 15px;
+}
+/*顶端LOGO——左边信息——图片样式*/
+#topLogo_left img {
+    width: 280px;
+    height: 69px;
+}
+
+
+/*顶端LOGO——右边信息*/
+#topLogo #topLogo_right {
+    width: 750px;
+    height: 69px;
+    float: right;
+    margin-right: 1px;
+}
+
+/*顶端LOGO——右边信息——span样式*/
+#topLogo_right span {
+    display: block;
+    font-size: 14px;
+}
+
+
+/*顶端LOGO——右边信息——字体样式*/
+#fontCom span {
+    width: 90px;
+    height: 20px;
+    line-height: 20px;
+    margin-top: 8px;
+    margin-right: 30px;
+    float: right;
+}
+    /*顶端LOGO——右边信息——图片样式*/
+    #fontCom span img {
+        width: 15px;
+        float: left;
+        height: 15px;
+        display: block;
+        margin-top: 2px;
+        margin-right: 5px;
+    }
+
+
+
+/*顶端LOGO——右边下方图形信息*/
+#topLogo_right #graph {
+    width: 750px;
+    height: 35px;
+    border-top-left-radius: 100px;
+    border-top-right-radius: 100px;
+    background-color: #d9e2e9;
+    bottom: 0px;
+    position: absolute;
+}
+/*顶端LOGO——右边下方图形——字体样式*/
+#graph span {
+    width: 200px;
+    height: 35px;
+    line-height: 35px;
+    float: left;
+    margin-left: 18px;
+}
+/*顶端LOGO——右边下方图形——分隔线*/
+#graph #partLine {
+    width: 10px;
+    height: 35px;
+    line-height: 35px;
+    color: white;
+}
+/*顶端LOGO——右边下方图形——显示时间*/
+#graph #showTime {
+    width: 220px;
+    height: 35px;
+    line-height: 35px;
+}
+
+/*中间内容样式*/
+#bodyStyle #middle {
+    min-height: 600px;
+    overflow: hidden;
+    margin: 1px auto;
+    background-color: #e7f4fc;
+    position: relative;
+}
+
+/*左边导航条框架样式*/
+#middle #leftNav {
+    width: 187px;
+    margin-top: 10px;
+    margin-left: 15px;
+    font-size: 15px;
+    overflow: hidden;
+    position: absolute;
+    background-color: #f3f7fa;
+    border: 1px solid #b5bfc8;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+/*系统菜单样式*/
+#leftNav #systemMenu {
+    width: 187px;
+    overflow: hidden;
+    border-bottom: 1px solid #dfe0e5;
+}
+/*系统菜单——标题样式*/
+#systemMenu .title {
+    border-top: none;
+    cursor: default;
+    border-bottom: 1px solid #b5bfc8;
+}
+
+/*左边导航菜单——所有li列表样式*/
+#leftNav ul li {
+    width: 140px;
+    cursor: pointer;
+    line-height: 30px;
+    margin-left: 30px;
+    font-size: 15px;
+    padding-left: 15px;
+    background: url(../Images/other/list.gif)left center no-repeat;
+}
+
+/*左边导航条——dl菜单样式*/
+#leftNav #leftmenu {
+    width: 187px;
+    overflow: hidden;
+    margin-top: 5px;
+}
+
+/*左边导航条——dd菜单样式*/
+.leftmenu dd {
+    margin-top: 2px;
+    background-color: white;
+    line-height: 35px;
+    font-weight: bold;
+    border-right: solid 1px #b7d5df;
+}
+
+/*左边导航条——标题样式*/
+.title {
+    cursor: pointer;
+    height: 40px;
+    line-height: 40px;
+    font-size: 18px;
+    text-align:center;
+    font-weight: bold;
+    background-color: #e2edf3;
+    border-top: 1px solid #b5bfc8;
+}
+
+
+/*隐藏所有非活动菜单*/
+#leftmenu dd ul {
+    display: none;
+}
+
+/*显示第一个菜单内容*/
+#leftmenu dd:first-child ul {
+    display: block;
+}
+
+/*右边内容区域*/
+#middle #rightContent {
+    margin-top: 10px;
+    width: 1120px;
+    min-height: 600px;
+    overflow: hidden;
+    border: 1px solid #b6c0c9;
+    float: right;
+    margin-right: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+/*显示网站当前位置*/
+#rightContent #showPosistion {
+    height: 30px;
+    background-color: #d9e2e9;
+}
+/*显示网站当前位置——字体样式*/
+#showPosistion span {
+    color: black;
+    line-height: 30px;
+    font-size: 14px;
+    display: block;
+    padding-left: 30px;
+}
+/*具本内容样式*/
+#rightContent #rightContent_Content {
+    margin-top: 1px;
+    background-color: #ffffff;
+}
+
+
+/*页尾样式*/
+#bodyStyle #foot {
+    height: 30px;
+    background-color: #ebf0f6;
+    border-bottom: 5px solid #09598e;
+    margin-top: 10px;
+    text-align: center;
+}
+
+/*页尾字体样式*/
+#foot span {
+    font-size: 16px;
+    line-height: 30px;
+    color: black;
+}

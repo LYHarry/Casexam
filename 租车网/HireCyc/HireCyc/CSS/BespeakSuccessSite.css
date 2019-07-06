@@ -1,0 +1,63 @@
+﻿
+/*预约成功CSS文件*/
+
+
+/*顶部LOGO样式*/
+#CycLogo {
+    width: 230px;
+    height: 69px;
+    margin: 45px auto auto 40px;
+}
+
+/*预定自行车步骤区域样式*/
+#reparSept {
+    width: 475px;
+    height: 30px;
+    float: right;
+    font-size: 15px;
+    border-right: 5px solid rgba(28, 84, 216, 0.95);
+    margin: 70px 10px auto auto;
+}
+    /*预定自行车步骤字体样式*/
+    #reparSept span {
+        height: 30px;
+        float: left;
+        width: 120px;
+        margin-right: 15px;
+        line-height: 30px;
+        padding-left: 8px;
+    }
+    /*第三步样式*/
+    #reparSept #septThird {
+        color: white;
+        font-weight: bold;
+        background: url(../Images/other/frontSelectBg.jpg) no-repeat right center #fe8baa;
+    }
+    /*第一，二步样式*/
+    #reparSept #septSecond, #reparSept #septOne {
+        width: 140px;
+        background: url(../Images/other/frontNoSelectBg.jpg) no-repeat right center #f0f0f0;
+    }
+
+/*显示预约成功区域样式*/
+#content {
+    width: 600px;
+    height: 400px;
+    margin: 30px auto;
+}
+    /*显示预约成功字体样式*/
+    #content p {
+        font-size: 18px;
+        letter-spacing: 4px;
+        margin-bottom: 10px;
+    }
+    /*字体超链接样式*/
+    #content a:hover {
+        color: red;
+        text-decoration: underline;
+    }
+
+/*显示时间字体样式*/
+#time {
+    color: red;
+}

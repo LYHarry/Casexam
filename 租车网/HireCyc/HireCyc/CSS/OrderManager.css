@@ -1,0 +1,148 @@
+﻿
+/*订单管理CSS文件*/
+
+/*顶部命令栏区域样式*/
+#manager #opear {
+    margin-top: 2px;
+    height: 50px;
+    line-height: 50px;
+    background-color: #0094ff;
+    padding-left: 30px;
+}
+/*顶部命令栏区域——按钮样式*/
+#opear .but {
+    background-color: #1cce30;
+    font-weight: bold;
+    height: 30px;
+    width: 100px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 2px;
+    border-style: none;
+    cursor: pointer;
+    margin-left: 20px;
+}
+    /*按钮超链接样式*/
+    #opear .but:hover {
+        color: #fff;
+        background-color: #0026ff;
+    }
+
+/*显示订单的表格样式*/
+#manager table {
+    width: 99%;
+    display: block;
+    float: left;
+    line-height: 25px;
+    font-size: 15px;
+    text-align: center;
+    margin: 4px;
+    border-collapse: collapse;
+}
+    /*边框样式*/
+    #manager table td {
+        border: 1px solid #808080;
+    }
+    /*选择框列的宽度*/
+    #manager table #checkWid {
+        width: 75px;
+    }
+
+/*车辆查询页面样式*/
+
+/*输入框样式*/
+#opear .inputFrame {
+    width: 120px;
+    height: 25px;
+    line-height: 25px;
+    border: 1px solid #C0C0C0;
+    border-radius: 2px;
+}
+/*文本框水印样式*/
+.grayCol {
+    color: gray;
+}
+
+/*设置不显示样式*/
+#opear .disShow {
+    display: none;
+}
+
+/*设置显示样式*/
+#opear .Show {
+    visibility: visible;
+}
+
+/*查询条件下拉列表框*/
+#opear .dropList {
+    width: 100px;
+    height: 25px;
+    border: 1px solid #C0C0C0;
+    border-radius: 2px;
+}
+/*购买时间查询字体样式*/
+#opear .label {
+    color: black;
+    font-size: 15px;
+    display: none;
+}
+
+/*车辆信息页面表格样式*/
+.GridView {
+    width: 99%;
+    display: block;
+    float: left;
+    line-height: 25px;
+    font-size: 15px;
+    text-align: center;
+    margin: 4px;
+    border-collapse: collapse;
+}
+
+/*显示页数区域样式*/
+.paginator {
+    padding: 10px 20px 0px 0;
+    margin: 0px;
+    float: left;
+}
+    /*超链接样式*/
+    .paginator a {
+        border: solid 1px #ccc;
+        color: #0063dc;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+        .paginator a:visited {
+            padding: 1px 6px;
+            border: solid 1px #ddd;
+            background: #fff;
+            text-decoration: none;
+        }
+
+    .paginator .cpb {
+        border: 1px solid #F50;
+        font-weight: 700;
+        color: #F50;
+        background-color: #ffeee5;
+    }
+
+    .paginator a:hover {
+        border: solid 1px #F50;
+        color: #f60;
+        text-decoration: none;
+    }
+
+    .paginator a, .paginator a:visited, .paginator .cpb, .paginator a:hover {
+        float: left;
+        height: 16px;
+        line-height: 16px;
+        min-width: 10px;
+        _width: 10px;
+        margin-right: 5px;
+        text-align: center;
+        white-space: nowrap;
+        font-size: 12px;
+        font-family: Arial,SimSun;
+        padding: 0 3px;
+    }

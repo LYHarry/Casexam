@@ -1,0 +1,51 @@
+﻿/*赔偿标准CSS文件*/
+
+/*表格样式*/
+#ContentP table {
+    border: 1px solid black;
+    font-size: 16px;
+    width:700px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    text-align: center;
+}
+    /*表格单元格样式*/
+    #ContentP table tr td {
+        border: 1px solid black;
+        width: 300px;
+    }
+
+    /*表格行的高度*/
+    #ContentP table tr {
+        height: 25px;
+        line-height: 25px;
+    }
+
+/*备注样式*/
+#ContentP .remark {
+    font-size: 14px;
+    margin: auto auto 30px 100px;
+}
+
+/*第二个表格与第一个表格之前的距离*/
+#ContentP .fontDistance {
+    margin-top: 20px;
+}
+
+/*标题样式*/
+#ContentP p {
+    margin: 2px auto;
+    display: block;
+    width: 400px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 20px;
+}
+/*水平线样式*/
+#ContentP .hrStyle {
+    margin: 0 auto;
+    width: 800px;
+    border-style: dashed;
+    margin-bottom: 20px;
+}

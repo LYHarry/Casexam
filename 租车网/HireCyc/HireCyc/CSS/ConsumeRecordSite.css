@@ -1,0 +1,68 @@
+﻿
+/*消费记录CSS文件*/
+
+/*顶端信息区域样式*/
+#topCon {
+    width: 800px;
+    line-height: 25px;
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+    /*顶端信息区域字体样式*/
+    #topCon label {
+        margin-right: 20px;
+        display: block;
+        float: left;
+    }
+
+/*显示消费记录区域样式*/
+#middleCon {
+    width: 800px;
+    min-height: 400px;
+    overflow: hidden;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+    /*表格样式*/
+    #middleCon table {
+        width: 800px;
+        overflow: hidden;
+        border-collapse: collapse;
+        border: 1px solid #f5f5f5;
+        font-size: 15px;
+    }
+        /*行样式*/
+        #middleCon table tr {
+            line-height: 30px;
+            text-align: center;
+        }
+            /*移进行样式*/
+            #middleCon table tr:hover {
+                background-color: #4eb186;
+            }
+
+            /*标题行样式*/
+            #middleCon table tr th {
+                background-color: #f5f5f5;
+                font-size: 17px;
+            }
+/*按钮区域样式*/
+#butSty {
+    float: right;
+    margin-top: 10px;
+}
+
+/*按钮样式*/
+.butInput {
+    border-radius: 5px;
+    border: 1px solid #999;
+    margin-right: 10px;
+}
+
+
+/*尾部信息区域样式*/
+#fotCon {
+    width: 800px;
+    line-height: 25px;
+    font-size: 15px;
+}

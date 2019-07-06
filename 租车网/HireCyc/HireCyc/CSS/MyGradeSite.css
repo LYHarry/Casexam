@@ -1,0 +1,67 @@
+﻿/*我的级别CSS文件*/
+
+/*所有段落p样式*/
+#GradeContent p {
+    font-size: 15px;
+    margin-top: 15px;
+}
+
+/*所有段落——超链接样式*/
+#GradeContent a:hover {
+    color: red;
+    text-decoration: underline;
+}
+
+/*第一，第二,第三区域样式*/
+#area1, #area2, #area3, #area4 {
+    width: 650px;
+    margin-left: 10px;
+    margin-bottom: 30px;
+}
+    /*等级字体样式*/
+    #area1 p label {
+        color: red;
+        font-size: 20px;
+    }
+
+/*显示会员等级区域样式*/
+#showGradImg {
+    height: 120px;
+    width: 700px;
+    margin-top: 10px;
+    margin-left: 90px;
+    position: relative;
+    z-index: 1;
+}
+
+    /*显示会员等级区域——会员图片样式*/
+    #showGradImg img {
+        width: 700px;
+        margin-right: 25px;
+        height: 70px;
+    }
+
+    /*显示会员等级区域——会员等级进度线样式*/
+    #showGradImg #hrStyle {
+        width: 570px;
+        position: absolute;
+        top: 40px;
+        left: 70px;
+        z-index: -1;
+        height: 5px;
+        border-style: solid;
+        border-color: #808080;
+        background-color: #808080;
+    }
+
+    /*显示会员等级区域——table样式*/
+    #showGradImg table {
+        width: 700px;
+        text-align: center;
+        border-collapse: collapse;
+    }
+
+/*第一列和最后一列的宽度*/
+.tdWidth {
+    width: 135px;
+}

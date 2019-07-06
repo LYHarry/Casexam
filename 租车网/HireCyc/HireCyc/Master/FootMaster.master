@@ -1,0 +1,44 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="FootMaster.master.cs" Inherits="FootMaster" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>行吧</title>
+    <%--导入css文件--%>
+    <link href="../CSS/HomeSite.css" rel="stylesheet" />
+
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+
+        <div id="aboveContnet">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+
+        <%-- 页尾 --%>
+        <div class="foot">
+            <a href="../Home/ListCyc.aspx">网站首页</a>
+            <span>|</span>
+            <a href="../Home/ProjectIntroduce.aspx">项目介绍</a>
+            <span>|</span>
+            <a href="../Home/HireProcedure.aspx">租赁流程</a>
+            <span>|</span>
+            <a href="../Home/CustomerFeedback.aspx">客户反馈</a>
+            <span>|</span>
+            <a href="../Home/AboutUs.aspx">关于我们</a>
+            <span>|</span>
+            <a href="../Account/Register.aspx">加入我们</a>
+            <span>|</span>
+            <a href="../Manager/ManagerLogin.aspx">后台登录</a>
+            <p>Copyright &copy;2014-2020 HireCyc, All Rights Reserved.</p>
+        </div>
+
+    </form>
+</body>
+</html>

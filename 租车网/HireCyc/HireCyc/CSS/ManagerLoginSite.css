@@ -1,0 +1,71 @@
+﻿/*管理员登录CSS文件*/
+
+/* body 共同样式 */
+body {
+    margin: 0px;
+    padding: 0px;
+    font-size: 15px;
+    font-family: "宋体","Microsoft YaHei", "微软雅黑", "sans-serif";
+    color: #606060;
+    background-color: #0D1D3E;
+}
+/* 去掉默认样式 */
+h1, h2, h3, h4, h5, h6, ul, table, li, p, img, dl, dt, dd, a {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    border: 0;
+     border-style:none;
+    text-decoration: none;
+}
+
+/*可见区域样式*/
+#login_area {
+    margin: 100px auto;
+    width: 810px;
+    height: 410px;
+    background-image: url("../Images/other/ManagerLogin.png");
+    position: relative;
+}
+/*输入区域样式*/
+#import_area {
+    float: right;
+    width: 300px;
+    height: 200px;
+    top: 100px;
+    right: 30px;
+    position: absolute;
+}
+    /*输入框样式*/
+    #import_area #name, #import_area #pwd {
+        width: 200px;
+        height: 30px;
+        line-height: 30px;
+        outline: 0;
+        border: 1px solid;
+        border-color: #C0C0C0 #D9D9D9 #D9D9D9;
+        border-radius: 2px;
+    }
+    /*每行输入框之前的距离*/
+    #import_area div {
+        margin-bottom: 50px;
+    }
+/*按钮样式*/
+#btn_area input {
+    width: 80px;
+    height: 29px;
+    line-height: 29px;
+    cursor: pointer;
+    text-align: center;
+    border-style: none;
+    background: url('../Images/other/btn.jpg') 0px 0px no-repeat;
+}
+    /*按钮超链接样式*/
+    #btn_area input:hover {
+        background: url('../Images/other/btn_hover.jpg') 0px 0px no-repeat;
+        color: #fff;
+    }
+/*按钮之前的距离*/
+#btn_area #login_ret {
+    margin-left: 90px;
+}

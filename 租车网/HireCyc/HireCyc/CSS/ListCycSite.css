@@ -1,0 +1,91 @@
+﻿
+/*车辆列表CSS文件*/
+
+/*图片DIV样式*/
+.panStyle {
+    width: 240px;
+    height: 240px;
+    padding: 15px;
+    margin: 10px 15px 20px 10px;
+    float: left;
+    text-align: center;
+    border: 1px solid #f0f0f0;
+}
+    /*图片DIV超链接样式*/
+    .panStyle:hover {
+        border: 1px solid red;
+    }
+
+/*图片样式*/
+.imgStyle {
+    width: 240px;
+    height: 200px;
+    cursor: pointer;
+}
+/*图片文字样式*/
+.labelStyle {
+    font-size: 14px;
+    display: block;
+    margin-top: 15px;
+}
+
+/*购物蓝区域样式*/
+#shopCart {
+    width: 295px;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 40px;
+    right: 6px;
+    background-color: white;
+    display: none;
+    /* 阴影效果 */
+    box-shadow: -2px 0 5px AppWorkspace,0 -2px 5px AppWorkspace,0 2px 5px AppWorkspace,2px 0 5px AppWorkspace;
+}
+
+    /*购物蓝区域——显示商品表格样式*/
+    #shopCart table {
+        line-height: 30px;
+        width: 100%;
+        overflow: hidden;
+        margin: 10px;
+    }
+
+
+/*购物蓝按钮区域样式*/
+#shopBut {
+    width: 300px;
+    height: 50px;
+    border-radius: 5px;
+    background-color: #808080;
+    position: absolute;
+    bottom: -5px;
+    right: 3px;
+    line-height: 50px;
+    font-size: 15px;
+    color: white;
+    cursor: pointer;
+    /* 阴影效果 */
+    box-shadow: -2px 0 5px AppWorkspace,0 -2px 5px AppWorkspace,0 2px 5px AppWorkspace,2px 0 5px AppWorkspace;
+}
+    /*购物蓝按钮区域——字体样式*/
+    #shopBut label {
+        display: block;
+        float: left;
+        margin-left: 15px;
+    }
+
+    /*预定按钮样式*/
+    #shopBut .subBut {
+        background-color: #ff0000;
+        width: 100px;
+        height: 30px;
+        color: white;
+        float: right;
+        margin-top: 8px;
+        margin-right: 5px;
+        border-style: none;
+        border-radius: 2px;
+        cursor: pointer;
+        font-size: 18px;
+        letter-spacing: 5px;
+    }

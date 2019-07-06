@@ -1,0 +1,227 @@
+﻿/*手机方式，邮箱方式，忘记密码CSS文件*/
+
+/*顶部LOGO样式*/
+#CycLogo {
+    width: 230px;
+    height: 69px;
+    margin: 20px auto auto 50px;
+}
+
+/*导航条样式*/
+#nav {
+    height: 50px;
+    background-color: #c61a37;
+    margin-top: 20px;
+}
+
+    /* 导航条——ul样式 */
+    #nav ul {
+        font-size: 18px;
+        color: white;
+        font-weight: bold;
+    }
+
+        /* 导航条——li样式 */
+        #nav ul li {
+            line-height: 50px;
+            float: left;
+            margin-left: 50px;
+        }
+
+    /* 导航条——超链接样式 */
+    #nav a:link, #nav a:visited {
+        color: white;
+    }
+
+    #nav a:hover {
+        color: #0094ff;
+        text-decoration: underline;
+    }
+
+    /*分隔线样式*/
+    #nav #partLine {
+        float: right;
+        display: block;
+        line-height: 25px;
+        height: 25px;
+        margin-left: 40px;
+        margin-top: 14px;
+    }
+
+
+/*主区域样式*/
+#main {
+    margin: 5px auto;
+    width: 900px;
+    height: 500px;
+    position: relative;
+}
+
+    /*提示信息样式*/
+    #main label {
+        font-size: 22px;
+        float: left;
+        margin-top: -50px;
+        display: block;
+    }
+
+    /*ul样式*/
+    #main ul {
+        width: 400px;
+        margin: 80px auto;
+        text-align: left;
+        font-size: 18px;
+    }
+        /*li样式*/
+        #main ul li {
+            line-height: 40px;
+            margin-bottom: 50px;
+        }
+
+/*输入框样式*/
+.inputFrame {
+    width: 180px;
+    height: 28px;
+    line-height: 28px;
+    border: 1px solid #C0C0C0;
+    border-radius: 2px;
+    color: gray;
+}
+
+/*没水印文本框样式*/
+.PawInputFrame {
+    color: black;
+}
+
+/*获取验证码按钮样式*/
+.GetTestCode {
+    width: 85px;
+    height: 30px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 2px;
+    border-style: none;
+}
+
+    /*获取验证码按钮超链接样式*/
+    .GetTestCode:hover {
+        color: white;
+        background-color: #c61a37;
+    }
+
+/*验证码输入框样式*/
+.testCode {
+    width: 100px;
+    height: 28px;
+    line-height: 28px;
+    border-radius: 2px;
+    border: 1px solid #C0C0C0;
+}
+
+/*验证码图片样式*/
+.randomCodeImg {
+    width: 100px;
+    height: 40px;
+    display: block;
+    top: 90px;
+    left: 460px;
+    position: absolute;
+    cursor: pointer;
+}
+
+/*刷新图片样式*/
+.refresh {
+    width: 28px;
+    height: 28px;
+    display: block;
+    cursor: pointer;
+    top: 95px;
+    right: 300px;
+    position: absolute;
+}
+
+/*按钮样式*/
+.but {
+    background-color: #0094ff;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    height: 45px;
+    width: 220px;
+    margin-left: 270px;
+    border-radius: 2px;
+    border-style: none;
+    letter-spacing: 10px;
+    cursor: pointer;
+}
+    /*按钮超链接样式*/
+    .but:hover {
+        color: white;
+        background-color: #c61a37;
+    }
+
+
+/*密码强度框样式*/
+.PWIntensity {
+    height: 16px;
+    border: 1px solid red;
+    width: 165px;
+    margin-left: 90px;
+}
+
+/*显示密码强度框*/
+.setShow {
+    display: block;
+}
+
+/*隐藏密码强度框*/
+.setClose {
+    display: none;
+}
+
+
+/*弱的背景色*/
+.weak {
+    width: 45px;
+    background-color: #ffd800;
+    height: 12px;
+    margin: 2px;
+    font-size: 10px;
+    text-align: center;
+    line-height: 16px;
+}
+
+/*中的背景色*/
+.middle {
+    width: 90px;
+    background-color: #FF6600;
+    height: 12px;
+    margin: 2px;
+    font-size: 10px;
+    text-align: center;
+    line-height: 16px;
+}
+
+/*强的背景色*/
+.strength {
+    width: 145px;
+    background-color: #cc0000;
+    height: 12px;
+    margin: 2px;
+    color: white;
+    font-size: 10px;
+    text-align: center;
+    line-height: 16px;
+}
+
+/*超强的背景色*/
+.moreStrength {
+    width: 160px;
+    background-color: red;
+    height: 12px;
+    margin: 2px;
+    font-size: 10px;
+    text-align: center;
+    color: white;
+    line-height: 16px;
+}

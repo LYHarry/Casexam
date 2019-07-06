@@ -1,0 +1,166 @@
+﻿r<%@ Master Language="C#" AutoEventWireup="true" CodeFile="ManagerMaster.master.cs" Inherits="Master_ManagerMaster" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>自行车租赁系统</title>
+    <%--导入jQuery库文件--%>
+    <script src="../jQuery/jquery-2.1.1.js"></script>
+    <%--导入管理员CSS文件--%>
+    <link href="../CSS/ManagerSite.css" rel="stylesheet" />
+    <%--导入管理员jQuery文件--%>
+    <script src="../jQuery/ManagerjQuery.js"></script>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" EnableScriptGlobalization="true" runat="server"></asp:ScriptManager>
+
+        <div id="bodyStyle">
+            <%-- 上面LOGO --%>
+            <div id="topLogo">
+                <div id="topLogo_left">
+                    <img src="../Images/other/ManagerLogo.png" />
+                </div>
+                <div id="topLogo_right">
+                    <div id="fontCom">
+                        <span>
+                            <img src="../Images/other/quit.png" />
+                            <a href="#" onclick="quit()" id="quit">安全退出</a>
+                        </span>
+                        <span>
+                            <img src="../Images/other/GOUserHome.png" />
+                            <a href="../Manager/ManagerHome.aspx">网站首页</a>
+                        </span>
+                    </div>
+                    <div id="graph">
+                        <span>当前用户:【<%= list[0].EmployeeName %>】</span>
+                        <span>角色:【<%= rolePower %>】</span>
+                        <span id="partLine">|</span>
+                        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                            <ContentTemplate>
+                                <span id="showTime">
+                                    <asp:Label ID="Label1" runat="server"></asp:Label>
+                                </span>
+                            </ContentTemplate>
+                            <Triggers>
+                                <asp:AsyncPostBackTrigger ControlID="Timer1" EventName="Tick" />
+                            </Triggers>
+                        </asp:UpdatePanel>
+                        <asp:Timer ID="Timer1" runat="server" Enabled="true" Interval="1000" OnTick="Timer1_Tick"></asp:Timer>
+                    </div>
+                </div>
+            </div>
+
+            <div id="middle">
+                <%-- 左边导航条 --%>
+                <div id="leftNav">
+                    <%-- 系统菜单 --%>
+                    <div id="systemMenu">
+                        <div class="title">
+                            <span>后台系统管理菜单</span>
+                        </div>
+                        <ul>
+                            <li><a href="../Manager/ManagerHome.aspx">后台首页</a></li>
+                            <li><a href="../Manager/Register.aspx">注册账号</a></li>
+                            <li><a href="../Manager/AlterPassword.aspx">修改密码</a></li>
+                            <li><a href="../Manager/PowerManager.aspx">系统设置</a></li>
+                            <li><a href="#" onclick="quit()">退出系统</a></li>
+                            <li><a href="#">关于系统</a></li>
+                        </ul>
+                    </div>
+
+                    <%-- 导航条 --%>
+                    <dl id="leftmenu">
+
+                        <dd>
+                            <div class="title">
+                                <span>订单管理</span>
+                            </div>
+
+                            <ul>
+                                <li>
+                                    <a href="../Manager/OrderManager.aspx">删除订单</a>
+                                </li>
+                                <li>
+                                    <a href="../Manager/SelectOrder.aspx">查询订单</a>
+                                </li>
+                            </ul>
+                        </dd>
+
+                        <dd>
+                            <div class="title">
+                                <span>员工管理</span>
+                            </div>
+
+                            <ul>
+                                <li>
+                                    <a href="../Manager/SelectEmp.aspx">查看所有员工</a>
+                                </li>
+                                <li>
+                                    <a href="../Manager/EmpManager.aspx">修改员工数据</a>
+                                </li>
+                                <li>
+                                    <a href="../Manager/EmpManager.aspx">删除员工数据</a>
+                                </li>
+                                <li>
+                                    <a href="../Manager/Register.aspx">添加新员工</a>
+                                </li>
+                            </ul>
+                        </dd>
+
+                        <dd>
+                            <div class="title">
+                                <span>车辆管理</span>
+                            </div>
+
+                            <ul>
+                                <li><a href="../Manager/CycTypeManager.aspx">车辆类型管理</a></li>
+                                <li><a href="../Manager/CycManager.aspx">车辆管理</a></li>
+                            </ul>
+                        </dd>
+
+                        <dd>
+                            <div class="title">
+                                <span>用户管理</span>
+                            </div>
+
+                            <ul>
+                                <li>
+                                    <a href="../Manager/SelectUser.aspx">查询用户信息</a>
+                                </li>
+                                <li>
+                                    <a href="../Manager/UserManager.aspx">删除用户信息</a>
+                                </li>
+                            </ul>
+                        </dd>
+                    </dl>
+                </div>
+
+                <%-- 右边内容 --%>
+                <div id="rightContent">
+                    <%-- 显示系统当前位置 --%>
+                    <div id="showPosistion"><span>
+                       <label>显示系统当前位置</label>
+                    </span></div>
+                    <%-- 具体内容 --%>
+                    <div id="rightContent_Content">
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+                </div>
+            </div>
+
+            <%-- 页尾 --%>
+            <div id="foot">
+                <span>自行车租赁系统</span>
+            </div>
+
+        </div>
+    </form>
+</body>
+</html>

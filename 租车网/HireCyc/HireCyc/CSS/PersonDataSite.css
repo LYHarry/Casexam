@@ -1,0 +1,254 @@
+﻿
+/*设置——个人信息CSS文件*/
+
+
+/*个人信息分类*/
+#setMessage {
+    height: 35px;
+    margin-left: 20px;
+}
+
+    /*个人信息分类ul样式*/
+    #setMessage ul {
+        font-size: 15px;
+        text-align: center;
+    }
+
+        /*个人信息分类li样式*/
+        #setMessage ul li {
+            float: left;
+            line-height: 35px;
+            display: block;
+            border-bottom: none;
+            margin-right: 10px;
+            width: 120px;
+        }
+            /*选项卡字体样式*/
+            #setMessage ul li a {
+                color: #c61a37;
+            }
+
+                /*默认选中基本信息*/
+                #setMessage ul li a.selected {
+                    display: block;
+                    color: red;
+                    text-decoration: underline;
+                    background-color: white;
+                    font-weight: bold;
+                    border-radius: 20px;
+                    border: 1px solid #999;
+                }
+
+/*内容样式*/
+#content {
+    font-size: 16px;
+    width: 850px;
+    min-height: 500px;
+    overflow: hidden;
+    margin: 35px auto;
+    position: relative;
+}
+
+    /*星号标志样式*/
+    #content b {
+        color: red;
+    }
+
+
+/*注册输入区域——li样式*/
+#tab1 ul li {
+    line-height: 30px;
+    display: block;
+    margin-bottom: 25px;
+}
+
+/*输入框样式*/
+.inputFrame {
+    width: 180px;
+    height: 28px;
+    line-height: 28px;
+    border: 1px solid #C0C0C0;
+    border-radius: 2px;
+}
+
+/*下拉列表框样式*/
+.dropList {
+    width: 100px;
+    height: 25px;
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+/*地址选择区域样式*/
+#citySelect {
+    width: 350px;
+    margin-left: 80px;
+}
+
+/*地址选择字体样式*/
+#cityFont {
+    float: left;
+}
+
+/*地址输入框样式*/
+.addressInput {
+    margin-left: 80px;
+    width: 320px;
+    height: 28px;
+    line-height: 28px;
+    border: 1px solid #C0C0C0;
+    border-radius: 2px;
+    color:gray;
+}
+
+/*个人头像区域样式*/
+#tab2 .span {
+    display: block;
+    width: 220px;
+    border: 1px solid #999;
+    background-color: #f5f5f5;
+    height: 30px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    line-height: 30px;
+    cursor: pointer;
+}
+
+/*上传文件按钮样式*/
+#tab2 #file {
+    display: none;
+}
+
+
+/*个人头像区域图片样式*/
+#tab2 .span img {
+    width: 20px;
+    height: 20px;
+    display: block;
+    margin-top: 3px;
+    float: left;
+    margin-left: 18px;
+}
+
+/*个人头像区域——显示上传图片样式*/
+#tab2 #showImgArea {
+    width: 500px;
+    height: 300px;
+    border: 1px solid #999;
+    background-color: #f5f5f5;
+    margin-bottom: 20px;
+}
+/*个人头像区域——图片样式*/
+#showImgArea img {
+    width: 150px;
+    height: 150px;
+    display: block;
+    margin: 70px auto;
+}
+
+/*推荐头像字体样式*/
+#tab2 .font {
+    font-size: 20px;
+    font-weight: bold;
+    display: block;
+}
+
+/*推荐头像图片样式*/
+#tab2 #examImg {
+    width: 500px;
+    height: 115px;
+    margin-top: 10px;
+}
+
+/*推荐头像图片列表样式*/
+#examImg ul li {
+    float: left;
+    display: block;
+    height: 50px;
+    margin-right: 12px;
+    margin-bottom: 15px;
+    width: 50px;
+}
+
+    /*推荐头像图片样式*/
+    #examImg ul li img {
+        height: 50px;
+        width: 50px;
+    }
+
+/*右边上传图片预览*/
+#rightSample {
+    border-left: 1px solid #999;
+    width: 300px;
+    height: 480px;
+    top: 40px;
+    right: 5px;
+    padding-left: 20px;
+    position: absolute;
+}
+
+    /*右边上传图片预览100*100像素样式*/
+    #rightSample #SampleHun {
+        border: 1px solid #C0C0C0;
+        width: 120px;
+        height: 120px;
+        text-align: center;
+        border: 1px solid #999;
+        margin-top: 20px;
+        background-color: #f5f5f5;
+    }
+
+    /*右边上传图片预览50*50像素样式*/
+    #rightSample #SampleFif {
+        border: 1px solid #C0C0C0;
+        width: 70px;
+        margin-top: 20px;
+        height: 70px;
+        text-align: center;
+        border: 1px solid #999;
+        background-color: #f5f5f5;
+    }
+
+/*右边上传图片预览100*100像素图片样式*/
+#SampleHun img {
+    width: 100px;
+    height: 100px;
+    display: block;
+    margin: 10px auto;
+}
+
+/*右边上传图片预览50*50像素样式*/
+#SampleFif img {
+    width: 50px;
+    height: 50px;
+    display: block;
+    margin: 10px auto;
+}
+
+/*更多个人信息区域样式*/
+#tab3 ul li {
+    display: block;
+    margin-bottom: 20px;
+}
+
+/*按钮样式*/
+.but {
+    background-color: #0094ff;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    width: 100px;
+    height: 30px;
+    border-style: none;
+    border-radius: 2px;
+    display: block;
+    margin-left: 20px;
+    margin-top: 30px;
+    letter-spacing: 10px;
+    cursor: pointer;
+}
+    /*按钮超链接样式*/
+    .but:hover {
+        color: white;
+        background-color: #c61a37;
+    }

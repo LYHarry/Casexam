@@ -1,0 +1,379 @@
+﻿/*主页面CSS文件*/
+
+/* body 共同样式 */
+body {
+    margin: 0px;
+    padding: 0px;
+    font-size: 12px;
+    font-family: "宋体";
+    color: #606060;
+    background-color: #f5f5f5;
+}
+/* 去掉默认样式 */
+h1, h2, h3, h4, h5, h6, table, ul, li, p, img, dl, dt, dd, a {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    border: 0;
+    border-style: none;
+    text-decoration: none;
+}
+
+/*最顶端DIV样式*/
+.mostTop {
+    height: 30px;
+    background-color: #ef8033;
+    margin: 2px;
+    text-align: center;
+}
+    /*最顶端DIV样式——里面的字体样式*/
+    .mostTop span {
+        font-size: 14px;
+        float: right;
+        color: white;
+        line-height: 30px;
+        margin-right: 20px;
+    }
+    /*最顶端DIV样式——显示地址*/
+    .mostTop .leftShow {
+        float: left;
+        margin-left: 20px;
+    }
+    /* 最顶端DIV样式——超链接样式 */
+    .mostTop a:link, .mostTop a:visited {
+        color: white;
+    }
+
+    .mostTop a:hover {
+        color: red;
+        text-decoration: underline;
+    }
+
+/*整个活动页面样式*/
+.bodyStyle {
+    width: 1130px;
+    min-height: 600px;
+    overflow: hidden;
+    margin: 15px auto;
+    background-color: white;
+    position: relative;
+}
+
+/*内容信息模板中间的内空部份样式*/
+#middleContent {
+    min-height: 600px;
+    overflow: hidden;
+    position: relative;
+    width: 800px;
+    margin: 30px auto;
+    background-color: white;
+}
+
+/*页尾模板上面内容部份样式*/
+#aboveContnet {
+    min-height: 600px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* 顶端导航条 */
+.topNav {
+    width: 900px;
+    height: 50px;
+    margin: 5px 10px auto;
+    float: right;
+    border-radius: 50px;
+    background-color: #c61a37;
+}
+    /* 顶端导航条——ul样式 */
+    .topNav ul {
+        width: 750px;
+        height: 50px;
+        float: left;
+        margin-left: 50px;
+    }
+        /* 顶端导航条——li样式 */
+        .topNav ul li {
+            width: 90px;
+            height: 50px;
+            line-height: 50px;
+            float: left;
+            text-align: center;
+        }
+    /* 顶端导航条——超链接样式 */
+    .topNav a:link, .topNav a:visited {
+        font-size: 14px;
+        color: white;
+        font-weight: bold;
+    }
+/*左边导航条*/
+.leftNav {
+    width: 180px;
+    overflow: hidden;
+    margin-left: 20px;
+    margin-top: 50px;
+    background-color: #f5f5f5;
+    position: absolute;
+    border-radius: 20px;
+    /* 阴影效果 */
+    -moz-box-shadow: 4px 5px 3px;
+    -webkit-box-shadow: 4px 5px 4px;
+    box-shadow: 4px 5px 4px AppWorkspace;
+}
+
+    /* 左边导航条——ul样式 */
+    .leftNav ul {
+        width: 130px;
+        margin: 10px auto;
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+
+        /* 左边导航条——li样式 */
+        .leftNav ul li {
+            width: 130px;
+            line-height: 35px;
+            text-align: center;
+            border-bottom: 1px solid #c3baba;
+        }
+    /* 左边导航条——超链接样式 */
+    .leftNav a:link, .leftNav a:visited {
+        color: black;
+    }
+
+    .leftNav a:hover {
+        color: red;
+    }
+/* 左边导航条——标题样式 */
+.sortTitleStyle {
+    background-color: #ce2743;
+    width: 180px;
+    height: 40px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    text-align: center;
+}
+    /* 左边导航条——标题字体样式 */
+    .sortTitleStyle span {
+        line-height: 40px;
+        font-weight: bold;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        color: white;
+        font-size: 16px;
+    }
+
+/* 展示图片整体样式 */
+.imageShow {
+    width: 900px;
+    height: 300px;
+    margin: 10px 5px auto;
+    float: right;
+    position: relative;
+    overflow: hidden;
+}
+    /* 滚动图片ul样式 */
+    .imageShow ul {
+        width: 900px;
+        height: 300px;
+    }
+
+        /* 滚动图片列表样式 */
+        .imageShow ul li {
+            float: left;
+            height: 300px;
+            display: none;
+        }
+            /* 首个滚动图片样式 */
+            .imageShow ul li.curr_li {
+                display: block;
+            }
+                /* 滚动图片大小 */
+                .imageShow ul li.curr_li img {
+                    width: 900px;
+                    height: 300px;
+                }
+/* 图片编号DIV样式 */
+#slide_no {
+    width: 200px;
+    position: absolute;
+    height: 22px;
+    bottom: 4px;
+    text-align: right;
+    left: 690px;
+}
+    /* 图片编号字体样式 */
+    #slide_no span {
+        width: 22px;
+        height: 22px;
+        line-height: 22px;
+        background: #999;
+        margin: 0 1px;
+        text-align: center;
+        cursor: pointer;
+        color: #FFF;
+        border-radius: 12px;
+        display: inline-block;
+    }
+        /* 图片编号首个背景颜色样式 */
+        #slide_no span.curr {
+            background: #E4393C;
+        }
+
+/*联系我们*/
+.panelStyle {
+    background-color: rgba(195, 186, 186, 0.37);
+    width: 70px;
+    height: 180px;
+    position: fixed;
+    right: 3px;
+    top: 300px;
+    text-align: center;
+    /* 阴影效果 */
+    -moz-box-shadow: 4px 5px 3px;
+    -webkit-box-shadow: 4px 5px 4px;
+    box-shadow: 4px 5px 4px AppWorkspace;
+}
+    /*联系我们边框样式*/
+    .panelStyle table {
+        border-collapse: collapse;
+        border: 1px solid #999;
+        width: 70px;
+        height: 180px;
+    }
+
+    .panelStyle tr td {
+        border: 1px solid #999;
+    }
+    /*联系我们*/
+    .panelStyle .cellPad {
+        padding: 8px;
+    }
+    /*联系我们——图片样式*/
+    .panelStyle .imgStyle {
+        height: 50px;
+        width: 50px;
+        cursor: pointer;
+    }
+/*联系我们——QQ弹出面板*/
+.QQPanel {
+    background-color: #bebebe;
+    width: 120px;
+    height: 160px;
+    text-align: center;
+    padding: 3px;
+    position: fixed;
+    right: 80px;
+    top: 305px;
+    display:none;
+    /* 阴影效果 */
+    -moz-box-shadow: 4px 5px 3px;
+    -webkit-box-shadow: 4px 5px 4px;
+    box-shadow: 4px 5px 4px AppWorkspace;
+}
+/*联系我们——QQ弹出面板——图片*/
+.QQPanelImgSize {
+    width: 115px;
+    height: 120px;
+}
+/*联系我们——QQ弹出面板——QQ交谈与顶部图片的距离*/
+.QQSessionMarTop {
+    margin-top: 10px;
+    border-style: none;
+}
+/*联系我们——电话联系*/
+.phonePanel {
+    background-color: #bebebe;
+    width: 180px;
+    display:none;
+    height: 150px;
+    text-align: center;
+    position: fixed;
+    right: 80px;
+    top: 350px;
+    /* 阴影效果 */
+    -moz-box-shadow: 4px 5px 3px;
+    -webkit-box-shadow: 4px 5px 4px;
+    box-shadow: 4px 5px 4px AppWorkspace;
+}
+    /*联系我们——电话联系——字体样式*/
+    .phonePanel span {
+        margin-top: 10px;
+        line-height: 25px;
+        height: 25px;
+        font-size: 16px;
+        display: inline-block;
+    }
+
+        /*联系我们——电话联系——字体超链接样式*/
+        .phonePanel span a:link, .phonePanel span a:visited {
+            color: black;
+        }
+
+        .phonePanel span a:hover {
+            color: red;
+        }
+/*页尾导航条样式*/
+.foot {
+    height: 80px;
+    margin-top: 50px;
+    font-size: 14px;
+    text-align: center;
+}
+
+    /*页尾导航条超链接样式*/
+    .foot a:link, .foot a:visited {
+        color: black;
+    }
+
+    .foot a:hover {
+        color: red;
+        text-decoration: underline;
+    }
+    /*页尾导航条间隔线样式*/
+    .foot span {
+        margin: 0 9px;
+    }
+    /*页尾字体样式*/
+    .foot p {
+        margin-top: 10px;
+    }
+
+
+/*主要内容样式*/
+.content {
+    width: 900px;
+    min-height: 500px;
+    margin: 5px 5px auto;
+    float: right;
+    overflow: hidden;
+}
+
+/*返回顶部样式*/
+.goTop {
+    background-color: rgba(195, 186, 186, 0.37);
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    right: 10px;
+    bottom: 100px;
+    text-align: center;
+    display: none;
+    /* 阴影效果 */
+    -moz-box-shadow: 4px 5px 3px;
+    -webkit-box-shadow: 4px 5px 4px;
+    box-shadow: 4px 5px 4px AppWorkspace;
+}
+    /*返回顶部——span样式*/
+    .goTop span {
+        color: #606060;
+        font-size: 14px;
+        font-weight: bold;
+        display: block;
+    }
+        /*返回顶部——图片样式*/
+        .goTop span img {
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+        }

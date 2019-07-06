@@ -1,0 +1,70 @@
+﻿/*账户安全CSS文件*/
+
+/*账户安全内容共有样式*/
+#SecureContent {
+    font-size: 14px;
+}
+
+    /*标题字体样式*/
+    #SecureContent .tilteFont {
+        font-weight: bold;
+    }
+
+    /*ul样式*/
+    #SecureContent ul {
+        height: 60px;
+        width: 800px;
+        margin-top: 25px;
+        border-bottom: 1px solid #808080;
+    }
+
+        /*li样式*/
+        #SecureContent ul li {
+            line-height: 30px;
+            float: left;
+        }
+
+        /*安全设置分类样式*/
+        #SecureContent ul .secureSort {
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            width: 140px;
+        }
+
+        /*安全设置分类内容提示列样式*/
+        #SecureContent ul .hintCon {
+            width: 500px;
+            padding-left: 15px;
+            border-left: 1px solid #808080;
+        }
+
+            /*显示支付密码强度框样式*/
+            #SecureContent ul .hintCon #showPasStr {
+                width: 150px;
+                height: 18px;
+                font-size: 12px;
+                border: 1px solid red;
+            }
+
+        /*安全设置分类修改字体内容提示列样式*/
+        #SecureContent ul .alterFont {
+            width: 100px;
+        }
+
+    /*修改超链接样式*/
+    #SecureContent a:hover {
+        color: red;
+        text-decoration: underline;
+    }
+
+    /*安全服务区域样式*/
+    #SecureContent #secureServerHint {
+        margin-top: 25px;
+        width: 800px;
+    }
+
+/*安全服务区域——字体样式*/
+#secureServerHint p {
+    margin-bottom: 10px;
+}

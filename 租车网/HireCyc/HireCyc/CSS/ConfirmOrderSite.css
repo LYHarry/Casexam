@@ -1,0 +1,187 @@
+﻿
+/*提交订单CSS文件*/
+
+/*顶部LOGO样式*/
+#CycLogo {
+    width: 230px;
+    height: 69px;
+    margin: 45px auto auto 40px;
+}
+
+/*预定自行车步骤区域样式*/
+#reparSept {
+    width: 475px;
+    height: 30px;
+    float: right;
+    font-size: 15px;
+    border-right: 5px solid rgba(28, 84, 216, 0.95);
+    margin: 70px 10px auto auto;
+}
+    /*预定自行车步骤字体样式*/
+    #reparSept span {
+        height: 30px;
+        float: left;
+        width: 120px;
+        line-height: 30px;
+        padding-left: 8px;
+    }
+    /*第一步样式*/
+    #reparSept #septOne {
+        color: white;
+        font-weight: bold;
+        background: url(../Images/other/frontSelectBg.jpg) no-repeat right center #fe8baa;
+    }
+    /*第二，三步样式*/
+    #reparSept #septSecond, #reparSept #septThird {
+        margin-left: 15px;
+        width: 140px;
+        background: url(../Images/other/frontNoSelectBg.jpg) no-repeat right center #f0f0f0;
+    }
+
+
+/*显示订单信息区域样式*/
+#showOrder {
+    margin: 30px auto;
+    width: 750px;
+    font-size: 16px;
+    height: 310px;
+}
+    /*显示订单信息类型图片样式*/
+    #showOrder span img {
+        width: 300px;
+        height: 300px;
+        float: left;
+    }
+    /*显示订单信息类型表格样式*/
+    #showOrder table {
+        width: 260px;
+        float: right;
+        border-left: 1px solid #C0C0C0;
+        margin-top: 20px;
+        margin-right: 165px;
+        line-height: 30px;
+        padding-left: 15px;
+    }
+
+/*数量输入框区域*/
+#numInputArea {
+    width: 230px;
+    height: 30px;
+    float: right;
+    line-height: 30px;
+    margin-right: 190px;
+    margin-top: 20px;
+}
+    /*增加或减少数量按钮样式*/
+    #numInputArea input {
+        float: left;
+        width: 29px;
+        height: 29px;
+        font-size: 20px;
+        border-style: none;
+        border: 1px solid #808080;
+    }
+
+    /*库存区域样式*/
+    #numInputArea span {
+        margin-left: 10px;
+    }
+
+    /*减号按钮右边框样式*/
+    #numInputArea #minus {
+        border-right: none;
+    }
+
+    /*加号按钮左边框样式*/
+    #numInputArea #plus {
+        border-left: none;
+    }
+
+    /*数量输入框*/
+    #numInputArea .numInput {
+        width: 30px;
+        height: 25px;
+        text-align: center;
+        line-height: 25px;
+        font-size: 14px;
+        display: block;
+        float: left;
+        border: 1px solid #808080;
+    }
+
+/*列表信息——取车时间地点等*/
+#listCom {
+    height: 220px;
+    font-size: 15px;
+    margin: 10px auto;
+    width: 750px;
+}
+
+    /*列表信息——li样式*/
+    #listCom li {
+        line-height: 55px;
+        border-top: 1px dashed #808080;
+    }
+
+/*输入框样式*/
+.inputFrame {
+    width: 160px;
+    height: 28px;
+    line-height: 28px;
+    border: 1px solid #C0C0C0;
+    border-radius: 2px;
+    margin-left: 10px;
+}
+/*有水印的文本框样式*/
+.grayCol {
+    color: gray;
+}
+
+
+/*留言框样式*/
+.writeInputFrame {
+    width: 300px;
+    color: gray;
+}
+
+/*应付金额字体样式*/
+#money label {
+    float: left;
+    font-size: 20px;
+}
+
+/*金额样式*/
+#money .moneyFont {
+    color: #c61a37;
+    font-weight: bold;
+    width: 100px;
+    height: 30px;
+    margin-left: 100px;
+}
+
+/*小时和分钟下拉列表框样式*/
+.hour, .minute {
+    width: 100px;
+    height: 25px;
+    margin-right: 10px;
+}
+
+/*提交订单按钮样式*/
+.butCon {
+    background-color: #0094ff;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    height: 40px;
+    width: 200px;
+    border-style: none;
+    cursor: pointer;
+    float: right;
+    margin: 20px 50px 20px auto;
+    letter-spacing: 10px;
+}
+    /*提交订单按钮超链接样式*/
+    .butCon:hover {
+        color: white;
+        background-color: #c61a37;
+    }

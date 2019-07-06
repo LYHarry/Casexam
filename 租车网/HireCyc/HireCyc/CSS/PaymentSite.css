@@ -1,0 +1,125 @@
+﻿
+/*输入银行卡号或支付宝卡号支付页面CSS文件*/
+
+/*顶部LOGO样式*/
+#CycLogo {
+    width: 230px;
+    height: 69px;
+    margin: 45px auto auto 40px;
+}
+
+/*预定自行车步骤区域样式*/
+#reparSept {
+    width: 475px;
+    height: 30px;
+    float: right;
+    font-size: 15px;
+    border-right: 5px solid rgba(28, 84, 216, 0.95);
+    margin: 70px 10px auto auto;
+}
+    /*预定自行车步骤字体样式*/
+    #reparSept span {
+        height: 30px;
+        float: left;
+        width: 120px;
+        margin-right: 10px;
+        line-height: 30px;
+        padding-left: 8px;
+    }
+    /*第二步样式*/
+    #reparSept #septSecond {
+        color: white;
+        width: 150px;
+        font-weight: bold;
+        background: url(../Images/other/frontSelectBg.jpg) no-repeat right center #fe8baa;
+    }
+    /*第一，三步样式*/
+    #reparSept #septThird, #reparSept #septOne {
+        margin-left: 15px;
+        background: url(../Images/other/frontNoSelectBg.jpg) no-repeat right center #f0f0f0;
+    }
+
+/*账号密码输入区域样式*/
+#inputAccPaw {
+    width: 400px;
+    height: 300px;
+    margin: 50px auto;
+    font-size: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    padding-top: 30px;
+    padding-left: 100px;
+    line-height: 28px;
+}
+
+/*输入框样式*/
+.inputFrame {
+    width: 220px;
+    height: 28px;
+    border: 1px solid #C0C0C0;
+    border-radius: 2px;
+    margin-bottom: 10px;
+}
+/*忘记密码字体样式*/
+#forgetPaw {
+    float: right;
+    margin-right: 180px;
+    font-size: 12px;
+    margin-top: 10px;
+}
+    /*忘记密码字体超链接样式*/
+    #forgetPaw a {
+        color: #0094ff;
+    }
+
+        /*忘记密码字体超链接样式*/
+        #forgetPaw a:hover {
+            color: red;
+            text-decoration: underline;
+        }
+
+/*获取验证码按钮样式*/
+.GetTestCode {
+    width: 85px;
+    height: 30px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 2px;
+    border-style: none;
+    margin-top: 15px;
+}
+    /*获取验证码按钮超链接样式*/
+    .GetTestCode:hover {
+        color: white;
+        background-color: #c61a37;
+    }
+
+/*验证码输入框样式*/
+.testCode {
+    width: 100px;
+    height: 28px;
+    line-height: 28px;
+    border-radius: 2px;
+    border: 1px solid #C0C0C0;
+}
+
+/*确认按钮样式*/
+.butCon {
+    background-color: #0094ff;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    height: 40px;
+    width: 200px;
+    border-style: none;
+    cursor: pointer;
+    margin-left: 30px;
+    border-radius: 5px;
+    margin-top: 20px;
+    letter-spacing: 10px;
+}
+    /*确认按钮超链接样式*/
+    .butCon:hover {
+        color: white;
+        background-color: #c61a37;
+    }

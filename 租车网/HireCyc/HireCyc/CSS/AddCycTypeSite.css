@@ -1,0 +1,79 @@
+﻿
+/*添加车辆类型CSS文件*/
+
+
+/*顶部命令栏区域样式*/
+#manager #opear {
+    margin-top: 2px;
+    height: 50px;
+    line-height: 50px;
+    background-color: #0094ff;
+    padding-left: 30px;
+}
+/*顶部命令栏区域——按钮样式*/
+#opear .but {
+    background-color: #1cce30;
+    font-weight: bold;
+    height: 30px;
+    width: 100px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 2px;
+    border-style: none;
+    cursor: pointer;
+    margin-left: 20px;
+}
+    /*按钮超链接样式*/
+    #opear .but:hover {
+        color: #fff;
+        background-color: #0026ff;
+    }
+
+/*ul样式*/
+#manager table {
+    line-height: 50px;
+    float: left;
+    width: 40%;
+    font-size: 16px;
+    margin: 30px auto auto 250px;
+}
+
+/*输入框样式*/
+.inputFrame {
+    width: 120px;
+    height: 28px;
+    line-height: 28px;
+    border: 1px solid #C0C0C0;
+    border-radius: 2px;
+    color:gray;
+}
+
+/*按钮样式*/
+.butsub {
+    background-color: #0094ff;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    height: 45px;
+    width: 220px;
+    float: right;
+    border-radius: 2px;
+    margin-right: 580px;
+    margin-top: 30px;
+    border-style: none;
+    letter-spacing: 10px;
+    cursor: pointer;
+}
+    /*按钮超链接样式*/
+    .butsub:hover {
+        color: white;
+        background-color: #c61a37;
+    }
+
+/*下拉列表框*/
+.dropFrame {
+    width: 120px;
+    height: 25px;
+    border: 1px solid #C0C0C0;
+    border-radius: 2px;
+}

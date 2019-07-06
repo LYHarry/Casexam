@@ -1,0 +1,30 @@
+﻿/*租赁流程、安全守则、服务公约、项目介绍CSS文件*/
+
+/*所有P标签字体样式*/
+#ContentP p {
+    font-size: 18px;
+    line-height: 30px;
+    text-indent: 2em;
+    margin: 10px 5px 10px 8px;    
+}
+/*最后一段与尾部距离*/
+#ContentP .bottomDistance {
+    margin-bottom: 30px;
+}
+/*标题居中*/
+#ContentP .titleCen {
+    margin: 2px auto;
+    display: block;
+    width: 300px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 20px;
+}
+/*水平线样式*/
+.hrStyle {
+    margin: 0 auto;
+    width: 800px;
+    border-style: dashed;
+    margin-bottom: 20px;
+}

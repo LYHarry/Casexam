@@ -1,0 +1,159 @@
+﻿/* 登陆CSS文件 */
+
+
+/*logo区域样式*/
+.loginLogo {
+    height: 50px;
+    width: 340px;
+    margin: 50px auto auto 100px;
+}
+
+    /*logo设置*/
+    .loginLogo img {
+        height: 50px;
+        width: 50px;
+        float: left;
+        display: block;
+        margin-right: 20px;
+    }
+
+    /*logo字体样式*/
+    .loginLogo span {
+        color: #666;
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+/*显示图片区域样式*/
+#showImage {
+    width: 550px;
+    height: 360px;
+    position: absolute;
+    margin: 30px auto auto 180px;
+    /* 阴影效果 */
+    -moz-box-shadow: 4px 5px 3px;
+    -webkit-box-shadow: 4px 5px 4px;
+    box-shadow: 4px 5px 4px AppWorkspace;
+}
+    /*显示图片大小*/
+    #showImage img {
+        width: 550px;
+        height: 360px;
+    }
+
+/*登陆模块*/
+.login-panel {
+    background-color: #f0f0f0;
+    width: 300px;
+    float: right;
+    margin-top: 50px;
+    margin-right: 200px;
+    position: relative;
+    /* 阴影效果 */
+    -moz-box-shadow: 4px 5px 3px;
+    -webkit-box-shadow: 4px 5px 4px;
+    box-shadow: 4px 5px 4px AppWorkspace;
+}
+    /*输入区域字体样式*/
+    .login-panel label {
+        color: #FF6600;
+        font-weight: bold;
+        font-size: 25px;
+        display: block;
+        margin: 10px 10px auto 20px;
+    }
+
+    /*ul样式*/
+    .login-panel ul {
+        margin: 30px auto;
+        font-size: 18px;
+        text-align: center;
+    }
+        /*li样式*/
+        .login-panel ul li {
+            line-height: 40px;
+            margin-bottom: 20px;
+        }
+
+/*账号密码输入框样式*/
+.inputFrame {
+    width: 200px;
+    height: 28px;
+    line-height: 28px;
+    border: 1px solid #C0C0C0;
+    border-radius: 2px;
+    color: gray;
+}
+
+/*密码输入框样式*/
+.pawFrame {
+    color: black;
+}
+
+/*验证码输入框样式*/
+.testCode {
+    width: 100px;
+    height: 28px;
+    line-height: 28px;
+    border-radius: 2px;
+    float: left;
+    color: gray;
+    display: block;
+    margin-left: 45px;
+    border: 1px solid #C0C0C0;
+}
+
+
+/*验证码图片样式*/
+.randomCodeImg {
+    width: 100px;
+    height: 40px;
+    position: absolute;
+    top: 185px;
+    right: 45px;
+    cursor: pointer;
+}
+
+/*登录按钮样式*/
+.loginSub {
+    background-color: #FF6600;
+    color: #fff;
+    font-size: 20px;
+    height: 45px;
+    width: 220px;
+    border-style: none;
+    border-radius: 2px;
+    letter-spacing: 10px;
+    margin-top: 40px;
+    cursor: pointer;
+}
+    /*登录按钮超链接样式*/
+    .loginSub:hover {
+        color: white;
+        background-color: #c61a37;
+    }
+
+/*忘记密码，注册，超链接字体样式*/
+.login-panel a {
+    font-size: 14px;
+    display: block;
+    width: 80px;
+}
+/*注册样式*/
+.login-panel .register {
+    float: left;
+}
+/*忘记密码样式*/
+.login-panel .forgetPaw {
+    float: right;
+}
+
+/*忘记密码，注册，超链接字体样式*/
+.login-panel a:link, .login-panel a:visited {
+    color: #666;
+}
+
+.login-panel a:hover {
+    color: red;
+    text-decoration: underline;
+}

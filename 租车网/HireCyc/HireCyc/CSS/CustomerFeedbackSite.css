@@ -1,0 +1,72 @@
+﻿/*客户反馈CSS文件*/
+
+/*可见区域样式*/
+#customerFeedback {
+    margin: 80px auto;
+    height: 500px;
+    width: 600px;
+    position: relative;
+}
+    /*ul样式*/
+    #customerFeedback ul {
+        height: 400px;
+        width: 500px;
+        font-size: 16px;
+    }
+        /*li样式*/
+        #customerFeedback ul li {
+            line-height: 40px;
+            margin-bottom: 20px;
+        }
+
+    /*单行输入框样式*/
+    #customerFeedback span input{
+        margin-left: 50px;
+        width: 160px;
+        height: 25px;
+        line-height: 25px;
+        border: 1px solid;
+        border-color: #C0C0C0 #D9D9D9 #D9D9D9;
+        border-radius: 2px;
+    }
+    
+    /*多行输入框样式*/
+    #customerFeedback span textarea {
+        width: 280px;
+        height: 140px;
+        margin-left: 130px;
+    }
+    /*多行文本框与顶部距离*/
+    #customerFeedback #noMangin {
+        top: 50px;
+        position: absolute;
+    }
+
+    /*验证码图片*/
+    #customerFeedback .randomCodeImg {
+        width: 100px;
+        height: 40px;
+        display: block;
+        float: right;
+        margin-right: 90px;
+        cursor: pointer;
+    }
+
+    /*按钮样式*/
+    #customerFeedback .subBut, #customerFeedback .reBut {
+        background-color: #0094ff;
+        color: black;
+        font-weight: bold;
+        font-size: 18px;
+        height: 30px;
+        width: 120px;
+        border-style: none;
+        letter-spacing: 10px;
+        cursor: pointer;
+        margin-top: 50px;
+    }
+        /*按钮超链接样式*/
+        #customerFeedback .subBut:hover, #customerFeedback #reBut:hover {
+            color: white;
+            background-color: #c61a37;
+        }

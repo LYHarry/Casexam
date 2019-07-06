@@ -1,0 +1,39 @@
+﻿/*关于我们CSS文件*/
+
+
+/*所有P标签字体样式*/
+#ContentP p {
+    font-size: 18px;
+    line-height: 30px;
+    text-indent: 2em;
+    margin: 10px 5px 10px 8px;
+}
+/*最后一段与尾部距离*/
+#ContentP .bottomDistance {
+    margin-bottom: 30px;
+}
+/*表格样式*/
+#ContentP table {
+    font-size: 16px;
+    margin-top: 20px;
+    margin-left: 30px;
+}
+/*表格第一列宽度*/
+.tdWidth {
+    width: 90px;
+}
+
+/*表格行的高度*/
+#ContentP table tr {
+    height: 25px;
+    line-height: 25px;
+}
+
+/*显示地图DIV样式*/
+.MapContainer {
+    width: 800px;
+    height: 400px;
+    border: #ccc solid 1px;
+    margin: 20px auto 30px auto;
+    z-index: 1;
+}

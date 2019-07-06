@@ -1,0 +1,153 @@
+﻿/*设置body公共样式*/
+body
+{
+	width: 960px;
+	margin: 10px auto;
+	font-family: 华文新魏,宋体;
+	font-size: 20px;
+	background-color: #E7E7E7;
+}
+a
+{
+	text-decoration: none;
+	color: Red;
+}
+/*设置背景图片*/
+#bg
+{
+	width: 960px;
+	height: 757px;
+	background-image: url('../image/bg.png');
+}
+h4
+{
+	width: 400px;
+	border-bottom: 1px solid red;
+}
+/*设置母板的顶部*/
+.home
+{
+	margin-top: 20px;
+	margin-left: 20px;
+	width: 920px;
+	height: 50px;
+	border-bottom: 1px solid red;
+	background: url('../image/fade.gif') repeat-x;
+}
+.header
+{
+	margin: 10px auto auto 20px;
+	font-size: 28px;
+	font-weight: bold;
+	color: Red;
+	float: left;
+}
+.search
+{
+	padding-top: 12px;
+	margin-right: 20px;
+	text-align: right;
+}
+.navi
+{
+	width: 920px;
+	margin: 5px 10px 0px 20px;
+	height: 180px;
+	border-bottom: 2px solid red;
+}
+.menu
+{
+	margin-left: 20px;
+	float: left;
+	width: 150px;
+}
+.menu ul
+{
+	color: Gray;
+	margin: 0px;
+	width: 120px;
+	list-style: none;
+	border-right: 2px solid red;
+}
+.menu ul li
+{
+	margin-bottom: 10px;
+}
+.menu ul li a
+{
+	border-bottom: 1px dotted red;
+	text-decoration: none;
+	font-weight: bold;
+}
+.logo
+{
+	float: right;
+	width: 710px;
+	height: 150px;
+	background: url('../image/pic.png') no-repeat;
+}
+.content
+{
+	margin-left: 20px;
+	min-height: 400px;
+	width: 920px;
+	margin-top: 10px;
+}
+.footer
+{
+	width: 900px;
+	font-size: 15px;
+	text-align: right;
+	margin-left: 20px;
+	margin-top: 20px;
+	border: 1px solid red;
+	padding: 10px;
+}
+.songlist
+{
+	font-size: 15px;
+	float: left;
+	width: 400px;
+	margin-left: 40px;
+}
+.songlist table
+{
+	width: 90%;
+}
+.login
+{
+	width: 300px;
+	margin: 30px auto;
+}
+.lab_password
+{
+	padding-left: 20px;
+}
+.upload
+{
+	width: 400px;
+	margin: 30px auto;
+}
+.play
+{
+	width: 400px;
+	margin: 30px auto;
+}
+.allsonglist
+{
+	width: 600px;
+	margin: 30px auto;
+}
+.colheight
+{
+	width: 200px;
+}
+.register
+{
+	width: 400px;
+	margin: 30px auto;
+}
+.la_user
+{
+	margin-left: 20px;
+}

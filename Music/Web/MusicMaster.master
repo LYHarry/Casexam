@@ -1,0 +1,54 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MusicMaster.master.cs"
+    Inherits="MusicMaster" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <link href="CSS/MusicStyle.css" rel="stylesheet" type="text/css" />
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div id="bg">
+        <div class="home">
+            <span class="header">音乐分享</span>
+            <div class="search">
+                <label>
+                    搜索</label>&nbsp;
+                <asp:DropDownList ID="ddl_Search" runat="server">
+                    <asp:ListItem Value="SongName" Text="歌曲名"></asp:ListItem>
+                    <asp:ListItem Value="Singer" Text="歌手名"></asp:ListItem>
+                </asp:DropDownList>
+                &nbsp;&nbsp;
+                <asp:TextBox ID="txt_Search" runat="server" />&nbsp;
+                <asp:Button ID="btn_Search" Width="50" runat="server" Text="搜 索" OnClick="btn_Search_Click" />
+            </div>
+        </div>
+        <div class="navi">
+            <div class="menu">
+                <ul>
+                    <li><a href='<%=ResolveUrl("index.aspx") %>'>网站首页</a></li>
+                    <li><a href='<%=ResolveUrl("User/Upload.aspx") %>'>歌曲上传</a></li>
+                    <li><a href='<%=ResolveUrl("Register.aspx") %>'>用户注册</a></li>
+                    <li><a href='<%=ResolveUrl("User/Login.aspx") %>'>用户登录</a></li>
+                    <li><a href='<%=ResolveUrl("SongList.aspx") %>'>我的天籁</a></li>
+                </ul>
+            </div>
+            <div class="logo">
+            </div>
+        </div>
+        <div class="content">
+            <asp:ContentPlaceHolder ID="content" runat="server">
+                
+            </asp:ContentPlaceHolder>
+        </div>
+        <div class="footer">
+            <label>
+                Copyright 2014 Designed by<a href="#"> Harry</a></label>
+        </div>
+    </div>
+    </form>
+</body>
+</html>
