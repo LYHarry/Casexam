@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		* {
+			margin: 0px;
+			padding: 0px;
+			list-style: none;
+		}
+
+		#banner-wary {
+			width: 800px;
+			height: 400px;
+			border: 1px solid red;
+			overflow: hidden;
+			position: relative;
+		}
+
+		#banner-wary #banner {
+			height: 100%;
+			width: 700%;
+		}
+
+		#banner-wary #banner li {
+			float: left;
+			width: 14.285%;
+		}
+
+		#banner-wary #banner img {
+			width: 100%;
+			height: 400px;
+		}
+
+		#banner-wary #icons-warp {
+			background: red;
+			width: 100px;
+			height: 30px;
+			position: absolute;
+			left: 50%;
+			margin-left: -50px;
+			bottom: 0px;
+		}
+
+		#banner-wary #icons-warp li {
+			background: #fff;
+			width: 10px;
+			height: 10px;
+			margin: 0 3px;
+			float: left;
+			border: 1px solid red;
+			border-radius: 50%;
+			cursor: pointer;
+		}
+
+		#banner-wary #icons-warp li.action {
+			background: blue;
+		}
+
+
+		#banner-wary .icona {
+			display: block;
+			background: red;
+			width: 30px;
+			height: 40px;
+			position: absolute;
+			top: 50%;
+			margin-top: -15px;
+			font-size: 30px;
+			text-decoration: none;
+			text-align: center;
+		}
+
+		#banner-wary #prev {
+			left: 0px;
+		}
+
+		#banner-wary #next {
+			right: 0px;
+		}
+	</style>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript">
+		$(function () {
+
+			var bannerWary = $("#banner-wary");
+			var banner = bannerWary.find("#banner");
+			var iconWarp = bannerWary.find("#icons-warp");
+			var index = 0;
+			var timer = null;
+			var bannerWidth = bannerWary.width(); //得到banner宽度
+
+			//添加圆点
+			var bannerLen = banner.find("li").length;
+			var iconsHtml = "";
+			for (var i = 0; i < bannerLen; i++) {
+				iconsHtml += "<li></li>";
+			}
+			iconWarp.html(iconsHtml);
+			var icons = iconWarp.find("li");
+			icons.eq(0).addClass("action");
+
+			//添加第一个，最后一个LI
+			var firstBanner = banner.find("li:first").html();
+			var lastBanner = banner.find("li:last").html();
+			banner.append("<li>" + firstBanner + "</li>");
+			banner.prepend("<li>" + lastBanner + "</li>");
+
+			var prevBtn = bannerWary.find("#prev");
+			var nextBtn = bannerWary.find("#next");
+
+			//打开页面，自动播放幻灯片
+			autoPlay();
+
+			banner.mouseover(function () {
+				stopAnimate();
+			}).mouseout(function () {
+				autoPlay();
+			});
+
+			//圆点的点击事件
+			icons.click(function () {
+				var iconIndex = $(this).index() + 1;
+				$(this).addClass("action").siblings().removeClass("action");
+				banner.animate({
+					"marginLeft": (-bannerWidth * iconIndex) + "px"
+				}, "slow");
+			});
+
+
+			//左边
+			prevBtn.click(function () {
+				if (parseInt(banner.css("marginLeft")) >= -bannerWidth) {
+					banner.css("marginLeft", (-bannerWidth * (bannerLen + 1)));
+					index = 0;
+				}
+				bannerAnimate("+", -1);
+			});
+			//右边
+			nextBtn.click(function () {
+				if (parseInt(banner.css("marginLeft")) <= (-bannerWidth * bannerLen)) {
+					banner.css("marginLeft", 0);
+					index = -1;
+				}
+
+				bannerAnimate("-", 1);
+			});
+
+			//自动播放
+			function autoPlay() {
+				timer = setInterval(function () {
+					nextBtn.click();
+				}, 2000);
+			}
+
+			//关闭定时器，停止播放
+			function stopAnimate() {
+				clearInterval(timer);
+			}
+
+			//banner动画
+			function bannerAnimate(sign, num) {
+				if (!banner.is(":animated")) {
+					banner.animate({
+						"marginLeft": sign + "=800px"
+					}, "slow");
+					iconChange(num);
+				}
+			}
+
+			//设置圆点选中样式
+			function iconChange(num) {
+				index = index + num;
+				icons.eq(index).addClass("action").siblings().removeClass("action");
+			}
+		});
+	</script>
+
+
+
+
+</head>
+
+<body>
+	<div id="banner-wary">
+		<ul id="banner" style="margin-left: -800px;">
+			<li>1<a href="#"><img src="images/banner_01.png"></a></li>
+			<li>2<a href="#"><img src="images/banner_02.png"></a></li>
+			<li>3<a href="#"><img src="images/banner_03.png"></a></li>
+			<li>4<a href="#"><img src="images/banner_04.png"></a></li>
+			<li>5<a href="#"><img src="images/banner_05.png"></a></li>
+		</ul>
+		<ul id="icons-warp">
+		</ul>
+		<a href="javascript:;" id="prev" class="icona">&lt;</a>
+		<a href="javascript:;" id="next" class="icona">&gt;</a>
+
+
+
+
+	</div>
+
+</body>
+
+</html>

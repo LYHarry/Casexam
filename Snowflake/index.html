@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>下雪飘雪效果</title>
+    <style type="text/css">
+        html,
+        body,
+        div,
+        span,
+        a {
+            margin: 0;
+            padding: 0;
+        }
+
+        #snow-warp {
+            width: 90%;
+            height: 640px;
+            overflow: hidden;
+            margin: 0 auto;
+            background-image: url(images/snowbg.jpg);
+            background-color: #000044;
+            background-position: left;
+            background-repeat: round;
+            position: relative;
+        }
+
+        #snow-warp span {
+            color: #fff;
+            font-size: 18px;
+            position: absolute;
+            opacity: 0.8;
+        }
+
+        #snow-warp span img {
+            width: 22px;
+            height: 22px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="snow-warp"></div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+
+            var warpHegth = $("#snow-warp").height(); //640
+            warpWidth = $("#snow-warp").width(), // 1400
+                createRandom = Math.floor((Math.random() * 1000)) + 10; // 10~1000 //产生雪花的速度（频率）
+
+            //var snowHtml = $("<span></span>").html("<img src='images/snow.png' />");
+            var snowHtml = $("<span></span>").html("*");
+            var createTop = 0,
+                createLeft = 0,
+                speedRandom = 0,
+                speedTop = 0,
+                speedLeft = 0,
+                opacityRandom = 0,
+                fontRandom = 0,
+                imgRandom = 0;
+
+            setInterval(function () {
+
+                createTop = Math.floor((Math.random() * 20) - 15); // -15~5  产生雪花时的顶部位置
+                createLeft = parseInt(Math.random() * warpWidth); // 0~1400  产生雪花时的左边位置
+                speedRandom = parseInt(Math.random() * 10000) + 3000; // 3000~10000  //移动速度
+                speedTop = parseInt(Math.random() * warpHegth); //移动到的顶部距离
+                speedLeft = parseInt(Math.random() * warpWidth); //移动到的左边距离
+                opacityRandom = Math.floor((Math.random() * 10)) * 0.1; // 0~1 透明度
+                fontRandom = Math.floor((Math.random() * 30)) + 20; //  20~30 字体大小
+                //imgRandom = Math.floor((Math.random() * 30)) + 20; //  20~30  图片大小
+
+                snowHtml.find("img").css({
+                    "width": fontRandom,
+                    "height": fontRandom
+                });
+                snowHtml.clone().appendTo("#snow-warp").css({
+                    "top": createTop,
+                    "left": createLeft,
+                    "fontSize": fontRandom
+                }).animate({
+                    "top": warpHegth,
+                    "left": speedLeft,
+                    "opacity": opacityRandom
+                }, speedRandom, function () {
+                    $(this).remove();
+                });
+
+            }, createRandom);
+
+        });
+    </script>
+</body>
+
+</html>

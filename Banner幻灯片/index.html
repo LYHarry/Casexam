@@ -1,0 +1,273 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		* {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		.banner-wrap {
+			width: 800px;
+			height: 300px;
+			/*!只需要修改宽高!*/
+			position: relative;
+			overflow: hidden;
+			border: 1px solid red;
+		}
+
+		/*主体*/
+		.banner-wrap .banner {
+			width: 700%;
+			height: 100%;
+		}
+
+		.banner-wrap .banner li {
+			width: 14.285%;
+			float: left;
+		}
+
+		/*小圆点*/
+		.banner-wrap .icon-wrap {
+			position: absolute;
+			bottom: 0;
+			left: 50%;
+			margin-left: -50px;
+			width: 100px;
+			height: 20px;
+			background: red;
+		}
+
+		.banner-wrap .icon-wrap {
+			cursor: pointer;
+		}
+
+		.banner-wrap .icon-wrap li.active {
+			background: blue;
+		}
+
+		.banner-wrap .icon-wrap li {
+			width: 10px;
+			height: 10px;
+			float: left;
+			margin: 0 5px;
+			border-radius: 50%;
+			background: #fff;
+		}
+
+		/*左右箭头*/
+		.banner-wrap a.arrows {
+			position: absolute;
+			top: 50%;
+			margin-top: -15px;
+			display: block;
+			width: 30px;
+			height: 30px;
+			background: red;
+			font-size: 25px;
+			text-decoration: none;
+			color: #fff;
+			text-align: center;
+		}
+
+		.banner-wrap a.prev {
+			left: 0;
+		}
+
+		.banner-wrap a.next {
+			right: 0;
+		}
+
+
+		.banner-wrap img {
+			width: 100%;
+		}
+	</style>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript">
+		$(function () {
+
+			//点击切换动画速度，slow，first 也可以设置毫秒数
+			var animateSpeed = 500;
+			//自动切换的间隔毫秒
+			var intervalTime = 3000; //只能用数字
+
+			//获取最外层容器banner-wrap
+			var bannerWrap = $(".banner-wrap");
+			bannerWrap.each(function () {
+				var banner = $(this).find(".banner");
+				var bannerLen = banner.find("li").length;
+				var bannerWidth = $(this).width();
+				var prevBtn = $(this).find(".prev");
+				var nextBtn = $(this).find(".next");
+				var timer = null;
+				var index = 0;
+
+				//初始化banner的位置
+				banner.css("marginLeft", -bannerWidth + "px");
+
+				//创建小圆点
+				var iconHtml = '<ul class="icon-wrap">';
+				for (var i = 0; i < bannerLen; i++) {
+					iconHtml += '<li></li>';
+				}
+				iconHtml += '</ul>';
+				$(this).append(iconHtml);
+				var icons = $(this).find(".icon-wrap li");
+				icons.eq(0).addClass("active");
+
+				//获取收尾的li，用于克隆
+				var firstLi = banner.find("li:first").html();
+				var lastLi = banner.find("li:last").html();
+
+				//获取最后一个放到开始位置
+				banner.prepend("<li>" + lastLi + "</li>");
+
+				//获取最第一个放到最后位置
+				banner.append("<li>" + firstLi + "</li>");
+
+				//左边点击切换
+				prevBtn.click(function () {
+					if (parseInt(banner.css("marginLeft")) <= -bannerWidth * bannerLen) {
+						banner.css("marginLeft", 0);
+						index = -1;
+					}
+					cutAnimate("-", 1);
+				});
+
+				//右边点击切换
+				nextBtn.click(function () {
+					if (parseInt(banner.css("marginLeft")) >= -bannerWidth * 1) {
+						banner.css("marginLeft", -bannerWidth * (bannerLen + 1) + "px");
+						index = bannerLen;
+					}
+					cutAnimate("+", -1);
+				});
+
+				//点击小圆点
+				icons.click(function () {
+					var index = $(this).index() + 1;
+					banner.animate({
+						"marginLeft": -bannerWidth * index + "px"
+					}, animateSpeed);
+					$(this).addClass("active").siblings("li").removeClass("active");
+
+				});
+
+				//开启定时器
+				startCutAnimate();
+
+				//开关定时器
+				$(this).mouseover(function () {
+					stopCutAnimate();
+				}).mouseout(function () {
+					startCutAnimate();
+				});
+
+				//切换动画
+				function cutAnimate(symbol, num) {
+					if (!banner.is(":animated")) {
+						banner.animate({
+							"marginLeft": symbol + "=" + bannerWidth + "px"
+						}, "first");
+						iconChange(num);
+					}
+				}
+
+				//小圆点高亮
+				function iconChange(num) {
+					index = index + num;
+					icons.eq(index).addClass("active").siblings("li").removeClass("active");
+				}
+
+				//开启定时器
+				function startCutAnimate() {
+					//设表先关
+					stopCutAnimate();
+					timer = setInterval(function () {
+						prevBtn.click();
+					}, intervalTime);
+				}
+
+				//清除动画
+				function stopCutAnimate() {
+					clearInterval(timer);
+				}
+
+			});
+		});
+	</script>
+</head>
+
+<body>
+	<div class="banner-wrap">
+		<ul class="banner">
+			<li>
+				<a href="#">
+					<img src="images/banner_01.png" />
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<img src="images/banner_02.png" />
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<img src="images/banner_03.png" />
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<img src="images/banner_04.png" />
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<img src="images/banner_05.png" />
+				</a>
+			</li>
+		</ul>
+		<a class="arrows prev" href="javascript:void(0);">&lt;</a>
+		<a class="arrows next" href="javascript:void(0);">&gt;</a>
+	</div>
+
+
+	<div class="banner-wrap" style="width:500px;height:200px;">
+		<ul class="banner">
+			<li>
+				<a href="#">
+					<img src="images/banner_01.png" />
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<img src="images/banner_02.png" />
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<img src="images/banner_03.png" />
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<img src="images/banner_04.png" />
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<img src="images/banner_05.png" />
+				</a>
+			</li>
+		</ul>
+		<a class="arrows prev" href="javascript:void(0);">&lt;</a>
+		<a class="arrows next" href="javascript:void(0);">&gt;</a>
+	</div>
+</body>
+
+</html>

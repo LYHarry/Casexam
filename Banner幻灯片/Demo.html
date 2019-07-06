@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			text-decoration: none;
+		}
+
+		/*幻灯片*/
+		#banner-warp {
+			border: 1px solid red;
+			height: 500px;
+			width: 800px;
+			position: relative;
+		}
+
+		#banner-warp #banner {
+			width: 100%;
+			height: 100%;
+		}
+
+		#banner-warp #banner li {
+			float: left;
+			position: absolute;
+			top: 0;
+			left: 0;
+			display: none;
+		}
+
+		#banner-warp img {
+			width: 100%;
+			height: 480px;
+		}
+
+		/*圆点*/
+		#banner-warp #icons-warp {
+			height: 30px;
+			width: 200px;
+			background: red;
+			position: absolute;
+			bottom: 0;
+			left: 50%;
+			margin-left: -100px;
+		}
+
+		#banner-warp #icons-warp li {
+			background: #fff;
+			height: 25px;
+			width: 25px;
+			margin: 0 3px;
+			float: left;
+			border: 1px solid red;
+			border-radius: 50%;
+			cursor: pointer;
+			text-align: center;
+			line-height: 25px;
+		}
+
+		#banner-warp #icons-warp li.action {
+			background: blue;
+		}
+	</style>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript">
+		$(function () {
+
+			var bannerWarp = $("#banner-warp"),
+				banner = bannerWarp.find("#banner"),
+				iconsWarp = bannerWarp.find("#icons-warp"),
+				bannerLi = banner.find("li"),
+				bannerLen = bannerLi.length,
+				iconHtml = "",
+				index = 1,
+				timer = null;
+
+			//显示第一张幻灯片
+			bannerLi.eq(0).show();
+
+			//动态添加圆点
+			for (var i = 1; i <= bannerLen; i++) {
+				iconHtml += "<li>" + i + "</li>";
+			}
+			iconsWarp.html(iconHtml);
+			var icons = iconsWarp.find("li");
+			icons.eq(0).addClass("action");
+
+			//打开页面自动播放幻灯片
+			autoPlay();
+
+			//圆点的击事件
+			icons.click(function () {
+				index = $(this).index();
+				bannerAnimate(index);
+			});
+
+			//圆点的移进称出事件
+			icons.mouseover(function () {
+				stopPlay();
+				index = $(this).index();
+				bannerAnimate(index);
+			}).mouseout(function () {
+				index = $(this).index() + 1;
+				autoPlay();
+			});
+
+			//移进幻灯片停止定时器，移出开启
+			bannerLi.mouseover(function () {
+				stopPlay();
+			}).mouseout(function () {
+				autoPlay();
+			});
+
+			//幻灯片动画，显示当前活动幻灯片
+			function bannerAnimate(index) {
+				if (!bannerLi.is(":animated")) {
+					bannerLi.eq(index).fadeIn().siblings().fadeOut();
+					iconsChange(index);
+				}
+			}
+
+			//设置定时器，自动播放
+			function autoPlay() {
+				stopPlay();
+				timer = setInterval(function () {
+					bannerAnimate(index);
+					index++;
+					if (index > 4) {
+						index = 0;
+					}
+				}, 2000);
+			}
+			//圆点当前改变
+			function iconsChange(index) {
+				icons.eq(index).addClass("action").siblings().removeClass("action")
+			}
+			//停止播放幻灯片
+			function stopPlay() {
+				clearInterval(timer);
+			}
+		});
+	</script>
+</head>
+
+<body>
+	<div id="banner-warp">
+		<ul id="banner">
+			<li>1<a href="#"><img src="images/banner_01.png"></a></li>
+			<li>2<a href="#"><img src="images/banner_02.png"></a></li>
+			<li>3<a href="#"><img src="images/banner_03.png"></a></li>
+			<li>4<a href="#"><img src="images/banner_04.png"></a></li>
+			<li>5<a href="#"><img src="images/banner_05.png"></a></li>
+		</ul>
+		<ul id="icons-warp">
+		</ul>
+	</div>
+</body>
+
+</html>>

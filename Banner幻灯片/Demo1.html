@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			text-decoration: none;
+		}
+
+		/*幻灯片*/
+		#banner-warp {
+			height: 500px;
+			width: 800px;
+			border: 1px solid red;
+			overflow: hidden;
+			position: relative;
+		}
+
+		#banner-warp #banner {
+			width: 700%;
+			height: 100%;
+		}
+
+		#banner-warp #banner li {
+			width: 14.285%;
+			height: 100%;
+			float: left;
+		}
+
+		#banner-warp img {
+			width: 100%;
+			height: 500px;
+		}
+
+		/*圆点*/
+		#banner-warp #icons-warp {
+			width: 120px;
+			height: 30px;
+			background: red;
+			position: absolute;
+			bottom: 0;
+			left: 50%;
+			margin-left: -60px;
+			overflow: hidden;
+		}
+
+		#banner-warp #icons-warp li {
+			background: #fff;
+			width: 10px;
+			height: 10px;
+			border-radius: 50%;
+			float: left;
+			margin: 0 5px;
+			cursor: pointer;
+		}
+
+		#banner-warp #icons-warp li.action {
+			background: blue;
+		}
+
+		/*左右箭头*/
+		#banner-warp a.arrows {
+			width: 40px;
+			height: 40px;
+			font-size: 30px;
+			background: red;
+			position: absolute;
+			top: 50%;
+			margin-top: -20px;
+			line-height: 40px;
+			text-align: center;
+			display: block;
+			z-index: 2;
+		}
+
+		#banner-warp #prev {
+			left: -40px;
+		}
+
+		#banner-warp #next {
+			right: -40px;
+		}
+	</style>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript">
+		$(function () {
+
+			var bannerWarp = $("#banner-warp"),
+				banner = bannerWarp.find("#banner"),
+				bannerLi = banner.find("li"),
+				bannerLen = bannerLi.length,
+				bannerWidth = bannerWarp.width();
+			iconsWarp = bannerWarp.find("#icons-warp"),
+				prevBtn = bannerWarp.find("#prev"),
+				nextBtn = bannerWarp.find("#next"),
+				iconHtml = "",
+				index = 0,
+				timer = null;
+
+			//复制第一个和最后一个幻灯片
+			var firstBanner = bannerLi.eq(0).html();
+			var lastBanner = bannerLi.last().html();
+			banner.append("<li>" + firstBanner + "</li>");
+			banner.prepend("<li>" + lastBanner + "</li>");
+
+			//动态生成圆点
+			for (var i = 0; i < bannerLen; i++) {
+				iconHtml += "<li></li>";
+			}
+			iconsWarp.html(iconHtml);
+			//设置第一个圆点为选中样式
+			var icons = iconsWarp.find("li");
+			icons.eq(0).addClass("action");
+
+			// auotPlay();//打开页面自动播放幻灯片
+
+			//圆点的点击事件
+			icons.click(function () {
+				index = $(this).index() + 1;
+				banner.animate({
+					"marginLeft": (-bannerWidth * index) + "px"
+				}, "slow");
+				iconChange(-1);
+			});
+
+			//左箭头按钮事件
+			prevBtn.click(function () {
+				if (parseInt(banner.css("marginLeft")) >= -bannerWidth) {
+					banner.css("marginLeft", -bannerWidth * (bannerLen + 1));
+					index = bannerLen;
+				}
+				bannerAnimate("+=", -1);
+			});
+
+			// 右箭头按钮事件
+			nextBtn.click(function () {
+				if (parseInt(banner.css("marginLeft")) <= (-bannerWidth * bannerLen)) {
+					banner.css("marginLeft", 0);
+					index = -1;
+				}
+				bannerAnimate("-=", 1);
+			});
+
+			//幻灯片的移进移出事件
+			banner.mouseover(function () {
+				stopPlay();
+				showPrevNextBtn("+");
+			}).mouseout(function () {
+				auotPlay();
+				showPrevNextBtn("-");
+			});
+
+			function showPrevNextBtn(sign) {
+				if (!bannerWarp.is(":animated")) {
+					var distance = sign == "+" ? "5px" : "-40px";
+					prevBtn.animate({
+						"left": distance
+					}, "slow");
+					nextBtn.animate({
+						"right": distance
+					}, "slow");
+				}
+			}
+
+			//幻灯片自动播放
+			function auotPlay() {
+				timer = setInterval(function () {
+					nextBtn.click();
+				}, 2000);
+			}
+			//关闭定时器，停止播放
+			function stopPlay() {
+				clearInterval(timer);
+			}
+
+			//幻灯片动画
+			function bannerAnimate(sign, num) {
+				if (!banner.is(":animated")) {
+					banner.animate({
+						"marginLeft": (sign + bannerWidth) + "px"
+					}, "slow");
+					iconChange(num);
+				}
+			}
+
+			//圆点选择样式改变方法
+			function iconChange(num) {
+				index += num;
+				icons.eq(index).addClass("action").siblings().removeClass("action");
+			}
+		});
+	</script>
+</head>
+
+<body>
+	<div id="banner-warp">
+		<ul id="banner" style="margin-left: -800px;">
+			<li><a href="#">1<img src="images/banner_01.png"></a></li>
+			<li><a href="#">2<img src="images/banner_02.png"></a></li>
+			<li><a href="#">3<img src="images/banner_03.png"></a></li>
+			<li><a href="#">4<img src="images/banner_04.png"></a></li>
+			<li><a href="#">5<img src="images/banner_05.png"></a></li>
+		</ul>
+		<ul id="icons-warp">
+		</ul>
+		<a href="javascript:;" id="prev" class="arrows">&lt;</a>
+		<a href="javascript:;" id="next" class="arrows">&gt;</a>
+	</div>
+</body>
+
+</html>

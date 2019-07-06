@@ -1,0 +1,11 @@
+<!--index.wxml-->
+<view class="container">
+  <canvas canvas-id="myCanvas" class="canvas_temp" disable-scroll="true" bindtouchstart="TouchStart" bindtouchmove="TouchMove" />
+  <view class="btn_wrap">
+    <button class="btn" data-parm="5" bindtap="SizeChange">5</button>
+    <button class="btn" data-parm="15" bindtap="SizeChange">15</button>
+    <button class="btn" data-parm="blue" bindtap="ColorChange">blue</button>
+    <button class="btn" data-parm="red" bindtap="ColorChange">red</button>
+    <button class="btn" data-parm="#f8f8f8" bindtap="ClearCanvas">Clear</button>  
+  </view>
+</view>

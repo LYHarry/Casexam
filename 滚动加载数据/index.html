@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>滚动加载数据－滚动一屏加载一屏数据</title>
+    <style type="text/css">
+        html,
+        body,
+        ul,
+        li,
+        div,
+        span,
+        label {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #main-warp {
+            width: 80%;
+        }
+
+        #main-warp #header-warp {
+            height: 250px;
+        }
+
+
+        #main-warp #info-warp {
+            margin: 50px 0;
+        }
+
+        #main-warp #info-warp li {
+            display: block;
+            margin-left: 20px;
+            border: 1px solid #666;
+            border-top: none;
+        }
+
+        #main-warp #info-warp li:first-child {
+            border: 1px solid #666;
+        }
+
+        #main-warp #footer-warp {
+            height: 300px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="main-warp">
+        <header id="header-warp">
+            头部<br /><br /><br />
+            利用滚动条事件，实现滚动加载数据，页面上必须出现滚动条才能触发该事件
+        </header>
+        <ul id="info-warp">
+            <li>1</li>
+            <li>1</li>
+            <li>1</li>
+        </ul>
+        <footer id="footer-warp">尾部</footer>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+        //获取页面顶部被卷起来的高度
+        function scrollTop() {
+            return Math.max(document.body.scrollTop, document.documentElement.scrollTop);
+        }
+
+        //获取页面文档的总高度
+        function documentHeight() {
+            return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+        }
+
+        //获取页面浏览器可视的高度
+        function windowHeight() {
+            //document.compatMode有两个取值。BackCompat：标准兼容模式关闭。CSS1Compat：标准兼容模式开启。
+            return (document.compatMode == "CSS1Compat") ? document.documentElement.clientHeight : document.body
+                .clientHeight;
+        }
+
+        // oldScrollTop数据加载前滚动条顶部的位置  newScrollTop数据加载后滚动条顶部的位置
+        var oldScrollTop = 0,
+            newScrollTop = 0;
+        var onOff = true; //数据是否加载完
+
+        //阻止滚动条事件重复调用
+        function touchOn(callback) {
+            if ((oldScrollTop <= newScrollTop) && onOff) {
+                callback();
+            } else {
+                return;
+            }
+        }
+
+        //得到装数据的容器DIV的高度
+        function dataDivHeight() {
+            return $(".linelist").height();
+        }
+
+        //得到尾部通用HTML的高度，即滚动条离尾部多少距离时开始加载数据
+        function footerHeight() {
+            return $("#footer-warp").height();
+        }
+
+        //数据列表搜索
+        function searchData() {
+            onOff = false; //关闭标识，阻止滚动条事件
+            $.ajax({
+                type: "get",
+                url: "/data.json",
+                data: {
+                    t: Math.random()
+                },
+                cache: false,
+                dataType: "text",
+                success: function (res) {
+                    res = $.parseJSON(res);
+                    if (res != null || typeof (res) != "undefined") {
+                        $("#info-warp").append(("<li>" + res.data + "</li>"));
+                        onOff = true; //打开标识
+                    } else {
+                        $("#info-warp").append('');
+                        onOff = false; //关闭标识，阻止滚动条事件
+                    }
+                },
+                complete: function (com) {
+                    //保存加载了数据的滚动条顶部位置
+                    newScrollTop = scrollTop();
+                },
+                error: function (msg) {
+
+                }
+            });
+        }
+
+        $(function () {
+            //滚动条事件
+            $(window).on('scroll', function () {
+                if ((scrollTop() + windowHeight()) > (documentHeight() - footerHeight())) {
+                    touchOn(function () {
+                        //保存没有加载数据时滚动条的顶部位置
+                        oldScrollTop = scrollTop();
+                        //加载数据
+                        setTimeout(function () {
+                            searchData("");
+                        }, 200);
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

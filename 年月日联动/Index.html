@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>年月日三级联动</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+
+    <label>出生年月</label>
+    <select id="YYYY" class="dropList" onchange="YChange(this.value)">
+        <option value="">年</option>
+    </select>
+    <select id="MM" class="dropList" onchange="MChange(this.value)">
+        <option value="">月</option>
+    </select>
+    <select id="DD" class="dropList">
+        <option value="">日</option>
+    </select>
+
+    <script type="text/javascript">
+        window.onload = function () {
+            var MonHead = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]; //保存每个月的天数
+
+            //先给年下拉框赋内容
+            var year = document.getElementById("YYYY");
+            var y = new Date().getFullYear();
+            for (var i = y; i >= 1890; i--) {
+                var opt = document.createElement("option");
+                opt.value = i;
+                opt.innerText = i;
+                year.appendChild(opt);
+            }
+        }
+
+        //得到当前月的天数 year month
+        function getDays(year, month) {
+            var days = 0;
+            year = parseInt(year);
+            month = parseInt(month);
+            switch (month) {
+                case 1:
+                case 3:
+                case 5:
+                case 7:
+                case 8:
+                case 10:
+                case 12:
+                    days = 31;
+                    break;
+                case 2:
+                    days = IsPinYear(year) ? 29 : 28;
+                    break;
+                case 4:
+                case 6:
+                case 9:
+                case 11:
+                    days = 30;
+                    break;
+                default:
+                    days = 0;
+                    break;
+            }
+            return days;
+        }
+
+        //年发生变化时日期发生变化(主要是判断闰平年)
+        function YChange(str) {
+            writeMonth(); //调用函数给月份的下拉框赋值
+
+            //得到选择的月份
+            var MMvalue = document.getElementById("MM").options[document.getElementById("MM").selectedIndex].value;
+
+            if (MMvalue == "") {
+                document.getElementById("DD").length = 1;
+                return;
+            }
+            var n = getDays(str, MMvalue); //得到选择的月份对应的天数
+            writeDay(n); //调用赋天数的函数
+        }
+
+        // 给月份下拉框赋值
+        function writeMonth() {
+            document.getElementById("MM").length = 1; //清除以前的节点，重新添加
+            var month = document.getElementById("MM");
+            for (var i = 1; i < 13; i++) {
+                var opt = document.createElement("option");
+                opt.value = i;
+                opt.innerText = i;
+                month.appendChild(opt);
+            }
+        }
+
+        //月发生变化时日期联动
+        function MChange(str) {
+            //得到选择的年份
+            var YVal = document.getElementById("YYYY").options[document.getElementById("YYYY").selectedIndex].value;
+
+            if (str == "") {
+                document.getElementById("DD").length = 1;
+                return;
+            }
+            var n = getDays(YVal, str); //得到选择的月份对应的天数
+            writeDay(n); //调用赋天数的函数
+        }
+
+        //按条件给日期（天数）下拉框赋值
+        function writeDay(n) {
+            document.getElementById("DD").length = 1; //清除以前的节点，重新添加
+            var day = document.getElementById("DD");
+            for (var i = 1; i < (n + 1); i++) {
+                var opt = document.createElement("option");
+                opt.value = i;
+                opt.innerText = i;
+                day.appendChild(opt);
+            }
+        }
+
+        //判断是否闰平年
+        function IsPinYear(year) {
+            return (0 == year % 4 && (year % 100 != 0 || year % 400 == 0))
+        }
+    </script>
+
+</body>
+
+</html>

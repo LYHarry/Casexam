@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>走马灯</title>
+    <style type="text/css">
+        html,
+        body,
+        div,
+        ul,
+        li,
+        ol,
+        h,
+        p,
+        img,
+        span {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        #main-warop {
+            width: 430px;
+            height: 145px;
+            margin: 20px auto;
+            border: 1px solid red;
+            overflow: hidden;
+            overflow-x: scroll;
+        }
+
+        #main-warop #content {
+            width: 1776px;
+            height: 135px;
+            overflow: hidden;
+        }
+
+        #main-warop #content img {
+            padding-left: 1px;
+            display: inline;
+            float: left;
+            width: 110px;
+            height: 135px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main-warop">
+        <div id="content">
+            <img src="images/1.png" />
+            <img src="images/2.png" />
+            <img src="images/3.png" />
+            <img src="images/4.png" />
+            <img src="images/5.png" />
+            <img src="images/6.png" />
+            <img src="images/7.png" />
+            <img src="images/8.png" />
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+        window.onload = function () {
+            init(); //加载初始化方法
+
+            $("#content").find("img").on("mouseover", function () {
+                stopScroll();
+            }).on("mouseout", function () {
+                startScroll();
+            });
+        };
+
+        function init() {
+            $("#content").append($("#content").html());
+            startScroll(); //开启定时器
+        }
+
+        function imgScroll() {
+            var w = document.getElementById("main-warop");
+            if (w.scrollLeft < 888) {
+                w.scrollLeft++;
+            } else {
+                w.scrollLeft = 0;
+            }
+        }
+
+        var timer = null;
+
+        function startScroll() {
+            timer = setInterval("imgScroll()", 10);
+        }
+
+        function stopScroll() {
+            clearInterval(timer);
+        }
+    </script>
+</body>
+
+</html>

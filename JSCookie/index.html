@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>cookie操作</title>
+</head>
+
+<body>
+    <div>
+        <input type="text" id="txt_cookie" value="" />
+        <br />
+        <br />
+        <input type="button" id="btn_cookie" value="设置Cookie" />
+        <br />
+        <br />
+        <input type="button" id="get_cookie" value="得到Cookie" />
+        <br />
+        <br />
+        <input type="button" id="del_cookie" value="删除Cookie" />
+        <br />
+        <br />
+        <input type="button" id="fromat_time" value="格式化时间" />
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="common.js"></script>
+    <script type="text/javascript">
+        $("#btn_cookie").on("click", function () {
+            var cookieValue = $.trim($("#txt_cookie").val());
+            if (cookieValue == "") {
+                alert("请输入要存于Cookie的值！");
+                return false;
+            }
+            Utility.setCookie("testCookie", cookieValue);
+            alert("成功！");
+        });
+
+        $("#get_cookie").on("click", function () {
+            alert(Utility.getCookie("testCookie"));
+        });
+
+        $("#del_cookie").on("click", function () {
+            Utility.delCookie("testCookie");
+            alert("成功！");
+        });
+
+        $("#fromat_time").on("click", function () {
+            alert(Utility.getTime("20170512"));
+        });
+    </script>
+</body>
+
+</html>

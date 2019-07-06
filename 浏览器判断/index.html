@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>判断浏览器版本</title>
+</head>
+
+<body>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+        //Navigator 对象包含有关浏览器的信息。 所有浏览器都支持该对象。
+        //相关属性：
+        //appCodeName 返回浏览器的代码名。
+        //appName 返回浏览器的名称。
+        //appVersion 返回浏览器的平台和版本信息。
+        //browserLanguage 返回当前浏览器的语言。
+        //platform  返回运行浏览器的操作系统平台。
+        //userAgent  返回由客户机发送服务器的 user-agent 头部的值。
+
+        //判断浏览器的方法：
+        function browser1() {
+            var browserName = navigator.userAgent.toLowerCase();
+            if (browserName.match(/mobile/i)) {
+                alert("mobile");
+            } else if (browserName.match(/msie/i) && !browserName.match(/opera/i) && browserName.match(/compatible/i)) {
+                alert("IE");
+            } else if (browserName.match(/firefox/i)) {
+                alert("firefox");
+            } else if (browserName.match(/chrome/i) && browserName.match(/webkit/i) && browserName.match(/mozilla/i)) {
+                alert("chrome");
+            } else if (browserName.match(/opera/i)) {
+                alert("opera");
+            } else if (browserName.match(/ipad/i)) {
+                alert("iPad");
+            } else if (browserName.match(/webkit/i) && !browserName.match(/chrome/i) && browserName.match(/mozilla/i)) {
+                alert("Safari");
+            } else {
+                alert("unKnow");
+            }
+        }
+        //注意：
+        //1、i-->是正则表达式（忽略大小写）
+        //2、上面用于判断IE浏览器的方法在IE11中失效，因为在IE11中没有MSIE标识，所以需要改用新方法来判断。
+        //3、也可使用 indexOf()方法来进行判断。如：browserName.indexOf("mobile")>0
+
+        //判断IE的新办法（该方法也可判断IE11以下版本）：
+        function isIE() { // 判断是否为IE浏览器
+            if (!!window.ActiveXObject || "ActiveXObject" in window)
+                return true;
+            else
+                return false;
+        }
+
+        //判断微信浏览器
+        function isWeiXin() {
+            var ua = window.navigator.userAgent.toLowerCase();
+            if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        //判断是否为安桌或IOS
+        function isIosOrAndroid() {
+            var u = navigator.userAgent;
+            var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+            var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+            alert('是否是Android：' + isAndroid);
+            alert('是否是iOS：' + isiOS);
+        }
+
+        //比较全面的方法：
+        //判断访问终端
+        var browser = {
+            versions: function () {
+                var u = navigator.userAgent,
+                    app = navigator.appVersion;
+                return {
+                    trident: u.indexOf('Trident') > -1, //IE内核
+                    isie: (!!window.ActiveXObject || "ActiveXObject" in window), //是否IE
+                    presto: u.indexOf('Presto') > -1, //opera内核
+                    webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                    gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                    mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                    ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                    android: u.indexOf('Android') > -1 || u.indexOf('Adr') > -1, //android终端
+                    iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器
+                    iPad: u.indexOf('iPad') > -1, //是否iPad
+                    webApp: u.indexOf('Safari') == -1, //是否web应用程序，没有头部与底部
+                    weixin: u.indexOf('MicroMessenger') > -1, //是否微信
+                    //weixin: u.match(/MicroMessenger/i) == 'micromessenger',//是否微信
+                    qq: u.match(/\sQQ/i) == " qq" //是否QQ
+                };
+            }(),
+            language: (navigator.browserLanguage || navigator.language).toLowerCase()
+        }
+
+        //使用方法：
+        //判断是否IE内核
+        if (browser.versions.trident) {
+            alert("is IE");
+        }
+        //判断是否opera内核
+        if (browser.versions.presto) {
+            alert("is presto");
+        }
+        //判断是否webKit内核
+        if (browser.versions.webKit) {
+            alert("is webKit");
+        }
+        //判断是否移动端
+        if (browser.versions.mobile || browser.versions.android || browser.versions.ios) {
+            alert("移动端");
+        }
+    </script>
+</body>
+
+</html>
