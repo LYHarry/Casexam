@@ -17,7 +17,7 @@ namespace CustomIoc.Infrastructure.Impl
         /// key: TForm 的全命名空间名称
         /// value: TTo 类型
         /// </summary>
-        private readonly Dictionary<string, Type> _containerDict = new Dictionary<string, Type>();
+        private readonly Dictionary<string, IocContainerRegisterModel> _containerDict = new Dictionary<string, IocContainerRegisterModel>();
 
         /// <summary>
         /// 常量参数集合字典
@@ -25,24 +25,83 @@ namespace CustomIoc.Infrastructure.Impl
         private readonly Dictionary<string, object[]> _constParamDict = new Dictionary<string, object[]>();
 
         /// <summary>
+        /// 容器单例实例对象集合字典
+        /// </summary>
+        private readonly Dictionary<string, object> _scopeDict = new Dictionary<string, object>();
+
+
+        /// <summary>
         /// CustomIocContainers 容器构造函数
         /// </summary>
         public CustomIocContainers()
         {
-            Console.WriteLine("CustomIocContainers.Constructor");
+            Console.WriteLine("CustomIocContainers.Constructor 无参构造");
+        }
+
+        /// <summary>
+        /// 创建子容器实现容器单例
+        /// </summary>
+        /// <returns></returns>
+        public ICustomIocContainers CreateChildContainer()
+        {
+            return new CustomIocContainers(_containerDict, _constParamDict);
+        }
+
+        /// <summary>
+        /// 私有构造函数，用于创建子容器时，保存父容器服务实例
+        /// </summary>
+        /// <param name="iocContainerDict">容器服务集合</param>
+        /// <param name="constParamDict">服务常量参数集合</param>
+        private CustomIocContainers(
+            Dictionary<string, IocContainerRegisterModel> iocContainerDict,
+            Dictionary<string, object[]> constParamDict)
+        {
+            _containerDict = iocContainerDict;
+            _constParamDict = constParamDict;
+            _scopeDict = new Dictionary<string, object>();
         }
 
 
         /// <summary>
+        /// 注册单例服务实例
+        /// </summary>
+        public void RegisterSingleton<TForm, TTo>(params object[] constParams) where TForm : class where TTo : TForm
+        {
+            Register<TForm, TTo>(ServiceLifetime.Singleton, constParams);
+        }
+
+        /// <summary>
+        ///注册请求单例(容器单例)服务实例
+        /// </summary>
+        public void RegisterScoped<TForm, TTo>(params object[] constParams) where TForm : class where TTo : TForm
+        {
+            Register<TForm, TTo>(ServiceLifetime.Scoped, constParams);
+        }
+
+        /// <summary>
+        /// 注册瞬时服务实例
+        /// </summary>
+        public void RegisterTransient<TForm, TTo>(params object[] constParams) where TForm : class where TTo : TForm
+        {
+            Register<TForm, TTo>(ServiceLifetime.Transient, constParams);
+        }
+
+        /// <summary>
         /// 注册服务
         /// </summary>
-        public void Register<TForm, TTo>(params object[] constParams)
+        public void Register<TForm, TTo>(ServiceLifetime lifetime = ServiceLifetime.Transient, params object[] constParams)
             where TForm : class where TTo : TForm
         {
             var key = GetTFormName(typeof(TForm), typeof(TTo));
 
             if (!_containerDict.ContainsKey(key))
-                _containerDict.Add(key, typeof(TTo));
+            {
+                _containerDict.Add(key, new IocContainerRegisterModel()
+                {
+                    TargetType = typeof(TTo),
+                    Lifetime = lifetime
+                });
+            }
 
             if (constParams != null && constParams.Length > 0 && !_constParamDict.ContainsKey(key))
                 _constParamDict.Add(key, constParams);
@@ -69,8 +128,20 @@ namespace CustomIoc.Infrastructure.Impl
             if (!_containerDict.ContainsKey(key))
                 throw new Exception($"未注册服务{type.FullName}.");
 
+            //得到实例模型对象类型
+            var oRegModel = _containerDict[key];
+            //如果该单例实例对象存在，则直接返回
+            if (oRegModel.Lifetime == ServiceLifetime.Singleton && oRegModel.SingletonObject != null)
+            {
+                return oRegModel.SingletonObject;
+            }
+            //如果该容器实例对象存在，则直接返回
+            if (oRegModel.Lifetime == ServiceLifetime.Scoped && _scopeDict.ContainsKey(key) && _scopeDict[key] != null)
+            {
+                return _scopeDict[key];
+            }
             //得到实例类型
-            var oType = _containerDict[key];
+            var oType = oRegModel.TargetType;
 
             #region 构造函数注入
             //得到所有的构造函数
@@ -125,6 +196,16 @@ namespace CustomIoc.Infrastructure.Impl
             }
             #endregion
 
+            //注册单例实例时，全局保存实例对象
+            if (oRegModel.Lifetime == ServiceLifetime.Singleton)
+            {
+                oRegModel.SingletonObject = oInstance;
+            }
+            //注册容器单例实例时，全局保存实例对象
+            if (oRegModel.Lifetime == ServiceLifetime.Scoped)
+            {
+                _scopeDict[key] = oInstance;
+            }
             return oInstance;
         }
 
