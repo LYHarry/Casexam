@@ -21,13 +21,16 @@ namespace CustomIoc.ConsoleApp
                 containers.Register<ITestServiceE, TestServiceE>();
                 //单接口多实现
                 containers.Register<ITestServiceB, TestServiceBB>();
+                containers.Register<ITestServiceF, TestServiceF>();
 
                 //2、创建对象实例
                 //ITestService testService = containers.Resolve<ITestServiceA>();
                 //ITestService testService = containers.Resolve<ITestServiceE>();
+
                 //单接口多实现
-                ITestService testService = containers.Resolve<ITestServiceB>();
+                //ITestService testService = containers.Resolve<ITestServiceB>();
                 //ITestService testServiceBB = containers.Resolve<ITestServiceB>(typeof(TestServiceBB));
+                ITestService testService = containers.Resolve<ITestServiceF>();
 
                 //3、方法调用
                 testService.ShowMessage();

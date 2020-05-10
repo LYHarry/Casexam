@@ -40,8 +40,11 @@ namespace CustomIoc.Infrastructure.Impl
             where TForm : class where TTo : TForm
         {
             var key = GetTFormName(typeof(TForm), typeof(TTo));
-            _containerDict.Add(key, typeof(TTo));
-            if (constParams != null && constParams.Length > 0)
+
+            if (!_containerDict.ContainsKey(key))
+                _containerDict.Add(key, typeof(TTo));
+
+            if (constParams != null && constParams.Length > 0 && !_constParamDict.ContainsKey(key))
                 _constParamDict.Add(key, constParams);
         }
 
@@ -66,9 +69,8 @@ namespace CustomIoc.Infrastructure.Impl
             if (!_containerDict.ContainsKey(key))
                 throw new Exception($"未注册服务{type.FullName}.");
 
+            //得到实例类型
             var oType = _containerDict[key];
-            //保存构造函数参数实例
-            List<object> ctorParaInstance = new List<object>();
 
             #region 构造函数注入
             //得到所有的构造函数
@@ -90,36 +92,24 @@ namespace CustomIoc.Infrastructure.Impl
 
             #endregion
 
-            //得到构造函数参数
-            var ctorParams = assignCtor.GetParameters();
-            //得到参数的常量值
-            var constParams = GetParamConstValue(ctorParams, key, oType, "构造函数");
-            foreach (var ctorPara in ctorParams)
-            {
-                //当前参数是否是常量
-                var ctorParaConstAttr = ctorPara.GetCustomAttribute(typeof(ParameterConstInjectAttribute), true);
-                if (ctorParaConstAttr is ParameterConstInjectAttribute paramConstAttr)
-                    ctorParaInstance.Add(constParams[paramConstAttr.Index]);
-                else
-                {
-                    //得到构造函数参数实例
-                    var paraInstance = CreateInstance(ctorPara.ParameterType);
-                    ctorParaInstance.Add(paraInstance);
-                }
-            }
+            //得到构造函数的所有参数实例
+            var ctorParaInstances = GetObjectInstanceParams(assignCtor.GetParameters(), key, oType);
+
             #endregion
 
             //创建实例
-            var oInstance = Activator.CreateInstance(oType, ctorParaInstance.ToArray());
+            var oInstance = Activator.CreateInstance(oType, ctorParaInstances);
 
             #region 属性注入
             //得到标记了 属性注入特性 的公共属性
             var oProps = oType.GetProperties().Where(p => p.IsDefined(typeof(PropertyInjectAttribute), true)).ToList();
             foreach (var prop in oProps)
             {
-                Console.WriteLine($"{oType.FullName} 属性 {prop.Name} 注入 {prop.PropertyType.Name}");
+                Console.WriteLine($"{oType.FullName} 属性{prop.Name} 注入{prop.PropertyType.Name}类型");
+                //当前属性是否指定别名
+                var aliasType = GetAliasType(prop);
                 //得到属性实例
-                var propInstance = CreateInstance(prop.PropertyType);
+                var propInstance = CreateInstance(prop.PropertyType, aliasType);
                 prop.SetValue(oInstance, propInstance);
             }
             #endregion
@@ -129,28 +119,9 @@ namespace CustomIoc.Infrastructure.Impl
             var oMethods = oType.GetMethods().Where(p => p.IsDefined(typeof(MethodInjectAttribute), true)).ToList();
             foreach (var method in oMethods)
             {
-                //保存所有的方法参数实例
-                List<object> methodParaInstance = new List<object>();
-                //得到该方法的所有参数
-                var methodParams = method.GetParameters();
-                //得到参数的常量值            
-                constParams = GetParamConstValue(methodParams, key, oType, "方法");
-
-                foreach (var methodPara in methodParams)
-                {
-                    Console.WriteLine($"{oType.FullName} 方法 {method.Name} 注入 {methodPara.ParameterType.Name}");
-                    //当前参数是否是常量
-                    var methodParaConstAttr = methodPara.GetCustomAttribute(typeof(ParameterConstInjectAttribute), true);
-                    if (methodParaConstAttr is ParameterConstInjectAttribute paramConstAttr)
-                        methodParaInstance.Add(constParams[paramConstAttr.Index]);
-                    else
-                    {
-                        //得到方法参数实例
-                        var paraInstance = CreateInstance(methodPara.ParameterType);
-                        methodParaInstance.Add(paraInstance);
-                    }
-                }
-                method.Invoke(oInstance, methodParaInstance.ToArray());
+                //得到该方法的所有参数实例
+                var methodParaInstances = GetObjectInstanceParams(method.GetParameters(), key, oType, method.Name);
+                method.Invoke(oInstance, methodParaInstances);
             }
             #endregion
 
@@ -168,38 +139,81 @@ namespace CustomIoc.Infrastructure.Impl
             if (toType == null)
             {
                 var toFullName = _containerDict.Keys.FirstOrDefault(p => p.Contains(key));
-                return string.IsNullOrWhiteSpace(toFullName) ? type.FullName : toFullName;
+                return HasValue(toFullName) ? toFullName : type.FullName;
             }
             return $"{key}{toType.FullName}";
         }
 
         /// <summary>
-        /// 得到参数的常量值
+        /// 单接口多实现时得到注入的特定服务实例类型
         /// </summary>
-        /// <param name="paras">参数列表</param>
-        /// <param name="key">字典 key</param>
-        /// <param name="oType">实例类型</param>
-        /// <param name="paramType">参数所属类型</param>
         /// <returns></returns>
-        private object[] GetParamConstValue(ParameterInfo[] paras, string key, Type oType, string paramType)
+        private Type GetAliasType(ICustomAttributeProvider provider)
         {
+            var paramAliasAttr = provider.GetCustomAttributes(typeof(ParameterAliasInjectAttribute), true).FirstOrDefault();
+            if (paramAliasAttr is ParameterAliasInjectAttribute aliasAttr)
+                return aliasAttr.AliasType;
+            return null;
+        }
+
+        /// <summary>
+        /// 得到对象实例的参数实例列表
+        /// </summary>
+        /// <param name="objParams">对象实例的参数列表</param>
+        /// <param name="key">字典 key</param>
+        /// <param name="oType">对象实例类型</param>
+        /// <param name="methodName">方法名称(用于日记记录，只在方法注入时传入)</param>
+        /// <returns>参数实例列表</returns>
+        private object[] GetObjectInstanceParams(ParameterInfo[] objParams, string key, Type oType, string methodName = null)
+        {
+            //保存所有的参数实例
+            List<object> paramInstances = new List<object>();
+
+            //得到参数的常量值
             object[] constParams = null;
             //判断参数中是否包含常量参数
-            var paraConstCount = paras.Count(p => p.IsDefined(typeof(ParameterConstInjectAttribute), true));
-            if (paraConstCount < 1)
-                return constParams;
-
-            string message = $"{paramType}注入{oType.FullName}服务时";
-            if (!_constParamDict.ContainsKey(key))
-                throw new Exception($"{message}未传入常量值");
-
-            constParams = _constParamDict[key];
-            if (constParams == null || constParams.Length < 1)
-                throw new Exception($"{message}未传入常量值");
-            if (constParams.Length < paraConstCount)
-                throw new Exception($"{message}常量值个数传入不对");
-
-            return constParams;
+            var paraConstCount = objParams.Count(p => p.IsDefined(typeof(ParameterConstInjectAttribute), true));
+            if (paraConstCount > 0)
+            {
+                string message = $"{(HasValue(methodName) ? "方法" : "构造函数")}注入{oType.FullName}服务时";
+                if (!_constParamDict.ContainsKey(key))
+                    throw new Exception($"{message}未传入常量值");
+                //得到服务注册时传入的常量值
+                constParams = _constParamDict[key];
+                if (constParams == null || constParams.Length < 1)
+                    throw new Exception($"{message}未传入常量值");
+                if (constParams.Length < paraConstCount)
+                    throw new Exception($"{message}常量值个数传入不对");
+            }
+            foreach (var ctorPara in objParams)
+            {
+                Console.WriteLine($"{oType.FullName}{(HasValue(methodName) ? $" 方法{methodName}" : "")} 注入{ctorPara.ParameterType.Name}参数");
+                //当前参数是否是常量参数
+                var paraConstAttr = ctorPara.GetCustomAttribute(typeof(ParameterConstInjectAttribute), true);
+                if (paraConstAttr is ParameterConstInjectAttribute paramConst)
+                    paramInstances.Add(constParams[paramConst.Index]);
+                else
+                {
+                    //当前参数是否指定别名(单接口多实现时注入特定的服务实例)
+                    var aliasType = GetAliasType(ctorPara);
+                    //得到方法参数实例
+                    var paraInstance = CreateInstance(ctorPara.ParameterType, aliasType);
+                    paramInstances.Add(paraInstance);
+                }
+            }
+            return paramInstances.ToArray();
         }
+
+        /// <summary>
+        /// 是否有值
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        private bool HasValue(string str)
+        {
+            return !string.IsNullOrWhiteSpace(str);
+        }
+
+
     }
 }
