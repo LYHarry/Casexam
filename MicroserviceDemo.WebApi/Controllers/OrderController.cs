@@ -9,12 +9,6 @@ namespace MicroserviceDemo.WebApi.Controllers
     [Route("api/Order")]
     public class OrderController : Controller
     {
-        public OrderController()
-        {
-
-        }
-
-
         [HttpGet]
         [Route("OrderInfo")]
         public string GetOrderInfo()

@@ -5,7 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\MicroserviceDemo.OrderService.Interface\MicroserviceDemo.OrderService.Interface.csproj" />
+    <ProjectReference Include="..\MicroserviceDemo.OrderService\MicroserviceDemo.OrderService.csproj" />
+    <ProjectReference Include="..\MicroserviceDemo.Repository.Interface\MicroserviceDemo.Repository.Interface.csproj" />
+    <ProjectReference Include="..\MicroserviceDemo.Repository\MicroserviceDemo.Repository.csproj" />
   </ItemGroup>
 
 
