@@ -31,5 +31,15 @@ namespace MicroserviceDemo.OrderServiceInstance.Controllers
         {
             return _orderService.GetAllOrders();
         }
+
+        [HttpGet("Message")]
+        public string GetMessage()
+        {
+            var msg = $"OrderService: {DateTime.Now:yyyy-MM-dd HH:mm:ss fff}";
+
+            Console.WriteLine(msg);
+
+            return msg;
+        }
     }
 }

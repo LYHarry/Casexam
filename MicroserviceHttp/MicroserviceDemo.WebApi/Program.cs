@@ -13,6 +13,7 @@ namespace MicroserviceDemo.WebApi
     {
         public static void Main(string[] args)
         {
+            Console.Title = "接口主程序";
             CreateHostBuilder(args).Build().Run();
         }
 

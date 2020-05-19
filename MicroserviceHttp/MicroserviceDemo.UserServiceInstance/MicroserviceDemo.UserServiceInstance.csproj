@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MicroserviceDemo.Infrastructure.Util\MicroserviceDemo.Infrastructure.Util.csproj" />
     <ProjectReference Include="..\MicroserviceDemo.Repository.Interface\MicroserviceDemo.Repository.Interface.csproj" />
     <ProjectReference Include="..\MicroserviceDemo.Repository\MicroserviceDemo.Repository.csproj" />
     <ProjectReference Include="..\MicroserviceDemo.UserService.Interface\MicroserviceDemo.UserService.Interface.csproj" />

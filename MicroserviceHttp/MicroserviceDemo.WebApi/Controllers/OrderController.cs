@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MicroserviceDemo.Infrastructure.Util;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,14 @@ namespace MicroserviceDemo.WebApi.Controllers
         [Route("OrderInfo")]
         public string GetOrderInfo()
         {
-            return "OrderController.GetOrderInfo";
+            var url = ConsulHelper.GetServiceAddress("UserService");
+            Console.WriteLine($"接口层-开始调用 {url} 服务");
+
+            var res = HttpClientHelper.GetAsync(url);
+            return $"接口层-服务响应结果: \r\n {res}";
         }
+
+
+
     }
 }

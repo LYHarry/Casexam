@@ -13,6 +13,7 @@ namespace MicroserviceDemo.OrderServiceInstance
     {
         public static void Main(string[] args)
         {
+            Console.Title = "OrderService";
             CreateHostBuilder(args).Build().Run();
         }
 

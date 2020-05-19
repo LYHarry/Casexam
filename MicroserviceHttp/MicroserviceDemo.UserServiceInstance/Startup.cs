@@ -1,18 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Consul;
+using MicroserviceDemo.Infrastructure.Util;
 using MicroserviceDemo.Repository;
 using MicroserviceDemo.Repository.Interface;
 using MicroserviceDemo.UserService.Interface;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using System;
 
 namespace MicroserviceDemo.UserServiceInstance
 {
@@ -50,6 +46,17 @@ namespace MicroserviceDemo.UserServiceInstance
             {
                 endpoints.MapControllers();
             });
+
+            //×¢²áConsul
+            ConsulHelper.RegistConsulService(Configuration, "UserService");
         }
+
+
+
+
+
+
+
+
     }
 }
