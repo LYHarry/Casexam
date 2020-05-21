@@ -1,6 +1,7 @@
 ﻿using MicroserviceDemo.Model;
 using MicroserviceDemo.OrderService.Interface;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +13,12 @@ namespace MicroserviceDemo.OrderServiceInstance.Controllers
     public class OrderController : Controller
     {
         private readonly IOrderService _orderService;
+        private readonly IConfiguration _config;
 
-        public OrderController(IOrderService orderService)
+        public OrderController(IOrderService orderService, IConfiguration configuration)
         {
             _orderService = orderService;
+            _config = configuration;
         }
 
         [HttpGet]
@@ -35,7 +38,7 @@ namespace MicroserviceDemo.OrderServiceInstance.Controllers
         [HttpGet("Message")]
         public string GetMessage()
         {
-            var msg = $"OrderService: {DateTime.Now:yyyy-MM-dd HH:mm:ss fff}";
+            var msg = $"OrderService:{_config["port"]} Invoke {DateTime.Now:yyyy-MM-dd HH:mm:ss fff}";
 
             Console.WriteLine(msg);
 

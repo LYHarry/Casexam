@@ -18,22 +18,18 @@ namespace MicroserviceDemo.UserServiceInstance
                             .SetBasePath(Directory.GetCurrentDirectory())
                             .AddCommandLine(args).Build();
 
-            string ip = config["ip"];
             string port = config["port"];
-
             Console.Title = $"UserService:{port}";
-            CreateHostBuilder(args, ip, port).Build().Run();
+            CreateHostBuilder(args, config["ip"], port).Build().Run();
         }
 
-        private static IHostBuilder CreateHostBuilder(string[] args, string ip, string port)
-        {
-            return Host.CreateDefaultBuilder(args)
-                       .ConfigureWebHostDefaults(webBuilder =>
-                        {
-                            webBuilder.UseStartup<Startup>();
-                            webBuilder.UseUrls($"http://{ip}:{port}");
-                        });
-        }
+        private static IHostBuilder CreateHostBuilder(string[] args, string ip, string port) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseUrls($"http://{ip}:{port}");
+                });
 
     }
 }

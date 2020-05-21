@@ -13,6 +13,8 @@ namespace MicroserviceDemo.Infrastructure.Util
     /// </summary>
     public class ConsulHelper
     {
+        private static int _randSeed = 0;
+
         /// <summary>
         /// 得到服务地址
         /// </summary>
@@ -33,10 +35,35 @@ namespace MicroserviceDemo.Infrastructure.Util
             //    Console.WriteLine($"{serve.ID}:{serve.Port}");
             //}
 
-            var invokeService = assignServices.First();
+            AgentService invokeService = null;
+            //取第一个服务
+            //invokeService = assignServices.First();
 
-            var url = $"http://{invokeService.Address}:{invokeService.Port}/api/UserService/Message";
-            return url;
+            #region 负载均衡策略
+
+            var rnd = new Random((++_randSeed) + DateTime.Now.Millisecond);
+
+            //1、平均策略(随机策略)
+            invokeService = assignServices.ElementAt(rnd.Next(0, assignServices.Count));
+            //2、轮询策略
+            //invokeService = assignServices.ElementAt(_randSeed++ % assignServices.Count);
+            //3、权重策略
+            //List<AgentService> weightServices = new List<AgentService>();
+            //foreach (var item in assignServices)
+            //{
+            //    int weight = 1;
+            //    if (item.Meta != null && item.Meta.ContainsKey("weight"))
+            //        weight = Convert.ToInt32(item.Meta["weight"]);
+            //    for (int i = 0; i < weight; i++)
+            //    {
+            //        weightServices.Add(item);
+            //    }
+            //}
+            //invokeService = weightServices.ElementAt(rnd.Next(0, weightServices.Count));
+
+            #endregion
+
+            return $"http://{invokeService.Address}:{invokeService.Port}";
         }
 
         /// <summary>
@@ -63,11 +90,33 @@ namespace MicroserviceDemo.Infrastructure.Util
                 Check = new AgentServiceCheck
                 {
                     HTTP = $"http://{ip}:{port}/api/Health",
+                    //间隔时间
                     Interval = TimeSpan.FromSeconds(12),
+                    //检测等待时间
                     Timeout = TimeSpan.FromSeconds(5),
+                    //失败后多久移除服务
                     DeregisterCriticalServiceAfter = TimeSpan.FromSeconds(60),
                 },
+                //自定义属性
+                Meta = new Dictionary<string, string>()
+                {
+                    {  "weight",GetServiceWeight(config["weight"])},
+                },
             });
+        }
+
+        /// <summary>
+        /// 得到服务权重
+        /// </summary>
+        /// <param name="weight">权重</param>
+        /// <returns></returns>
+        private static string GetServiceWeight(string weight)
+        {
+            if (string.IsNullOrWhiteSpace(weight))
+                return "1";
+            if (int.TryParse(weight, out _))
+                return weight;
+            return "1";
         }
 
     }

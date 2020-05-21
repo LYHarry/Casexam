@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MicroserviceDemo.Infrastructure.Util;
 using MicroserviceDemo.OrderService.Interface;
 using MicroserviceDemo.Repository;
 using MicroserviceDemo.Repository.Interface;
@@ -47,6 +48,9 @@ namespace MicroserviceDemo.OrderServiceInstance
             {
                 endpoints.MapControllers();
             });
+
+            //×¢²áConsul
+            ConsulHelper.RegistConsulService(Configuration, "OrderService");
         }
     }
 }

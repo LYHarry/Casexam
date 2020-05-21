@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
@@ -13,15 +14,21 @@ namespace MicroserviceDemo.OrderServiceInstance
     {
         public static void Main(string[] args)
         {
-            Console.Title = "OrderService";
-            CreateHostBuilder(args).Build().Run();
+            var config = new ConfigurationBuilder()
+                         .SetBasePath(Directory.GetCurrentDirectory())
+                         .AddCommandLine(args).Build();
+
+            string port = config["port"];
+            Console.Title = $"OrderService:{port}";
+            CreateHostBuilder(args, config["ip"], port).Build().Run();
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
+        private static IHostBuilder CreateHostBuilder(string[] args, string ip, string port) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                    webBuilder.UseUrls($"http://{ip}:{port}");
                 });
     }
 }
